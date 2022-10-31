@@ -71,8 +71,8 @@ class _ChampionsListViewState extends State<ChampionsListView> {
           return Column(
             children: [
               ListTile(
-                title: Text(store.champions[index].name ?? ''),
-                subtitle: Text(store.champions[index].title ?? ''),
+                title: Text('${store.champions[index].name}'),
+                subtitle: Text('${store.champions[index].title}'),
                 leading: Image.network(
                     '$URL_IMGSQUARE${store.champions[index].id}.png'),
                 trailing: const Icon(Icons.arrow_forward_ios_rounded),
@@ -101,14 +101,15 @@ class _ChampionsListViewState extends State<ChampionsListView> {
           return Column(
             children: [
               ListTile(
-                title: Text(store.researchedChampions[index].name ?? ''),
-                subtitle: Text(store.researchedChampions[index].title ?? ''),
+                title: Text('${store.researchedChampions[index].name}'),
+                subtitle: Text('${store.researchedChampions[index].title}'),
                 leading: Image.network(
                     '$URL_IMGSQUARE${store.researchedChampions[index].id}.png'),
                 trailing: const Icon(Icons.arrow_forward_ios_rounded),
                 onTap: () async {
                   await store.getChampion(
                       id: store.researchedChampions[index].id.toString());
+
                   Modular.to.pushNamed(
                     '/champion-details',
                     arguments: store.champion,

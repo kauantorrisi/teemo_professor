@@ -11,7 +11,6 @@ class SpellModel {
     this.cooldownBurn,
     this.cost,
     this.costBurn,
-    this.effect,
     this.effectBurn,
     this.vars,
     this.costType,
@@ -30,7 +29,6 @@ class SpellModel {
   final String? cooldownBurn;
   final List<int>? cost;
   final String? costBurn;
-  final List<List<int>>? effect;
   final List<String?>? effectBurn;
   final List<dynamic>? vars;
   final String? costType;
@@ -58,10 +56,6 @@ class SpellModel {
             ? null
             : List<int>.from(json["cost"].map((x) => x)),
         costBurn: json["costBurn"],
-        effect: json["effect"] == null
-            ? null
-            : List<List<int>>.from(json["effect"].map(
-                (x) => x == null ? <int>[] : List<int>.from(x.map((x) => x)))),
         effectBurn: json["effectBurn"] == null
             ? null
             : List<String?>.from(json["effectBurn"].map((x) => x)),
@@ -89,10 +83,6 @@ class SpellModel {
         "cooldownBurn": cooldownBurn,
         "cost": cost == null ? null : List<dynamic>.from(cost!.map((x) => x)),
         "costBurn": costBurn,
-        "effect": effect == null
-            ? null
-            : List<dynamic>.from(
-                effect!.map((x) => List<dynamic>.from(x.map((x) => x)))),
         "effectBurn": effectBurn == null
             ? null
             : List<dynamic>.from(effectBurn!.map((x) => x)),
