@@ -3,17 +3,22 @@ import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
-  const TextFormFieldWidget(
-      {super.key,
-      this.controller,
-      required this.autofocus,
-      this.onChanged,
-      this.onTap});
+  const TextFormFieldWidget({
+    super.key,
+    this.controller,
+    this.onChanged,
+    this.onTap,
+    this.text,
+    this.onEditingComplete,
+    this.onFieldSubmitted,
+  });
 
-  final bool autofocus;
+  final String? text;
   final TextEditingController? controller;
   final void Function(String)? onChanged;
+  final void Function()? onEditingComplete;
   final void Function()? onTap;
+  final void Function(String)? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +33,8 @@ class TextFormFieldWidget extends StatelessWidget {
         controller: controller,
         cursorColor: TPColor.purple,
         onChanged: onChanged,
+        onFieldSubmitted: onFieldSubmitted,
+        onEditingComplete: onEditingComplete,
         onTap: onTap,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -44,7 +51,7 @@ class TextFormFieldWidget extends StatelessWidget {
               gapPadding: 5,
               borderRadius: BorderRadius.circular(30),
               borderSide: const BorderSide(color: TPColor.purple)),
-          labelText: 'Pesquise um campeão',
+          labelText: text,
           labelStyle: TPTexts.t5(
             color: TPColor.purple,
           ),

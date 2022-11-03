@@ -4,7 +4,7 @@ import 'package:teemo_professor/modules/championsList/ui/champion_details.view.d
 import 'package:teemo_professor/modules/championsList/store/champions_list.store.dart';
 import 'package:teemo_professor/modules/championsList/ui/champions_list.view.dart';
 
-class ChampionsListModule extends Module {
+class ChampionsModule extends Module {
   static List<Bind> services = [
     Bind.lazySingleton<ChampionsListService>((i) => ChampionsListService()),
   ];

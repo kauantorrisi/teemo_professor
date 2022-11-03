@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:teemo_professor/libraries/common/constants.dart';
-import 'package:teemo_professor/libraries/common/design/colors.dart';
-import 'package:teemo_professor/libraries/common/design/texts.dart';
+import 'package:teemo_professor/libraries/common/widgets/app_bar.widget.dart';
 import 'package:teemo_professor/libraries/common/widgets/drawer.widget.dart';
 import 'package:teemo_professor/libraries/common/widgets/floating_action_button.dart';
 import 'package:teemo_professor/libraries/common/widgets/textform_fields.widget.dart';
-import 'package:teemo_professor/modules/app/ui/error.view.dart';
-import 'package:teemo_professor/modules/app/ui/loading.view.dart';
 import 'package:teemo_professor/modules/championsList/store/champions_list.store.dart';
 
 class ChampionsListView extends StatefulWidget {
@@ -31,28 +28,21 @@ class _ChampionsListViewState extends State<ChampionsListView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title:
-              Text('Professor Teemo', style: TPTexts.t1(color: TPColor.white)),
-          centerTitle: true,
-          backgroundColor: TPColor.purple,
-        ),
+        appBar: const AppBarWidget(),
         body: Observer(builder: (_) {
-          if (store.isLoading) const LoadingView();
-          if (store.isError) const ErrorView();
           return Column(
             children: [
               if (store.isSearching)
                 TextFormFieldWidget(
-                  autofocus: true,
                   controller: store.searchController,
+                  text: 'Pesquise um campeão',
                   onChanged: (value) => store.searchChampion(value),
                 ),
               if (store.isSearching) researchedChampionsList else championsList,
             ],
           );
         }),
-        drawer: DrawerWidget(),
+        drawer: const DrawerWidget(),
         floatingActionButton: FloatingActionButtonWidget(
             icon: Icons.search,
             onPressed: () {
@@ -80,7 +70,7 @@ class _ChampionsListViewState extends State<ChampionsListView> {
                   await store.getChampion(
                       id: store.champions[index].id.toString());
                   Modular.to.pushNamed(
-                    '/champion-details',
+                    '/champions-module/champion-details',
                     arguments: store.champion,
                   );
                 },
@@ -111,7 +101,7 @@ class _ChampionsListViewState extends State<ChampionsListView> {
                       id: store.researchedChampions[index].id.toString());
 
                   Modular.to.pushNamed(
-                    '/champion-details',
+                    '/champions-module/champion-details',
                     arguments: store.champion,
                   );
                 },

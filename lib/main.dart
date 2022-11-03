@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:teemo_professor/libraries/common/design/colors.dart';
-import 'package:teemo_professor/modules/championsList/champions_list.module.dart';
+import 'package:teemo_professor/modules/userAccount/summoner.module.dart';
 
 void main() {
-  runApp(ModularApp(module: ChampionsListModule(), child: const MyApp()));
+  runApp(ModularApp(module: SummonerModule(), child: const MyApp()));
 }
 
 class MyApp extends StatefulWidget {

@@ -5,17 +5,15 @@ import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
 
 class ListTileWidget extends StatelessWidget {
-  ListTileWidget({
+  const ListTileWidget({
     super.key,
     required this.onTap,
     required this.label,
-    required this.selected,
     this.icon,
   });
 
   final void Function()? onTap;
   final String label;
-  bool selected;
   final IconData? icon;
 
   @override
@@ -26,17 +24,16 @@ class ListTileWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.02),
       child: ListTile(
         selectedTileColor: TPColor.purple,
+        selected: true,
         selectedColor: TPColor.black,
-        selected: selected,
         shape: RoundedRectangleBorder(
           side: const BorderSide(color: TPColor.white),
           borderRadius: BorderRadius.circular(18),
         ),
-        title: Text(label, style: TPTexts.t4(fontFamily: 'TeemoFont1')),
-        leading: Icon(icon),
-        onTap: () {
-          onTap;
-        },
+        title: Text(label,
+            style: TPTexts.t4(fontFamily: 'TeemoFont1', color: TPColor.white)),
+        leading: Icon(icon, color: TPColor.white),
+        onTap: onTap,
       ),
     );
   }

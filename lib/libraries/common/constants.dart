@@ -1,15 +1,36 @@
 // ignore_for_file: non_constant_identifier_names
 
-// String API_KEY = 'RGAPI-08bb2144-ccce-49eb-8a8f-f8f787f6f988';
+String API_KEY = 'RGAPI-52931395-b836-48a5-8c63-16c13888e011';
+
+String LOL_URL = 'https://br1.api.riotgames.com/';
+
+String DATA_DRAGON_URL = 'http://ddragon.leagueoflegends.com/';
+
+String LOL_SUMMONERBYNAME = '${LOL_URL}lol/summoner/v4/summoners/by-name/';
+
+String LOL_SUMMONERBYPUUID = '${LOL_URL}lol/summoner/v4/summoners/by-puuid/';
+
+String LOL_SUMMONERCHAMPIONSMATERYBYID =
+    '${LOL_URL}lol/champion-mastery/v4/champion-masteries/by-summoner/';
+
+String LOL_SUMMONERTOTALMATERYPOINTS =
+    '${LOL_URL}lol/champion-mastery/v4/scores/by-summoner/';
+
+String LOL_SUMMONERRANKEDINFO = '${LOL_URL}lol/league/v4/entries/by-summoner/';
+
+String LOL_LISTMATCHIDSBYPUUID =
+    'https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/';
+
+String LOL_MATCHBYID =
+    'https://americas.api.riotgames.com/lol/match/v5/matches/';
+
+String LOL_ICONS = '${DATA_DRAGON_URL}cdn/12.21.1/img/profileicon/';
 
 String URL_CHAMPIONSLIST =
-    'http://ddragon.leagueoflegends.com/cdn/12.20.1/data/pt_BR/champion.json';
+    '${DATA_DRAGON_URL}cdn/12.20.1/data/pt_BR/champion.json';
 
-String URL_CHAMPION =
-    'http://ddragon.leagueoflegends.com/cdn/12.20.1/data/pt_BR/champion/';
+String URL_CHAMPION = '${DATA_DRAGON_URL}cdn/12.20.1/data/pt_BR/champion/';
 
-String URL_IMGSQUARE =
-    'http://ddragon.leagueoflegends.com/cdn/12.20.1/img/champion/';
+String URL_IMGSQUARE = '${DATA_DRAGON_URL}cdn/12.20.1/img/champion/';
 
-String URL_IMGSPLASHART =
-    'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/';
+String URL_IMGSPLASHART = '${DATA_DRAGON_URL}cdn/img/champion/splash/';
