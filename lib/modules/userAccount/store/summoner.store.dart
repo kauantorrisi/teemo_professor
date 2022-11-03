@@ -59,7 +59,7 @@ abstract class _SummonerStoreBase with Store {
       await getChampionMastery('${summonerByName?.id}');
       await getSummonerTotalMasteryPoints('${summonerByName?.id}');
       await getListMatchIds('${summonerByName?.puuid}');
-      await getMatchMetadataById();
+      await getMatchById();
       await getSummonerByPUUID('${match?.metadata?.participants?.first}');
     } catch (e) {
       setIsLoading(false);
@@ -153,12 +153,12 @@ abstract class _SummonerStoreBase with Store {
   }
 
   @action
-  Future<void> getMatchMetadataById() async {
+  Future<void> getMatchById() async {
     try {
       setIsLoading(true);
       setIsError(false);
       match = MatchModel();
-      match = await service.getMatchMetadataById(matchIds.first);
+      match = await service.getMatchById(matchIds.first);
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);

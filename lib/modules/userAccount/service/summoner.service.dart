@@ -71,7 +71,7 @@ class SummonerService {
     return matchIds;
   }
 
-  Future<MatchModel> getMatchMetadataById(String matchId) async {
+  Future<MatchModel> getMatchById(String matchId) async {
     MatchModel match;
     Response response = await dio.get(LOL_MATCHBYID + matchId,
         options: Options(headers: {'X-Riot-Token': API_KEY}));

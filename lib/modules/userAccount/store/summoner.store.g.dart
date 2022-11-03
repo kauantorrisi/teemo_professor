@@ -214,13 +214,12 @@ mixin _$SummonerStore on _SummonerStoreBase, Store {
     return _$getListMatchIdsAsyncAction.run(() => super.getListMatchIds(puuid));
   }
 
-  late final _$getMatchMetadataByIdAsyncAction =
-      AsyncAction('_SummonerStoreBase.getMatchMetadataById', context: context);
+  late final _$getMatchByIdAsyncAction =
+      AsyncAction('_SummonerStoreBase.getMatchById', context: context);
 
   @override
-  Future<void> getMatchMetadataById() {
-    return _$getMatchMetadataByIdAsyncAction
-        .run(() => super.getMatchMetadataById());
+  Future<void> getMatchById() {
+    return _$getMatchByIdAsyncAction.run(() => super.getMatchById());
   }
 
   late final _$_SummonerStoreBaseActionController =

@@ -39,22 +39,25 @@ class SummonerView extends StatelessWidget {
                   store.searchController.text.isEmpty)
                 Column(
                   children: [
-                    Text('Tente procurar por alguém!', style: TPTexts.h5()),
+                    Text('Procure por alguém!', style: TPTexts.h5()),
                     SizedBox(
-                      height: screenSize.height * 0.3,
+                      height: screenSize.height * 0.2,
                       child: Image.network(
-                          'https://giffiles.alphacoders.com/141/14109.gif'),
+                        'https://static.wikia.nocookie.net/leagueoflegends/images/9/9b/Carry_Me_Emote.png/revision/latest/scale-to-width-down/90?cb=20200707214209',
+                      ),
                     ),
                   ],
                 ),
-              if (store.isError == true)
+              if (store.isError == true &&
+                  store.searchController.text.isNotEmpty)
                 Column(
                   children: [
                     Text('Invocador não encontrado!', style: TPTexts.h5()),
                     SizedBox(
-                      height: screenSize.height * 0.3,
+                      height: screenSize.height * 0.2,
                       child: Image.network(
-                          'https://vignette.wikia.nocookie.net/leagueoflegends/images/d/d5/LoL_Facebook_Icon_16.gif/revision/latest?cb=20161029213900'),
+                        'https://static.wikia.nocookie.net/leagueoflegends/images/1/1b/Does_Not_Compute_Emote.png/revision/latest/scale-to-width-down/90?cb=20171120235504',
+                      ),
                     ),
                   ],
                 ),
@@ -76,7 +79,10 @@ class SummonerView extends StatelessWidget {
                                   Border.all(color: TPColor.black, width: 2),
                             ),
                             child: Image.network(
-                                '$LOL_ICONS${store.summonerByName?.profileIconId}.png'),
+                                '$LOL_ICONS${store.summonerByName?.profileIconId}.png',
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Image.asset(
+                                        'lib/assets/images/error.image.png')),
                           ),
                           const SizedBox(width: 20),
                           Column(
@@ -106,15 +112,6 @@ class SummonerView extends StatelessWidget {
                             style: TPTexts.t6()),
                     ],
                   ),
-                ),
-              if (store.summonerByName != null &&
-                  store.rankedInfo != null &&
-                  store.isError == false &&
-                  store.searchController.text.isNotEmpty)
-                Column(
-                  children: [
-                    Text('Última partida jogada:', style: TPTexts.h8()),
-                  ],
                 ),
             ],
           );

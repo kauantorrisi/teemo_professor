@@ -51,6 +51,42 @@ class ChampionDetailsView extends StatelessWidget {
               SizedBox(height: screenSize.height * 0.005),
               Text('Arraste para o lado ➡️', style: TPTexts.t8(isBold: true)),
               SizedBox(height: screenSize.height * 0.02),
+              Text('Passiva:', style: TPTexts.h7(color: TPColor.blue)),
+              SizedBox(height: screenSize.height * 0.01),
+              Container(
+                padding: EdgeInsets.all(screenSize.height * 0.02),
+                margin: EdgeInsets.all(screenSize.height * 0.01),
+                decoration: BoxDecoration(
+                  border: Border.all(color: TPColor.purple, width: 2),
+                ),
+                child: Column(
+                  children: [
+                    Image.network(
+                      'http://ddragon.leagueoflegends.com/cdn/12.21.1/img/passive/${champion.id}_P.png',
+                      errorBuilder: (context, error, stackTrace) => Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('Erro ao carregar imagem'),
+                          SizedBox(
+                            height: screenSize.height * 0.05,
+                            width: screenSize.width * 0.2,
+                            child: Image.asset(
+                                'lib/assets/images/error.image.png'),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: screenSize.width * 0.03),
+                    Text('${champion.passive?.name}', style: TPTexts.h8()),
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text('${champion.passive?.description}',
+                          style: TPTexts.t5()),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: screenSize.height * 0.02),
               Text('Habilidades:', style: TPTexts.h7(color: TPColor.blue)),
               SizedBox(height: screenSize.height * 0.02),
               spellsList(context),
