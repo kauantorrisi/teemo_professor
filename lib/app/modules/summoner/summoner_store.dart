@@ -5,10 +5,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:teemo_professor/libraries/common/models/champions_matery.model.dart';
 import 'package:teemo_professor/libraries/common/models/match/match.model.dart';
-import 'package:teemo_professor/libraries/common/models/ranked_info.model.dart';
+import 'package:teemo_professor/libraries/common/models/entry.model.dart';
+import 'package:teemo_professor/libraries/common/models/ranked.model.dart';
 import 'package:teemo_professor/libraries/common/models/summoner.model.dart';
-import 'package:teemo_professor/modules/userAccount/service/summoner.service.dart';
-part 'summoner.store.g.dart';
+import 'package:teemo_professor/app/modules/summoner/service/summoner_service.dart';
+part 'summoner_store.g.dart';
 
 class SummonerStore = _SummonerStoreBase with _$SummonerStore;
 
@@ -29,7 +30,10 @@ abstract class _SummonerStoreBase with Store {
   SummonerModel? summonerByPuuid;
 
   @observable
-  RankedInfoModel? rankedInfo;
+  EntryModel? entriesInfo;
+
+  @observable
+  RankedModel? rankedChallengerSoloQInfo;
 
   @observable
   MatchModel? match;
@@ -50,17 +54,22 @@ abstract class _SummonerStoreBase with Store {
   bool setIsError(bool value) => isError = value;
 
   @action
+  Future<void> initState() async {
+    await getRankedChallengerSoloQInfo();
+  }
+
+  @action
   Future<void> onSearch() async {
     try {
       setIsLoading(true);
       setIsError(false);
       await getSummonerByName();
-      await getSummonerRankedInfo('${summonerByName?.id}');
-      await getChampionMastery('${summonerByName?.id}');
+      await getSummonerSummonerRankedInfo('${summonerByName?.id}');
       await getSummonerTotalMasteryPoints('${summonerByName?.id}');
-      await getListMatchIds('${summonerByName?.puuid}');
-      await getMatchById();
-      await getSummonerByPUUID('${match?.metadata?.participants?.first}');
+      // await getTopChampionsMastery('${summonerByName?.id}');
+      // await getListMatchIds('${summonerByName?.puuid}');
+      // await getMatchById();
+      // await getSummonerByPUUID('${match?.metadata?.participants?.first}');
     } catch (e) {
       setIsLoading(false);
       setIsError(true);
@@ -96,12 +105,12 @@ abstract class _SummonerStoreBase with Store {
   }
 
   @action
-  Future<void> getSummonerRankedInfo(String summonerId) async {
+  Future<void> getSummonerSummonerRankedInfo(String summonerId) async {
     try {
       setIsLoading(true);
       setIsError(false);
-      rankedInfo = RankedInfoModel();
-      rankedInfo = await service.getSummonerRankedInfo(summonerId);
+      entriesInfo = EntryModel();
+      entriesInfo = await service.getSummonerRankedInfo(summonerId);
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
@@ -110,12 +119,12 @@ abstract class _SummonerStoreBase with Store {
   }
 
   @action
-  Future<void> getChampionMastery(String summonerId) async {
+  Future<void> getTopChampionsMastery(String summonerId) async {
     try {
       setIsLoading(true);
       setIsError(false);
       championsMastery = ObservableList();
-      championsMastery.addAll(await service.getChampionMastery(summonerId));
+      championsMastery.addAll(await service.getTopChampionsMastery(summonerId));
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
@@ -159,6 +168,19 @@ abstract class _SummonerStoreBase with Store {
       setIsError(false);
       match = MatchModel();
       match = await service.getMatchById(matchIds.first);
+      setIsLoading(false);
+    } catch (e) {
+      setIsLoading(false);
+      setIsError(true);
+    }
+  }
+
+  Future<void> getRankedChallengerSoloQInfo() async {
+    try {
+      setIsLoading(true);
+      setIsError(false);
+      rankedChallengerSoloQInfo = RankedModel();
+      rankedChallengerSoloQInfo = await service.getRankedChallengerSoloQInfo();
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);

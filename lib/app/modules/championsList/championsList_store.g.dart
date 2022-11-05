@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'champions_list.store.dart';
+part of 'championsList_store.dart';
 
 // **************************************************************************
 // StoreGenerator

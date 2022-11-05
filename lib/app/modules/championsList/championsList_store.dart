@@ -5,8 +5,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:teemo_professor/libraries/common/models/champion.model.dart';
 import 'package:teemo_professor/libraries/common/models/image.model.dart';
-import 'package:teemo_professor/modules/championsList/service/champions_list.service.dart';
-part 'champions_list.store.g.dart';
+import 'package:teemo_professor/app/modules/championsList/service/championsList_service.dart';
+part 'championsList_store.g.dart';
 
 class ChampionsListStore = _ChampionsListStoreBase with _$ChampionsListStore;
 

@@ -1,8 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:teemo_professor/modules/championsList/champions.module.dart';
-import 'package:teemo_professor/modules/summoner/service/summoner.service.dart';
-import 'package:teemo_professor/modules/summoner/store/summoner.store.dart';
-import 'package:teemo_professor/modules/summoner/ui/summoner.view.dart';
+import 'package:teemo_professor/app/modules/summoner/service/summoner_service.dart';
+import 'package:teemo_professor/app/modules/summoner/summoner_store.dart';
+import 'package:teemo_professor/app/modules/summoner/ui/summoner_page.dart';
 
 class SummonerModule extends Module {
   static List<Bind> services = [
@@ -19,7 +18,6 @@ class SummonerModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute(Modular.initialRoute,
-            child: (context, args) => SummonerView()),
-        ModuleRoute('/champions-module/', module: ChampionsModule()),
+            child: (context, args) => SummonerPage()),
       ];
 }

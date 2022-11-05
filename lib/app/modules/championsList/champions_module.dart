@@ -1,8 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:teemo_professor/modules/championsList/service/champions_list.service.dart';
-import 'package:teemo_professor/modules/championsList/ui/champion_details.view.dart';
-import 'package:teemo_professor/modules/championsList/store/champions_list.store.dart';
-import 'package:teemo_professor/modules/championsList/ui/champions_list.view.dart';
+import 'package:teemo_professor/app/modules/championsList/service/championsList_service.dart';
+import 'package:teemo_professor/app/modules/championsList/ui/championDetails_page.dart';
+import 'package:teemo_professor/app/modules/championsList/championsList_store.dart';
+import 'package:teemo_professor/app/modules/championsList/ui/championsList_page.dart';
 
 class ChampionsModule extends Module {
   static List<Bind> services = [
@@ -19,10 +19,10 @@ class ChampionsModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute(Modular.initialRoute,
-            child: (context, args) => const ChampionsListView()),
+            child: (context, args) => const ChampionsListPage()),
         ChildRoute(
           '/champion-details',
-          child: (context, args) => ChampionDetailsView(
+          child: (context, args) => ChampionDetailsPage(
             champion: args.data,
           ),
         ),

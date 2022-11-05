@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:teemo_professor/modules/summoner/summoner.module.dart';
+import 'package:teemo_professor/app/modules/app/app_module.dart';
 
 void main() {
-  runApp(ModularApp(module: SummonerModule(), child: const MyApp()));
+  runApp(ModularApp(module: AppModule(), child: const MyApp()));
 }
 
 class MyApp extends StatefulWidget {

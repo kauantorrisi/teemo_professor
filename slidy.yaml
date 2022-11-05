@@ -1,0 +1,3 @@
+slidy: "1"
+scripts:
+  mobx: flutter pub run build_runner watch --delete-conflicting-outputs

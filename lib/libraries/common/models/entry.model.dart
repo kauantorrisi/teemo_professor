@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-class RankedInfoModel {
-  RankedInfoModel({
+class EntryModel {
+  EntryModel({
     this.leagueId,
     this.queueType,
     this.tier,
@@ -31,12 +31,12 @@ class RankedInfoModel {
   final bool? freshBlood;
   final bool? hotStreak;
 
-  factory RankedInfoModel.fromJson(String str) =>
-      RankedInfoModel.fromMap(json.decode(str));
+  factory EntryModel.fromJson(String str) =>
+      EntryModel.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory RankedInfoModel.fromMap(Map<String, dynamic> json) => RankedInfoModel(
+  factory EntryModel.fromMap(Map<String, dynamic> json) => EntryModel(
         leagueId: json["leagueId"],
         queueType: json["queueType"],
         tier: json["tier"],

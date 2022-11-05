@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:teemo_professor/libraries/common/constants.dart';
-import 'package:teemo_professor/libraries/common/widgets/app_bar.widget.dart';
-import 'package:teemo_professor/libraries/common/widgets/drawer.widget.dart';
-import 'package:teemo_professor/libraries/common/widgets/floating_action_button.dart';
-import 'package:teemo_professor/libraries/common/widgets/textform_fields.widget.dart';
-import 'package:teemo_professor/modules/championsList/store/champions_list.store.dart';
+import 'package:teemo_professor/app/widgets/app_bar.widget.dart';
+import 'package:teemo_professor/app/widgets/drawer.widget.dart';
+import 'package:teemo_professor/app/widgets/floating_action_button.dart';
+import 'package:teemo_professor/app/widgets/textform_fields.widget.dart';
+import 'package:teemo_professor/app/modules/championsList/championsList_store.dart';
 
-class ChampionsListView extends StatefulWidget {
-  const ChampionsListView({super.key});
+class ChampionsListPage extends StatefulWidget {
+  const ChampionsListPage({super.key});
 
   @override
-  State<ChampionsListView> createState() => _ChampionsListViewState();
+  State<ChampionsListPage> createState() => _ChampionsListViewState();
 }
 
-class _ChampionsListViewState extends State<ChampionsListView> {
+class _ChampionsListViewState extends State<ChampionsListPage> {
   final ChampionsListStore store = Modular.get();
 
   @override

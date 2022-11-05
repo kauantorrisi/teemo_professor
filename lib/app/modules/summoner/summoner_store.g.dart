@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'summoner.store.dart';
+part of 'summoner_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -73,19 +73,36 @@ mixin _$SummonerStore on _SummonerStoreBase, Store {
     });
   }
 
-  late final _$rankedInfoAtom =
-      Atom(name: '_SummonerStoreBase.rankedInfo', context: context);
+  late final _$entriesInfoAtom =
+      Atom(name: '_SummonerStoreBase.entriesInfo', context: context);
 
   @override
-  RankedInfoModel? get rankedInfo {
-    _$rankedInfoAtom.reportRead();
-    return super.rankedInfo;
+  EntryModel? get entriesInfo {
+    _$entriesInfoAtom.reportRead();
+    return super.entriesInfo;
   }
 
   @override
-  set rankedInfo(RankedInfoModel? value) {
-    _$rankedInfoAtom.reportWrite(value, super.rankedInfo, () {
-      super.rankedInfo = value;
+  set entriesInfo(EntryModel? value) {
+    _$entriesInfoAtom.reportWrite(value, super.entriesInfo, () {
+      super.entriesInfo = value;
+    });
+  }
+
+  late final _$rankedChallengerSoloQInfoAtom = Atom(
+      name: '_SummonerStoreBase.rankedChallengerSoloQInfo', context: context);
+
+  @override
+  RankedModel? get rankedChallengerSoloQInfo {
+    _$rankedChallengerSoloQInfoAtom.reportRead();
+    return super.rankedChallengerSoloQInfo;
+  }
+
+  @override
+  set rankedChallengerSoloQInfo(RankedModel? value) {
+    _$rankedChallengerSoloQInfoAtom
+        .reportWrite(value, super.rankedChallengerSoloQInfo, () {
+      super.rankedChallengerSoloQInfo = value;
     });
   }
 
@@ -153,6 +170,14 @@ mixin _$SummonerStore on _SummonerStoreBase, Store {
     });
   }
 
+  late final _$initStateAsyncAction =
+      AsyncAction('_SummonerStoreBase.initState', context: context);
+
+  @override
+  Future<void> initState() {
+    return _$initStateAsyncAction.run(() => super.initState());
+  }
+
   late final _$onSearchAsyncAction =
       AsyncAction('_SummonerStoreBase.onSearch', context: context);
 
@@ -178,22 +203,24 @@ mixin _$SummonerStore on _SummonerStoreBase, Store {
         .run(() => super.getSummonerByPUUID(puuid));
   }
 
-  late final _$getSummonerRankedInfoAsyncAction =
-      AsyncAction('_SummonerStoreBase.getSummonerRankedInfo', context: context);
+  late final _$getSummonerSummonerRankedInfoAsyncAction = AsyncAction(
+      '_SummonerStoreBase.getSummonerSummonerRankedInfo',
+      context: context);
 
   @override
-  Future<void> getSummonerRankedInfo(String summonerId) {
-    return _$getSummonerRankedInfoAsyncAction
-        .run(() => super.getSummonerRankedInfo(summonerId));
+  Future<void> getSummonerSummonerRankedInfo(String summonerId) {
+    return _$getSummonerSummonerRankedInfoAsyncAction
+        .run(() => super.getSummonerSummonerRankedInfo(summonerId));
   }
 
-  late final _$getChampionMasteryAsyncAction =
-      AsyncAction('_SummonerStoreBase.getChampionMastery', context: context);
+  late final _$getTopChampionsMasteryAsyncAction = AsyncAction(
+      '_SummonerStoreBase.getTopChampionsMastery',
+      context: context);
 
   @override
-  Future<void> getChampionMastery(String summonerId) {
-    return _$getChampionMasteryAsyncAction
-        .run(() => super.getChampionMastery(summonerId));
+  Future<void> getTopChampionsMastery(String summonerId) {
+    return _$getTopChampionsMasteryAsyncAction
+        .run(() => super.getTopChampionsMastery(summonerId));
   }
 
   late final _$getSummonerTotalMasteryPointsAsyncAction = AsyncAction(
@@ -254,7 +281,8 @@ isLoading: ${isLoading},
 isError: ${isError},
 summonerByName: ${summonerByName},
 summonerByPuuid: ${summonerByPuuid},
-rankedInfo: ${rankedInfo},
+entriesInfo: ${entriesInfo},
+rankedChallengerSoloQInfo: ${rankedChallengerSoloQInfo},
 match: ${match},
 totalMasteryPoints: ${totalMasteryPoints},
 championsMastery: ${championsMastery},

@@ -2,7 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:teemo_professor/libraries/common/constants.dart';
 import 'package:teemo_professor/libraries/common/models/champions_matery.model.dart';
 import 'package:teemo_professor/libraries/common/models/match/match.model.dart';
-import 'package:teemo_professor/libraries/common/models/ranked_info.model.dart';
+import 'package:teemo_professor/libraries/common/models/entry.model.dart';
+import 'package:teemo_professor/libraries/common/models/ranked.model.dart';
 import 'package:teemo_professor/libraries/common/models/summoner.model.dart';
 
 class SummonerService {
@@ -26,18 +27,18 @@ class SummonerService {
     return summoner;
   }
 
-  Future<RankedInfoModel> getSummonerRankedInfo(
+  Future<EntryModel> getSummonerRankedInfo(
     String summonerId,
   ) async {
-    RankedInfoModel rankedInfo;
+    EntryModel rankedInfo;
     Response response = await dio.get(LOL_SUMMONERRANKEDINFO + summonerId,
         options: Options(headers: {'X-Riot-Token': API_KEY}));
     Map<String, dynamic> result = response.data[0];
-    rankedInfo = RankedInfoModel.fromMap(result);
+    rankedInfo = EntryModel.fromMap(result);
     return rankedInfo;
   }
 
-  Future<List<ChampionsMasteryModel>> getChampionMastery(
+  Future<List<ChampionsMasteryModel>> getTopChampionsMastery(
     String summonerId,
   ) async {
     List<ChampionsMasteryModel> championsMastery = [];
@@ -78,5 +79,14 @@ class SummonerService {
     var result = response.data;
     match = MatchModel.fromMap(result);
     return match;
+  }
+
+  Future<RankedModel> getRankedChallengerSoloQInfo() async {
+    RankedModel rankedChallengerSoloQInfo;
+    Response response = await dio.get(LOL_RANKEDCHALLENGERSOLOQINFO,
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    Map<String, dynamic> result = response.data;
+    rankedChallengerSoloQInfo = RankedModel.fromMap(result);
+    return rankedChallengerSoloQInfo;
   }
 }

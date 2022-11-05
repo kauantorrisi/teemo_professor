@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
-import 'package:teemo_professor/libraries/common/widgets/divider.widget.dart';
+import 'package:teemo_professor/app/widgets/divider.widget.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
-import 'package:teemo_professor/libraries/common/widgets/list_tile.widget.dart';
+import 'package:teemo_professor/app/widgets/list_tile.widget.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -47,7 +47,7 @@ class DrawerWidget extends StatelessWidget {
                     label: 'Itens',
                     icon: Icons.settings,
                     onTap: () {
-                      Modular.to.navigate('/itens-module');
+                      Modular.to.navigate('/itens-module/');
                     }),
                 const SizedBox(height: 5),
               ]);

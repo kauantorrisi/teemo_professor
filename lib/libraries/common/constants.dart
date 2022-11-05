@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-String API_KEY = 'RGAPI-52931395-b836-48a5-8c63-16c13888e011';
+String API_KEY = 'RGAPI-755f40ae-1050-4fc0-8b03-e5d2d3995b63';
 
 String LOL_URL = 'https://br1.api.riotgames.com/';
 
@@ -17,6 +17,9 @@ String LOL_SUMMONERTOTALMATERYPOINTS =
     '${LOL_URL}lol/champion-mastery/v4/scores/by-summoner/';
 
 String LOL_SUMMONERRANKEDINFO = '${LOL_URL}lol/league/v4/entries/by-summoner/';
+
+String LOL_RANKEDCHALLENGERSOLOQINFO =
+    '${LOL_URL}lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5';
 
 String LOL_LISTMATCHIDSBYPUUID =
     'https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/';
