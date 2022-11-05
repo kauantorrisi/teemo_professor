@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:teemo_professor/libraries/common/constants.dart';
 import 'package:teemo_professor/libraries/common/models/champion.model.dart';
 
-class ChampionsListService {
+class ChampionsService {
   final Dio dio = Dio();
 
   Future<List<ChampionModel>> fetchCharacters() async {

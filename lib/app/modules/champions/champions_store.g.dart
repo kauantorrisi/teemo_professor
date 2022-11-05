@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'championsList_store.dart';
+part of 'champions_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,9 +8,9 @@ part of 'championsList_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$ChampionsListStore on _ChampionsListStoreBase, Store {
+mixin _$ChampionsStore on _ChampionsStoreBase, Store {
   late final _$championAtom =
-      Atom(name: '_ChampionsListStoreBase.champion', context: context);
+      Atom(name: '_ChampionsStoreBase.champion', context: context);
 
   @override
   ChampionModel? get champion {
@@ -26,7 +26,7 @@ mixin _$ChampionsListStore on _ChampionsListStoreBase, Store {
   }
 
   late final _$isLoadingAtom =
-      Atom(name: '_ChampionsListStoreBase.isLoading', context: context);
+      Atom(name: '_ChampionsStoreBase.isLoading', context: context);
 
   @override
   bool get isLoading {
@@ -42,7 +42,7 @@ mixin _$ChampionsListStore on _ChampionsListStoreBase, Store {
   }
 
   late final _$isErrorAtom =
-      Atom(name: '_ChampionsListStoreBase.isError', context: context);
+      Atom(name: '_ChampionsStoreBase.isError', context: context);
 
   @override
   bool get isError {
@@ -58,7 +58,7 @@ mixin _$ChampionsListStore on _ChampionsListStoreBase, Store {
   }
 
   late final _$isSearchingAtom =
-      Atom(name: '_ChampionsListStoreBase.isSearching', context: context);
+      Atom(name: '_ChampionsStoreBase.isSearching', context: context);
 
   @override
   bool get isSearching {
@@ -74,7 +74,7 @@ mixin _$ChampionsListStore on _ChampionsListStoreBase, Store {
   }
 
   late final _$championsAtom =
-      Atom(name: '_ChampionsListStoreBase.champions', context: context);
+      Atom(name: '_ChampionsStoreBase.champions', context: context);
 
   @override
   ObservableList<ChampionModel> get champions {
@@ -89,8 +89,8 @@ mixin _$ChampionsListStore on _ChampionsListStoreBase, Store {
     });
   }
 
-  late final _$researchedChampionsAtom = Atom(
-      name: '_ChampionsListStoreBase.researchedChampions', context: context);
+  late final _$researchedChampionsAtom =
+      Atom(name: '_ChampionsStoreBase.researchedChampions', context: context);
 
   @override
   ObservableList<ChampionModel> get researchedChampions {
@@ -106,7 +106,7 @@ mixin _$ChampionsListStore on _ChampionsListStoreBase, Store {
   }
 
   late final _$squareImagesAtom =
-      Atom(name: '_ChampionsListStoreBase.squareImages', context: context);
+      Atom(name: '_ChampionsStoreBase.squareImages', context: context);
 
   @override
   ObservableList<ImageModel> get squareImages {
@@ -121,9 +121,8 @@ mixin _$ChampionsListStore on _ChampionsListStoreBase, Store {
     });
   }
 
-  late final _$fetchChampionsListAsyncAction = AsyncAction(
-      '_ChampionsListStoreBase.fetchChampionsList',
-      context: context);
+  late final _$fetchChampionsListAsyncAction =
+      AsyncAction('_ChampionsStoreBase.fetchChampionsList', context: context);
 
   @override
   Future<void> fetchChampionsList() {
@@ -132,46 +131,46 @@ mixin _$ChampionsListStore on _ChampionsListStoreBase, Store {
   }
 
   late final _$getChampionAsyncAction =
-      AsyncAction('_ChampionsListStoreBase.getChampion', context: context);
+      AsyncAction('_ChampionsStoreBase.getChampion', context: context);
 
   @override
   Future<void> getChampion({required String id}) {
     return _$getChampionAsyncAction.run(() => super.getChampion(id: id));
   }
 
-  late final _$_ChampionsListStoreBaseActionController =
-      ActionController(name: '_ChampionsListStoreBase', context: context);
+  late final _$_ChampionsStoreBaseActionController =
+      ActionController(name: '_ChampionsStoreBase', context: context);
 
   @override
   void toggleIsSearching() {
-    final _$actionInfo = _$_ChampionsListStoreBaseActionController.startAction(
-        name: '_ChampionsListStoreBase.toggleIsSearching');
+    final _$actionInfo = _$_ChampionsStoreBaseActionController.startAction(
+        name: '_ChampionsStoreBase.toggleIsSearching');
     try {
       return super.toggleIsSearching();
     } finally {
-      _$_ChampionsListStoreBaseActionController.endAction(_$actionInfo);
+      _$_ChampionsStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   bool setIsLoading(bool value) {
-    final _$actionInfo = _$_ChampionsListStoreBaseActionController.startAction(
-        name: '_ChampionsListStoreBase.setIsLoading');
+    final _$actionInfo = _$_ChampionsStoreBaseActionController.startAction(
+        name: '_ChampionsStoreBase.setIsLoading');
     try {
       return super.setIsLoading(value);
     } finally {
-      _$_ChampionsListStoreBaseActionController.endAction(_$actionInfo);
+      _$_ChampionsStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   bool setIsError(bool value) {
-    final _$actionInfo = _$_ChampionsListStoreBaseActionController.startAction(
-        name: '_ChampionsListStoreBase.setIsError');
+    final _$actionInfo = _$_ChampionsStoreBaseActionController.startAction(
+        name: '_ChampionsStoreBase.setIsError');
     try {
       return super.setIsError(value);
     } finally {
-      _$_ChampionsListStoreBaseActionController.endAction(_$actionInfo);
+      _$_ChampionsStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 

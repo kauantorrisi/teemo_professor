@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:teemo_professor/app/modules/champions/champions_store.dart';
 import 'package:teemo_professor/libraries/common/constants.dart';
 import 'package:teemo_professor/app/widgets/app_bar.widget.dart';
 import 'package:teemo_professor/app/widgets/drawer.widget.dart';
 import 'package:teemo_professor/app/widgets/floating_action_button.dart';
 import 'package:teemo_professor/app/widgets/textform_fields.widget.dart';
-import 'package:teemo_professor/app/modules/championsList/championsList_store.dart';
 
 class ChampionsListPage extends StatefulWidget {
   const ChampionsListPage({super.key});
@@ -16,7 +16,7 @@ class ChampionsListPage extends StatefulWidget {
 }
 
 class _ChampionsListViewState extends State<ChampionsListPage> {
-  final ChampionsListStore store = Modular.get();
+  final ChampionsStore store = Modular.get();
 
   @override
   void initState() {

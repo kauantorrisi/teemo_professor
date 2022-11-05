@@ -11,7 +11,7 @@ import 'package:teemo_professor/app/widgets/textform_fields.widget.dart';
 import 'package:teemo_professor/app/modules/summoner/summoner_store.dart';
 
 class SummonerPage extends StatefulWidget {
-  SummonerPage({super.key});
+  const SummonerPage({super.key});
 
   @override
   State<SummonerPage> createState() => _SummonerViewState();
@@ -28,8 +28,6 @@ class _SummonerViewState extends State<SummonerPage> {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
     return SafeArea(
       child: Scaffold(
         appBar: const AppBarWidget(),

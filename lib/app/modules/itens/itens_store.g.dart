@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'itensList_store.dart';
+part of 'itens_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,9 +8,9 @@ part of 'itensList_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$ItensListStore on _ItensListStoreBase, Store {
+mixin _$ItensStore on _ItensStoreBase, Store {
   late final _$valueAtom =
-      Atom(name: '_ItensListStoreBase.value', context: context);
+      Atom(name: '_ItensStoreBase.value', context: context);
 
   @override
   int get value {
@@ -25,17 +25,17 @@ mixin _$ItensListStore on _ItensListStoreBase, Store {
     });
   }
 
-  late final _$_ItensListStoreBaseActionController =
-      ActionController(name: '_ItensListStoreBase', context: context);
+  late final _$_ItensStoreBaseActionController =
+      ActionController(name: '_ItensStoreBase', context: context);
 
   @override
   void increment() {
-    final _$actionInfo = _$_ItensListStoreBaseActionController.startAction(
-        name: '_ItensListStoreBase.increment');
+    final _$actionInfo = _$_ItensStoreBaseActionController.startAction(
+        name: '_ItensStoreBase.increment');
     try {
       return super.increment();
     } finally {
-      _$_ItensListStoreBaseActionController.endAction(_$actionInfo);
+      _$_ItensStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'leagueInfo_store.dart';
+part of 'scoreboard_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,9 +8,9 @@ part of 'leagueInfo_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$LeagueInfoStore on _LeagueInfoStoreBase, Store {
+mixin _$ScoreboardStore on _ScoreboardStoreBase, Store {
   late final _$valueAtom =
-      Atom(name: '_LeagueInfoStoreBase.value', context: context);
+      Atom(name: '_ScoreboardStoreBase.value', context: context);
 
   @override
   int get value {
@@ -25,17 +25,17 @@ mixin _$LeagueInfoStore on _LeagueInfoStoreBase, Store {
     });
   }
 
-  late final _$_LeagueInfoStoreBaseActionController =
-      ActionController(name: '_LeagueInfoStoreBase', context: context);
+  late final _$_ScoreboardStoreBaseActionController =
+      ActionController(name: '_ScoreboardStoreBase', context: context);
 
   @override
   void increment() {
-    final _$actionInfo = _$_LeagueInfoStoreBaseActionController.startAction(
-        name: '_LeagueInfoStoreBase.increment');
+    final _$actionInfo = _$_ScoreboardStoreBaseActionController.startAction(
+        name: '_ScoreboardStoreBase.increment');
     try {
       return super.increment();
     } finally {
-      _$_LeagueInfoStoreBaseActionController.endAction(_$actionInfo);
+      _$_ScoreboardStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 

@@ -3,15 +3,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:teemo_professor/app/modules/champions/service/champion_service.dart';
 import 'package:teemo_professor/libraries/common/models/champion.model.dart';
 import 'package:teemo_professor/libraries/common/models/image.model.dart';
-import 'package:teemo_professor/app/modules/championsList/service/championsList_service.dart';
-part 'championsList_store.g.dart';
+part 'champions_store.g.dart';
 
-class ChampionsListStore = _ChampionsListStoreBase with _$ChampionsListStore;
+class ChampionsStore = _ChampionsStoreBase with _$ChampionsStore;
 
-abstract class _ChampionsListStoreBase with Store {
-  final ChampionsListService _championsListService = Modular.get();
+abstract class _ChampionsStoreBase with Store {
+  final ChampionsService _championsListService = Modular.get();
 
   final TextEditingController searchController = TextEditingController();
 

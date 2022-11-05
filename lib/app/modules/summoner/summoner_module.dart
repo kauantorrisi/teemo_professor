@@ -18,6 +18,6 @@ class SummonerModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute(Modular.initialRoute,
-            child: (context, args) => SummonerPage()),
+            child: (context, args) => const SummonerPage()),
       ];
 }
