@@ -3,7 +3,7 @@ import 'package:teemo_professor/libraries/common/constants.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
 import 'package:teemo_professor/libraries/common/models/champion.model.dart';
-import 'package:teemo_professor/app/widgets/app_bar.widget.dart';
+import 'package:teemo_professor/libraries/common/widgets/app_bar.widget.dart';
 
 class ChampionDetailsPage extends StatelessWidget {
   const ChampionDetailsPage({super.key, required this.champion});

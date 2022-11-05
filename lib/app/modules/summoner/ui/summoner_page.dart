@@ -4,10 +4,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:teemo_professor/libraries/common/constants.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
-import 'package:teemo_professor/app/widgets/app_bar.widget.dart';
-import 'package:teemo_professor/app/widgets/drawer.widget.dart';
-import 'package:teemo_professor/app/widgets/summoner_card.widget.dart';
-import 'package:teemo_professor/app/widgets/textform_fields.widget.dart';
+import 'package:teemo_professor/libraries/common/widgets/app_bar.widget.dart';
+import 'package:teemo_professor/libraries/common/widgets/drawer.widget.dart';
+import 'package:teemo_professor/libraries/common/widgets/summoner_card.widget.dart';
+import 'package:teemo_professor/libraries/common/widgets/textform_fields.widget.dart';
 import 'package:teemo_professor/app/modules/summoner/summoner_store.dart';
 
 class SummonerPage extends StatefulWidget {
