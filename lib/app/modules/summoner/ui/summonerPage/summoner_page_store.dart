@@ -28,13 +28,22 @@ abstract class _SummonerPageStoreBase with Store {
   bool? isError;
 
   @observable
+  bool isMySpell = false;
+
+  @observable
+  bool isMySecondSpell = false;
+
+  @observable
+  bool tappedSummonerRankedInfoIcon = false;
+
+  @observable
   SummonerModel? summonerByName;
 
   @observable
-  ObservableList<EntryModel?> entriesInfo = ObservableList();
+  MatchModel? match;
 
   @observable
-  MatchModel? match;
+  ObservableList<EntryModel?> entriesInfo = ObservableList();
 
   @observable
   ObservableList<ParticipantModel> me = ObservableList<ParticipantModel>();
@@ -44,12 +53,6 @@ abstract class _SummonerPageStoreBase with Store {
 
   @observable
   ObservableList<String?> summonerSpellId2 = ObservableList<String?>();
-
-  @observable
-  bool isMySpell = false;
-
-  @observable
-  bool isMySecondSpell = false;
 
   @observable
   ObservableList<ChampionsMasteryModel> championsMastery =
@@ -66,6 +69,10 @@ abstract class _SummonerPageStoreBase with Store {
 
   @observable
   ObservableList<SpellModel?> spells = ObservableList<SpellModel?>();
+
+  @action
+  bool toggleArrowButton() =>
+      tappedSummonerRankedInfoIcon = !tappedSummonerRankedInfoIcon;
 
   @action
   bool setIsLoading(bool value) => isLoading = value;

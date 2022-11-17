@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-String API_KEY = 'RGAPI-75a36e7a-e188-4543-a4cc-1562f7fda363';
+String API_KEY = 'RGAPI-6fb40ce8-5690-401a-9db6-05c94a7139cd';
 
 String LOL_URL = 'https://br1.api.riotgames.com/';
 

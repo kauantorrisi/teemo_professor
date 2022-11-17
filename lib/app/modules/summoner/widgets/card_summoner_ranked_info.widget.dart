@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'package:teemo_professor/app/modules/summoner/ui/summonerTappedPage/summoner_tapped_page_store.dart';
+import 'package:teemo_professor/app/modules/summoner/ui/summonerPage/summoner_page_store.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
 
-import 'summoner_card.widget.dart';
+import 'card.widget.dart';
 
-final SummonerTappedPageStore store = Modular.get();
+final SummonerPageStore store = Modular.get();
 
 class CardSummonerRankedInfoWidget extends StatelessWidget {
   const CardSummonerRankedInfoWidget({super.key});
@@ -22,8 +22,9 @@ class CardSummonerRankedInfoWidget extends StatelessWidget {
         width: store.tappedSummonerRankedInfoIcon ? 270 : 0,
         height: store.tappedSummonerRankedInfoIcon ? 200 : 0,
         child: CardWidget(
-          borderColor:
-              store.tappedSummonerRankedInfoIcon ? TPColor.purple : null,
+          borderColor: store.tappedSummonerRankedInfoIcon
+              ? TPColor.purple
+              : Colors.transparent,
           shadowColor: TPColor.purple,
           child: ListView.builder(
             itemCount: store.entriesInfo.length,
@@ -37,7 +38,7 @@ class CardSummonerRankedInfoWidget extends StatelessWidget {
                         CardWidget(
                           borderColor: store.tappedSummonerRankedInfoIcon
                               ? TPColor.purple
-                              : null,
+                              : Colors.transparent,
                           shadowColor: TPColor.purple,
                           child: Text(
                               '${store.entriesInfo[index]?.queueType}'
@@ -64,7 +65,7 @@ class CardSummonerRankedInfoWidget extends StatelessWidget {
                         CardWidget(
                           borderColor: store.tappedSummonerRankedInfoIcon
                               ? TPColor.purple
-                              : null,
+                              : Colors.transparent,
                           shadowColor: TPColor.purple,
                           child: Text(
                               '${store.entriesInfo[index]?.queueType}'
@@ -92,7 +93,7 @@ class CardSummonerRankedInfoWidget extends StatelessWidget {
                         CardWidget(
                           borderColor: store.tappedSummonerRankedInfoIcon
                               ? TPColor.purple
-                              : null,
+                              : Colors.transparent,
                           shadowColor: TPColor.purple,
                           child: Text(
                               '${store.entriesInfo[index]?.queueType}'

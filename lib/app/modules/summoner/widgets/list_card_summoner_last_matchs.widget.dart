@@ -5,7 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:teemo_professor/app/modules/summoner/ui/summonerPage/summoner_page_store.dart';
 import 'package:teemo_professor/app/modules/summoner/widgets/button.widget.dart';
 import 'package:teemo_professor/app/modules/summoner/widgets/match_details_dialog.widget.dart';
-import 'package:teemo_professor/app/modules/summoner/widgets/summoner_card.widget.dart';
+import 'package:teemo_professor/app/modules/summoner/widgets/card.widget.dart';
 import 'package:teemo_professor/app/modules/summoner/widgets/summoner_item_frame.widget.dart';
 import 'package:teemo_professor/libraries/common/constants.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
@@ -26,22 +26,6 @@ class ListCardMatchHistoryWidget extends StatelessWidget {
       child: ListView.builder(
         itemCount: store.matchs.length,
         itemBuilder: (context, index) {
-          final int? item0 = store.me[index].item0;
-          final int? item1 = store.me[index].item1;
-          final int? item2 = store.me[index].item2;
-          final int? item3 = store.me[index].item3;
-          final int? item4 = store.me[index].item4;
-          final int? item5 = store.me[index].item5;
-          final int? item6 = store.me[index].item6;
-
-          bool haveItem(int? value) {
-            if (value != 0) {
-              return true;
-            } else {
-              return false;
-            }
-          }
-
           final num totalCs = store.me[index].totalMinionsKilled! +
               store.me[index].neutralMinionsKilled!;
 
@@ -233,34 +217,27 @@ class ListCardMatchHistoryWidget extends StatelessWidget {
                               const SizedBox(height: 10),
                               Row(
                                 children: [
-                                  if (haveItem(item0))
-                                    SummonerItemFrameWidget(
-                                        urlImage:
-                                            '$URL_ITENSIMAGE${store.me[index].item0}.png'),
-                                  if (haveItem(item1))
-                                    SummonerItemFrameWidget(
-                                        urlImage:
-                                            '$URL_ITENSIMAGE${store.me[index].item1}.png'),
-                                  if (haveItem(item2))
-                                    SummonerItemFrameWidget(
-                                        urlImage:
-                                            '$URL_ITENSIMAGE${store.me[index].item2}.png'),
-                                  if (haveItem(item3))
-                                    SummonerItemFrameWidget(
-                                        urlImage:
-                                            '$URL_ITENSIMAGE${store.me[index].item3}.png'),
-                                  if (haveItem(item4))
-                                    SummonerItemFrameWidget(
-                                        urlImage:
-                                            '$URL_ITENSIMAGE${store.me[index].item4}.png'),
-                                  if (haveItem(item5))
-                                    SummonerItemFrameWidget(
-                                        urlImage:
-                                            '$URL_ITENSIMAGE${store.me[index].item5}.png'),
-                                  if (haveItem(item6))
-                                    SummonerItemFrameWidget(
-                                        urlImage:
-                                            '$URL_ITENSIMAGE${store.me[index].item6}.png'),
+                                  SummonerItemFrameWidget(
+                                      urlImage:
+                                          '$URL_ITENSIMAGE${store.me[index].item0}.png'),
+                                  SummonerItemFrameWidget(
+                                      urlImage:
+                                          '$URL_ITENSIMAGE${store.me[index].item1}.png'),
+                                  SummonerItemFrameWidget(
+                                      urlImage:
+                                          '$URL_ITENSIMAGE${store.me[index].item2}.png'),
+                                  SummonerItemFrameWidget(
+                                      urlImage:
+                                          '$URL_ITENSIMAGE${store.me[index].item3}.png'),
+                                  SummonerItemFrameWidget(
+                                      urlImage:
+                                          '$URL_ITENSIMAGE${store.me[index].item4}.png'),
+                                  SummonerItemFrameWidget(
+                                      urlImage:
+                                          '$URL_ITENSIMAGE${store.me[index].item5}.png'),
+                                  SummonerItemFrameWidget(
+                                      urlImage:
+                                          '$URL_ITENSIMAGE${store.me[index].item6}.png'),
                                 ],
                               ),
                             ],

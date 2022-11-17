@@ -5,7 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:teemo_professor/app/modules/summoner/ui/summonerTappedPage/summoner_tapped_page_store.dart';
 import 'package:teemo_professor/app/modules/summoner/widgets/button.widget.dart';
 import 'package:teemo_professor/app/modules/summoner/widgets/card_summoner_ranked_info.widget.dart';
-import 'package:teemo_professor/app/modules/summoner/widgets/summoner_card.widget.dart';
+import 'package:teemo_professor/app/modules/summoner/widgets/card.widget.dart';
 import 'package:teemo_professor/app/modules/summoner/widgets/summoner_item_frame.widget.dart';
 import 'package:teemo_professor/libraries/common/constants.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';

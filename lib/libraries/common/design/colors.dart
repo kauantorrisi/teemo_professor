@@ -7,6 +7,16 @@ class TPColor {
   static const MaterialColor blue =
       MaterialColor(0xFF0049C6, {100: Color(0xFF0049C6)});
 
+  static Color? lightBlue = Colors.blue[100];
+
+  static Color? blueOpacity40 = Colors.blue.withOpacity(0.4);
+
+  static const MaterialColor red = Colors.red;
+
+  static Color? lightRed = Colors.red[100];
+
+  static Color? redOpacity40 = Colors.red.withOpacity(0.4);
+
   static const MaterialColor pink =
       MaterialColor(0xFFFFA2C0, {100: Color(0xFFFFA2C0)});
 

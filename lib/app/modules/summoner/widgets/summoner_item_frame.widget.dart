@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:teemo_professor/app/modules/summoner/ui/summonerPage/summoner_page_store.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 
-final SummonerPageStore store = Modular.get();
-
 class SummonerItemFrameWidget extends StatelessWidget {
-  const SummonerItemFrameWidget({super.key, required this.urlImage});
+  const SummonerItemFrameWidget(
+      {super.key, required this.urlImage, this.height});
 
   final String urlImage;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +15,10 @@ class SummonerItemFrameWidget extends StatelessWidget {
       child: Container(
         decoration:
             BoxDecoration(border: Border.all(width: 1), color: TPColor.black),
-        height: 30,
+        height: height ?? 30,
         child: Image.network(urlImage,
-            errorBuilder: (context, error, stackTrace) =>
-                Image.asset('lib/assets/images/error.image.png')),
+            errorBuilder: (context, error, stackTrace) => Container(
+                color: TPColor.white.withOpacity(0.5), width: 30, height: 30)),
       ),
     );
   }

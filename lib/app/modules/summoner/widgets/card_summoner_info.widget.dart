@@ -10,7 +10,7 @@ import 'package:teemo_professor/app/modules/summoner/widgets/card_summoner_ranke
 import 'package:teemo_professor/libraries/common/constants.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
-import 'package:teemo_professor/app/modules/summoner/widgets/summoner_card.widget.dart';
+import 'package:teemo_professor/app/modules/summoner/widgets/card.widget.dart';
 
 final SummonerPageStore store = Modular.get();
 final SummonerTappedPageStore storeSummonerTapped = Modular.get();
@@ -67,8 +67,8 @@ class _CardSummonerInfoWidgetState extends State<CardSummonerInfoWidget> {
                   ButtonWidget(
                     heigth: 30,
                     borderRadius: 24,
-                    onTap: () => storeSummonerTapped.toggleArrowButton(),
-                    child: storeSummonerTapped.tappedSummonerRankedInfoIcon
+                    onTap: () => store.toggleArrowButton(),
+                    child: store.tappedSummonerRankedInfoIcon
                         ? const Icon(Icons.arrow_upward,
                             size: 20, color: TPColor.black)
                         : const Icon(Icons.arrow_downward,

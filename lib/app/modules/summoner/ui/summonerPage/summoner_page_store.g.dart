@@ -41,6 +41,56 @@ mixin _$SummonerPageStore on _SummonerPageStoreBase, Store {
     });
   }
 
+  late final _$isMySpellAtom =
+      Atom(name: '_SummonerPageStoreBase.isMySpell', context: context);
+
+  @override
+  bool get isMySpell {
+    _$isMySpellAtom.reportRead();
+    return super.isMySpell;
+  }
+
+  @override
+  set isMySpell(bool value) {
+    _$isMySpellAtom.reportWrite(value, super.isMySpell, () {
+      super.isMySpell = value;
+    });
+  }
+
+  late final _$isMySecondSpellAtom =
+      Atom(name: '_SummonerPageStoreBase.isMySecondSpell', context: context);
+
+  @override
+  bool get isMySecondSpell {
+    _$isMySecondSpellAtom.reportRead();
+    return super.isMySecondSpell;
+  }
+
+  @override
+  set isMySecondSpell(bool value) {
+    _$isMySecondSpellAtom.reportWrite(value, super.isMySecondSpell, () {
+      super.isMySecondSpell = value;
+    });
+  }
+
+  late final _$tappedSummonerRankedInfoIconAtom = Atom(
+      name: '_SummonerPageStoreBase.tappedSummonerRankedInfoIcon',
+      context: context);
+
+  @override
+  bool get tappedSummonerRankedInfoIcon {
+    _$tappedSummonerRankedInfoIconAtom.reportRead();
+    return super.tappedSummonerRankedInfoIcon;
+  }
+
+  @override
+  set tappedSummonerRankedInfoIcon(bool value) {
+    _$tappedSummonerRankedInfoIconAtom
+        .reportWrite(value, super.tappedSummonerRankedInfoIcon, () {
+      super.tappedSummonerRankedInfoIcon = value;
+    });
+  }
+
   late final _$summonerByNameAtom =
       Atom(name: '_SummonerPageStoreBase.summonerByName', context: context);
 
@@ -57,22 +107,6 @@ mixin _$SummonerPageStore on _SummonerPageStoreBase, Store {
     });
   }
 
-  late final _$entriesInfoAtom =
-      Atom(name: '_SummonerPageStoreBase.entriesInfo', context: context);
-
-  @override
-  ObservableList<EntryModel?> get entriesInfo {
-    _$entriesInfoAtom.reportRead();
-    return super.entriesInfo;
-  }
-
-  @override
-  set entriesInfo(ObservableList<EntryModel?> value) {
-    _$entriesInfoAtom.reportWrite(value, super.entriesInfo, () {
-      super.entriesInfo = value;
-    });
-  }
-
   late final _$matchAtom =
       Atom(name: '_SummonerPageStoreBase.match', context: context);
 
@@ -86,6 +120,22 @@ mixin _$SummonerPageStore on _SummonerPageStoreBase, Store {
   set match(MatchModel? value) {
     _$matchAtom.reportWrite(value, super.match, () {
       super.match = value;
+    });
+  }
+
+  late final _$entriesInfoAtom =
+      Atom(name: '_SummonerPageStoreBase.entriesInfo', context: context);
+
+  @override
+  ObservableList<EntryModel?> get entriesInfo {
+    _$entriesInfoAtom.reportRead();
+    return super.entriesInfo;
+  }
+
+  @override
+  set entriesInfo(ObservableList<EntryModel?> value) {
+    _$entriesInfoAtom.reportWrite(value, super.entriesInfo, () {
+      super.entriesInfo = value;
     });
   }
 
@@ -134,38 +184,6 @@ mixin _$SummonerPageStore on _SummonerPageStoreBase, Store {
   set summonerSpellId2(ObservableList<String?> value) {
     _$summonerSpellId2Atom.reportWrite(value, super.summonerSpellId2, () {
       super.summonerSpellId2 = value;
-    });
-  }
-
-  late final _$isMySpellAtom =
-      Atom(name: '_SummonerPageStoreBase.isMySpell', context: context);
-
-  @override
-  bool get isMySpell {
-    _$isMySpellAtom.reportRead();
-    return super.isMySpell;
-  }
-
-  @override
-  set isMySpell(bool value) {
-    _$isMySpellAtom.reportWrite(value, super.isMySpell, () {
-      super.isMySpell = value;
-    });
-  }
-
-  late final _$isMySecondSpellAtom =
-      Atom(name: '_SummonerPageStoreBase.isMySecondSpell', context: context);
-
-  @override
-  bool get isMySecondSpell {
-    _$isMySecondSpellAtom.reportRead();
-    return super.isMySecondSpell;
-  }
-
-  @override
-  set isMySecondSpell(bool value) {
-    _$isMySecondSpellAtom.reportWrite(value, super.isMySecondSpell, () {
-      super.isMySecondSpell = value;
     });
   }
 
@@ -305,6 +323,17 @@ mixin _$SummonerPageStore on _SummonerPageStoreBase, Store {
       ActionController(name: '_SummonerPageStoreBase', context: context);
 
   @override
+  bool toggleArrowButton() {
+    final _$actionInfo = _$_SummonerPageStoreBaseActionController.startAction(
+        name: '_SummonerPageStoreBase.toggleArrowButton');
+    try {
+      return super.toggleArrowButton();
+    } finally {
+      _$_SummonerPageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   bool setIsLoading(bool value) {
     final _$actionInfo = _$_SummonerPageStoreBaseActionController.startAction(
         name: '_SummonerPageStoreBase.setIsLoading');
@@ -353,14 +382,15 @@ mixin _$SummonerPageStore on _SummonerPageStoreBase, Store {
     return '''
 isLoading: ${isLoading},
 isError: ${isError},
+isMySpell: ${isMySpell},
+isMySecondSpell: ${isMySecondSpell},
+tappedSummonerRankedInfoIcon: ${tappedSummonerRankedInfoIcon},
 summonerByName: ${summonerByName},
-entriesInfo: ${entriesInfo},
 match: ${match},
+entriesInfo: ${entriesInfo},
 me: ${me},
 summonerSpellId: ${summonerSpellId},
 summonerSpellId2: ${summonerSpellId2},
-isMySpell: ${isMySpell},
-isMySecondSpell: ${isMySecondSpell},
 championsMastery: ${championsMastery},
 matchIds: ${matchIds},
 matchs: ${matchs},
