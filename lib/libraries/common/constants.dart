@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-String API_KEY = 'RGAPI-755f40ae-1050-4fc0-8b03-e5d2d3995b63';
+String API_KEY = 'RGAPI-75a36e7a-e188-4543-a4cc-1562f7fda363';
 
 String LOL_URL = 'https://br1.api.riotgames.com/';
 
@@ -21,13 +21,16 @@ String LOL_SUMMONERRANKEDINFO = '${LOL_URL}lol/league/v4/entries/by-summoner/';
 String LOL_RANKEDCHALLENGERSOLOQINFO =
     '${LOL_URL}lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5';
 
+String LOL_RANKEDCHALLENGERFLEXINFO =
+    '${LOL_URL}lol/league/v4/challengerleagues/by-queue/RANKED_FLEX_SR';
+
 String LOL_LISTMATCHIDSBYPUUID =
     'https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/';
 
 String LOL_MATCHBYID =
     'https://americas.api.riotgames.com/lol/match/v5/matches/';
 
-String LOL_ICONS = '${DATA_DRAGON_URL}cdn/12.21.1/img/profileicon/';
+String LOL_SUMMONERICONS = '${DATA_DRAGON_URL}cdn/12.21.1/img/profileicon/';
 
 String URL_CHAMPIONSLIST =
     '${DATA_DRAGON_URL}cdn/12.20.1/data/pt_BR/champion.json';
@@ -37,3 +40,10 @@ String URL_CHAMPION = '${DATA_DRAGON_URL}cdn/12.20.1/data/pt_BR/champion/';
 String URL_IMGSQUARE = '${DATA_DRAGON_URL}cdn/12.20.1/img/champion/';
 
 String URL_IMGSPLASHART = '${DATA_DRAGON_URL}cdn/img/champion/splash/';
+
+String URL_ITENSIMAGE = '${DATA_DRAGON_URL}cdn/12.21.1/img/item/';
+
+String URL_SUMMONERSPELLS =
+    '${DATA_DRAGON_URL}cdn/12.21.1/data/pt_BR/summoner.json';
+
+String URL_IMGSPELLSSUMMONER = '${DATA_DRAGON_URL}cdn/12.21.1/img/spell/';

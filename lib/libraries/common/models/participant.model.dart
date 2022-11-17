@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:teemo_professor/libraries/common/models/match/perks.model.dart';
+import 'package:teemo_professor/libraries/common/models/perks.model.dart';
 
 class ParticipantModel {
   ParticipantModel({

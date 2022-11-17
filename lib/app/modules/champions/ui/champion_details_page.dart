@@ -21,12 +21,12 @@ class ChampionDetailsPage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                color: TPColor.grey,
-                width: double.infinity,
-                height: screenSize.height * 0.28,
+                color: TPColor.black,
+                width: 340,
+                height: 190,
                 child: Image.network(
                   '$URL_IMGSPLASHART${champion.id}_0.jpg',
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
               ),
               SizedBox(height: screenSize.height * 0.02),
@@ -41,15 +41,15 @@ class ChampionDetailsPage extends StatelessWidget {
               Text('Partype: ${champion.partype}',
                   style: TPTexts.t5(color: TPColor.blue)),
               Text(
-                'Tags: ${champion.tags}',
+                'Tags: ${champion.tags}'
+                    .replaceAll('[', '')
+                    .replaceAll(']', ''),
                 style: TPTexts.t5(color: TPColor.blue),
               ),
               SizedBox(height: screenSize.height * 0.02),
               Text('Skins:', style: TPTexts.h7(color: TPColor.blue)),
               SizedBox(height: screenSize.height * 0.01),
-              skinsList(context),
-              SizedBox(height: screenSize.height * 0.005),
-              Text('Arraste para o lado ➡️', style: TPTexts.t8(isBold: true)),
+              skinsList(),
               SizedBox(height: screenSize.height * 0.02),
               Text('Passiva:', style: TPTexts.h7(color: TPColor.blue)),
               SizedBox(height: screenSize.height * 0.01),
@@ -60,27 +60,18 @@ class ChampionDetailsPage extends StatelessWidget {
                   border: Border.all(color: TPColor.purple, width: 2),
                 ),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.network(
-                      'http://ddragon.leagueoflegends.com/cdn/12.21.1/img/passive/${champion.id}_P.png',
-                      errorBuilder: (context, error, stackTrace) => Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('Erro ao carregar imagem'),
-                          SizedBox(
-                            height: screenSize.height * 0.05,
-                            width: screenSize.width * 0.2,
-                            child: Image.asset(
-                                'lib/assets/images/error.image.png'),
-                          ),
-                        ],
-                      ),
-                    ),
+                        'http://ddragon.leagueoflegends.com/cdn/12.21.1/img/passive/${champion.id}_P.png',
+                        errorBuilder: (context, error, stackTrace) =>
+                            const SizedBox()),
                     SizedBox(width: screenSize.width * 0.03),
                     Text('${champion.passive?.name}', style: TPTexts.h8()),
                     Padding(
                       padding: const EdgeInsets.all(16),
-                      child: Text('${champion.passive?.description}',
+                      child: Text(
+                          '${champion.passive?.description.replaceAll('<br>', '\n').replaceAll('physicalDamage', '').replaceAll("font", '').replaceAll('color', '').replaceAll('#', '').replaceAll("'", '').replaceAll("9b0f5f", '').replaceAll("FF9900", '').replaceAll('=', '').replaceAll("cccc00", '').replaceAll("FFF673", '').replaceAll('magicDamage', '').replaceAll('<', '').replaceAll('>', '').replaceAll('/', '').replaceAll('fe5x50', '').replaceAll(' 8484fb', '').replaceAll('fe5c50', '')}',
                           style: TPTexts.t5()),
                     ),
                   ],
@@ -89,7 +80,11 @@ class ChampionDetailsPage extends StatelessWidget {
               SizedBox(height: screenSize.height * 0.02),
               Text('Habilidades:', style: TPTexts.h7(color: TPColor.blue)),
               SizedBox(height: screenSize.height * 0.02),
-              spellsList(context),
+              SizedBox(
+                width: screenSize.width * 0.9,
+                height: screenSize.height * 0.9,
+                child: spellsList(),
+              ),
             ],
           ),
         ),
@@ -97,11 +92,9 @@ class ChampionDetailsPage extends StatelessWidget {
     );
   }
 
-  Widget skinsList(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
+  Widget skinsList() {
     return SizedBox(
-      height: screenSize.height * 0.4,
+      height: 300,
       width: double.infinity,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -110,8 +103,8 @@ class ChampionDetailsPage extends StatelessWidget {
             return Row(
               children: [
                 Container(
-                  height: screenSize.height * 0.4,
-                  width: screenSize.width * 1,
+                  height: 275,
+                  width: 323,
                   decoration: BoxDecoration(
                     border: Border.all(color: TPColor.purple, width: 2),
                   ),
@@ -125,32 +118,28 @@ class ChampionDetailsPage extends StatelessWidget {
                       ),
                       Image.network(
                           'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.id}_${champion.skins?[index].num}.jpg'),
-                      SizedBox(height: screenSize.height * 0.01),
+                      const SizedBox(height: 10),
                       champion.skins?[index].chromas == true
                           ? Text('Possui chromas', style: TPTexts.t6())
                           : Text('Não tem chromas', style: TPTexts.t6()),
                     ],
                   ),
                 ),
-                SizedBox(width: screenSize.width * 0.02)
+                const SizedBox(width: 20)
               ],
             );
           }),
     );
   }
 
-  Widget spellsList(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
+  Widget spellsList() {
     return SizedBox(
-      height: screenSize.height * 0.7,
-      width: screenSize.width * 0.9,
       child: ListView.builder(
         itemCount: champion.spells?.length,
         itemBuilder: (context, index) {
           return Container(
-            padding: EdgeInsets.all(screenSize.height * 0.02),
-            margin: EdgeInsets.all(screenSize.height * 0.01),
+            padding: const EdgeInsets.all(20),
+            margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border.all(color: TPColor.purple, width: 2),
             ),
@@ -167,18 +156,30 @@ class ChampionDetailsPage extends StatelessWidget {
                   child: Column(
                     children: [
                       Text('${champion.spells?[index].description}'),
-                      SizedBox(height: screenSize.height * 0.01),
+                      const SizedBox(height: 10),
                       Text('Custo por nível:', style: TPTexts.t5()),
-                      SizedBox(height: screenSize.height * 0.01),
-                      Text('${champion.spells?[index].cost}'),
-                      SizedBox(height: screenSize.height * 0.02),
+                      const SizedBox(height: 10),
+                      Text(
+                        '${champion.spells?[index].cost}'
+                            .replaceAll('[', '')
+                            .replaceAll(']', ''),
+                      ),
+                      const SizedBox(height: 20),
                       Text('Cooldown por nível:', style: TPTexts.t5()),
-                      SizedBox(height: screenSize.height * 0.01),
-                      Text('${champion.spells?[index].cooldown}'),
-                      SizedBox(height: screenSize.height * 0.02),
+                      const SizedBox(height: 10),
+                      Text(
+                        '${champion.spells?[index].cooldown}'
+                            .replaceAll('[', '')
+                            .replaceAll(']', ''),
+                      ),
+                      const SizedBox(height: 20),
                       Text('Range por nível:', style: TPTexts.t5()),
-                      SizedBox(height: screenSize.height * 0.01),
-                      Text('${champion.spells?[index].range}'),
+                      const SizedBox(height: 10),
+                      Text(
+                        '${champion.spells?[index].range}'
+                            .replaceAll('[', '')
+                            .replaceAll(']', ''),
+                      ),
                     ],
                   ),
                 ),

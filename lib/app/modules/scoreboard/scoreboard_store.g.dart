@@ -9,31 +9,85 @@ part of 'scoreboard_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ScoreboardStore on _ScoreboardStoreBase, Store {
-  late final _$valueAtom =
-      Atom(name: '_ScoreboardStoreBase.value', context: context);
+  late final _$isLoadingAtom =
+      Atom(name: '_ScoreboardStoreBase.isLoading', context: context);
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
     });
+  }
+
+  late final _$isErrorAtom =
+      Atom(name: '_ScoreboardStoreBase.isError', context: context);
+
+  @override
+  bool get isError {
+    _$isErrorAtom.reportRead();
+    return super.isError;
+  }
+
+  @override
+  set isError(bool value) {
+    _$isErrorAtom.reportWrite(value, super.isError, () {
+      super.isError = value;
+    });
+  }
+
+  late final _$rankedChallengerSoloQInfoAtom = Atom(
+      name: '_ScoreboardStoreBase.rankedChallengerSoloQInfo', context: context);
+
+  @override
+  RankedModel? get rankedChallengerSoloQInfo {
+    _$rankedChallengerSoloQInfoAtom.reportRead();
+    return super.rankedChallengerSoloQInfo;
+  }
+
+  @override
+  set rankedChallengerSoloQInfo(RankedModel? value) {
+    _$rankedChallengerSoloQInfoAtom
+        .reportWrite(value, super.rankedChallengerSoloQInfo, () {
+      super.rankedChallengerSoloQInfo = value;
+    });
+  }
+
+  late final _$getRankedChallengerSoloQInfoAsyncAction = AsyncAction(
+      '_ScoreboardStoreBase.getRankedChallengerSoloQInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedChallengerSoloQInfo() {
+    return _$getRankedChallengerSoloQInfoAsyncAction
+        .run(() => super.getRankedChallengerSoloQInfo());
   }
 
   late final _$_ScoreboardStoreBaseActionController =
       ActionController(name: '_ScoreboardStoreBase', context: context);
 
   @override
-  void increment() {
+  dynamic setIsLoading(bool value) {
     final _$actionInfo = _$_ScoreboardStoreBaseActionController.startAction(
-        name: '_ScoreboardStoreBase.increment');
+        name: '_ScoreboardStoreBase.setIsLoading');
     try {
-      return super.increment();
+      return super.setIsLoading(value);
+    } finally {
+      _$_ScoreboardStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setIsError(bool value) {
+    final _$actionInfo = _$_ScoreboardStoreBaseActionController.startAction(
+        name: '_ScoreboardStoreBase.setIsError');
+    try {
+      return super.setIsError(value);
     } finally {
       _$_ScoreboardStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -42,7 +96,9 @@ mixin _$ScoreboardStore on _ScoreboardStoreBase, Store {
   @override
   String toString() {
     return '''
-value: ${value}
+isLoading: ${isLoading},
+isError: ${isError},
+rankedChallengerSoloQInfo: ${rankedChallengerSoloQInfo}
     ''';
   }
 }

@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
+
 import 'package:teemo_professor/libraries/common/constants.dart';
-import 'package:teemo_professor/libraries/common/models/champions_matery.model.dart';
-import 'package:teemo_professor/libraries/common/models/match/match.model.dart';
 import 'package:teemo_professor/libraries/common/models/entry.model.dart';
-import 'package:teemo_professor/libraries/common/models/ranked.model.dart';
+import 'package:teemo_professor/libraries/common/models/match.model.dart';
+import 'package:teemo_professor/libraries/common/models/spell.model.dart';
 import 'package:teemo_professor/libraries/common/models/summoner.model.dart';
 
 class SummonerService {
@@ -27,29 +27,17 @@ class SummonerService {
     return summoner;
   }
 
-  Future<EntryModel> getSummonerRankedInfo(
+  Future<List<EntryModel>> getSummonerRankedInfo(
     String summonerId,
   ) async {
-    EntryModel rankedInfo;
+    List<EntryModel> rankedsInfo = [];
     Response response = await dio.get(LOL_SUMMONERRANKEDINFO + summonerId,
         options: Options(headers: {'X-Riot-Token': API_KEY}));
-    Map<String, dynamic> result = response.data[0];
-    rankedInfo = EntryModel.fromMap(result);
-    return rankedInfo;
-  }
-
-  Future<List<ChampionsMasteryModel>> getTopChampionsMastery(
-    String summonerId,
-  ) async {
-    List<ChampionsMasteryModel> championsMastery = [];
-    Response response = await dio.get(
-        '$LOL_SUMMONERCHAMPIONSMATERYBYID$summonerId/top',
-        options: Options(headers: {'X-Riot-Token': API_KEY}));
     List<dynamic> results = response.data;
-    for (var champion in results) {
-      championsMastery.add(ChampionsMasteryModel.fromMap(champion));
+    for (var rankedEntrie in results) {
+      rankedsInfo.add(EntryModel.fromMap(rankedEntrie));
     }
-    return championsMastery;
+    return rankedsInfo;
   }
 
   Future<int> getSummonerTotalMasteryPoints(String summonerId) async {
@@ -62,14 +50,14 @@ class SummonerService {
     return totalMasteryPoints;
   }
 
-  Future<List<dynamic>> getListMatchIdsByPuuid(String puuid) async {
-    List<dynamic> matchIds;
+  Future<dynamic> getListMatchIdsBySummonerPuuid(String puuid) async {
+    dynamic lastMatchId;
     Response response = await dio.get(
-        '$LOL_LISTMATCHIDSBYPUUID$puuid/ids?start=0&count=20',
+        '$LOL_LISTMATCHIDSBYPUUID$puuid/ids?start=0&count=10',
         options: Options(headers: {'X-Riot-Token': API_KEY}));
     List<dynamic> results = response.data;
-    matchIds = results;
-    return matchIds;
+    lastMatchId = results;
+    return lastMatchId;
   }
 
   Future<MatchModel> getMatchById(String matchId) async {
@@ -81,12 +69,13 @@ class SummonerService {
     return match;
   }
 
-  Future<RankedModel> getRankedChallengerSoloQInfo() async {
-    RankedModel rankedChallengerSoloQInfo;
-    Response response = await dio.get(LOL_RANKEDCHALLENGERSOLOQINFO,
-        options: Options(headers: {'X-Riot-Token': API_KEY}));
-    Map<String, dynamic> result = response.data;
-    rankedChallengerSoloQInfo = RankedModel.fromMap(result);
-    return rankedChallengerSoloQInfo;
+  Future<List<SpellModel>> fetchSpells() async {
+    List<SpellModel> spells = [];
+    Response response = await dio.get(URL_SUMMONERSPELLS);
+    Map results = response.data["data"];
+    results.forEach((key, value) {
+      spells.add(SpellModel.fromMap(value));
+    });
+    return spells;
   }
 }

@@ -1,8 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api, prefer_final_fields
 
 import 'package:flutter/cupertino.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+
 import 'package:teemo_professor/app/modules/champions/service/champion_service.dart';
 import 'package:teemo_professor/libraries/common/models/champion.model.dart';
 import 'package:teemo_professor/libraries/common/models/image.model.dart';
@@ -19,7 +21,7 @@ abstract class _ChampionsStoreBase with Store {
   ChampionModel? champion;
 
   @observable
-  bool isLoading = true;
+  bool isLoading = false;
 
   @observable
   bool isError = false;
@@ -53,8 +55,9 @@ abstract class _ChampionsStoreBase with Store {
     try {
       setIsLoading(true);
       setIsError(false);
-      champions = ObservableList<ChampionModel>();
-      champions.addAll(await _championsListService.fetchCharacters());
+      if (champions.isEmpty) {
+        champions.addAll(await _championsListService.fetchChampions());
+      }
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);

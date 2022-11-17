@@ -3,15 +3,15 @@ import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
-  const TextFormFieldWidget({
-    super.key,
-    this.controller,
-    this.onChanged,
-    this.onTap,
-    this.text,
-    this.onEditingComplete,
-    this.onFieldSubmitted,
-  });
+  const TextFormFieldWidget(
+      {super.key,
+      this.controller,
+      this.onChanged,
+      this.onTap,
+      this.text,
+      this.onEditingComplete,
+      this.onFieldSubmitted,
+      this.initialValue});
 
   final String? text;
   final TextEditingController? controller;
@@ -19,6 +19,7 @@ class TextFormFieldWidget extends StatelessWidget {
   final void Function()? onEditingComplete;
   final void Function()? onTap;
   final void Function(String)? onFieldSubmitted;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,8 @@ class TextFormFieldWidget extends StatelessWidget {
         horizontal: screenSize.width * 0.02,
       ),
       child: TextFormField(
-        autofocus: false,
+        key: const Key('searchSummonerTextField'),
+        initialValue: initialValue,
         controller: controller,
         cursorColor: TPColor.purple,
         onChanged: onChanged,

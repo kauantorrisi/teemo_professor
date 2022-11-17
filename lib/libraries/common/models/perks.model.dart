@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'package:teemo_professor/libraries/common/models/match/stat_perks.model.dart';
-import 'package:teemo_professor/libraries/common/models/match/style.model.dart';
+
+import 'package:teemo_professor/libraries/common/models/stat_perks.model.dart';
+import 'package:teemo_professor/libraries/common/models/style.model.dart';
 
 class PerksModel {
   PerksModel({

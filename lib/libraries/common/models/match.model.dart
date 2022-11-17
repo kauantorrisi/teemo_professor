@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'package:teemo_professor/libraries/common/models/match/info.model.dart';
-import 'package:teemo_professor/libraries/common/models/match/metadata.model.dart';
+
+import 'package:teemo_professor/libraries/common/models/info.model.dart';
+import 'package:teemo_professor/libraries/common/models/metadata.model.dart';
 
 class MatchModel {
   MatchModel({

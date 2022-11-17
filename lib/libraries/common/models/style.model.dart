@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:teemo_professor/libraries/common/models/match/description.model.dart';
-import 'package:teemo_professor/libraries/common/models/match/selection.model.dart';
+import 'package:teemo_professor/libraries/common/models/description.model.dart';
+import 'package:teemo_professor/libraries/common/models/selection.model.dart';
 
 class StyleModel {
   StyleModel({

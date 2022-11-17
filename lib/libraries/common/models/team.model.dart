@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:teemo_professor/libraries/common/models/match/ban.model.dart';
-import 'package:teemo_professor/libraries/common/models/match/objectives.model.dart';
+import 'package:teemo_professor/libraries/common/models/ban.model.dart';
+import 'package:teemo_professor/libraries/common/models/objectives.model.dart';
 
 class TeamModel {
   TeamModel({

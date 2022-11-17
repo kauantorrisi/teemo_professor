@@ -1,6 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:teemo_professor/app/modules/itens/itens_store.dart';
 import 'package:flutter/material.dart';
+import 'package:teemo_professor/libraries/common/widgets/app_bar.widget.dart';
+import 'package:teemo_professor/libraries/common/widgets/drawer.widget.dart';
 
 class ItensPage extends StatefulWidget {
   final String title;
@@ -15,9 +17,8 @@ class ItensPageState extends State<ItensPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: const AppBarWidget(),
+      drawer: const DrawerWidget(),
       body: Column(
         children: const [],
       ),

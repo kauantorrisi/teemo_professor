@@ -3,7 +3,10 @@ import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
 
 class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
-  const AppBarWidget({super.key});
+  const AppBarWidget({super.key, this.onPressed, this.actions});
+
+  final void Function()? onPressed;
+  final List<Widget>? actions;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -14,6 +17,7 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
       title: Text('Professor Teemo', style: TPTexts.t1(color: TPColor.white)),
       centerTitle: true,
       backgroundColor: TPColor.purple,
+      actions: actions,
     );
   }
 }

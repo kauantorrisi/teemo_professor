@@ -4,6 +4,7 @@ class SpellModel {
   SpellModel({
     this.id,
     this.name,
+    this.key,
     this.description,
     this.tooltip,
     this.maxrank,
@@ -22,6 +23,7 @@ class SpellModel {
 
   final String? id;
   final String? name;
+  final String? key;
   final String? description;
   final String? tooltip;
   final int? maxrank;
@@ -45,6 +47,7 @@ class SpellModel {
   factory SpellModel.fromMap(Map<String, dynamic> json) => SpellModel(
         id: json["id"],
         name: json["name"],
+        key: json["key"],
         description: json["description"],
         tooltip: json["tooltip"],
         maxrank: json["maxrank"],
@@ -74,6 +77,7 @@ class SpellModel {
   Map<String, dynamic> toMap() => {
         "id": id,
         "name": name,
+        "key": key,
         "description": description,
         "tooltip": tooltip,
         "maxrank": maxrank,

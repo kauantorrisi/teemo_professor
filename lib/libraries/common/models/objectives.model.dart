@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:teemo_professor/libraries/common/models/match/objectives_data.model.dart';
+
+import 'package:teemo_professor/libraries/common/models/objectives_data.model.dart';
 
 class ObjectivesModel {
   ObjectivesModel({

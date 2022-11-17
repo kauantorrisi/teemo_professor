@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:teemo_professor/app/app_module.dart';
+import 'package:teemo_professor/app/app_widget.dart';
 
 void main() {
   runApp(ModularApp(module: AppModule(), child: const MyApp()));
@@ -16,16 +17,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'Teemo Professor',
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.indigo,
-        fontFamily: 'TeemoFont1',
-      ),
-      routeInformationParser: Modular.routeInformationParser,
-      routerDelegate: Modular.routerDelegate,
-    );
+    return const AppWidget();
   }
 }
