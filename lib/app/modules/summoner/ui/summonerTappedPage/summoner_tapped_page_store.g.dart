@@ -41,21 +41,19 @@ mixin _$SummonerTappedPageStore on _SummonerTappedPageStoreBase, Store {
     });
   }
 
-  late final _$summonerTappedInfoModelAtom = Atom(
-      name: '_SummonerTappedPageStoreBase.summonerTappedInfoModel',
-      context: context);
+  late final _$summonerInfoModelAtom = Atom(
+      name: '_SummonerTappedPageStoreBase.summonerInfoModel', context: context);
 
   @override
-  SummonerModel? get summonerTappedInfoModel {
-    _$summonerTappedInfoModelAtom.reportRead();
-    return super.summonerTappedInfoModel;
+  SummonerModel? get summonerInfoModel {
+    _$summonerInfoModelAtom.reportRead();
+    return super.summonerInfoModel;
   }
 
   @override
-  set summonerTappedInfoModel(SummonerModel? value) {
-    _$summonerTappedInfoModelAtom
-        .reportWrite(value, super.summonerTappedInfoModel, () {
-      super.summonerTappedInfoModel = value;
+  set summonerInfoModel(SummonerModel? value) {
+    _$summonerInfoModelAtom.reportWrite(value, super.summonerInfoModel, () {
+      super.summonerInfoModel = value;
     });
   }
 
@@ -91,110 +89,85 @@ mixin _$SummonerTappedPageStore on _SummonerTappedPageStoreBase, Store {
     });
   }
 
-  late final _$summonerTappedListAtom = Atom(
-      name: '_SummonerTappedPageStoreBase.summonerTappedList',
-      context: context);
+  late final _$summonerListAtom =
+      Atom(name: '_SummonerTappedPageStoreBase.summonerList', context: context);
 
   @override
-  ObservableList<ParticipantModel> get summonerTappedList {
-    _$summonerTappedListAtom.reportRead();
-    return super.summonerTappedList;
+  ObservableList<ParticipantModel> get summonerList {
+    _$summonerListAtom.reportRead();
+    return super.summonerList;
   }
 
   @override
-  set summonerTappedList(ObservableList<ParticipantModel> value) {
-    _$summonerTappedListAtom.reportWrite(value, super.summonerTappedList, () {
-      super.summonerTappedList = value;
+  set summonerList(ObservableList<ParticipantModel> value) {
+    _$summonerListAtom.reportWrite(value, super.summonerList, () {
+      super.summonerList = value;
     });
   }
 
-  late final _$summonerTappedSpellIdAtom = Atom(
-      name: '_SummonerTappedPageStoreBase.summonerTappedSpellId',
-      context: context);
+  late final _$summonerSpellIdAtom = Atom(
+      name: '_SummonerTappedPageStoreBase.summonerSpellId', context: context);
 
   @override
-  ObservableList<String?> get summonerTappedSpellId {
-    _$summonerTappedSpellIdAtom.reportRead();
-    return super.summonerTappedSpellId;
+  ObservableList<String?> get summonerSpellId {
+    _$summonerSpellIdAtom.reportRead();
+    return super.summonerSpellId;
   }
 
   @override
-  set summonerTappedSpellId(ObservableList<String?> value) {
-    _$summonerTappedSpellIdAtom.reportWrite(value, super.summonerTappedSpellId,
+  set summonerSpellId(ObservableList<String?> value) {
+    _$summonerSpellIdAtom.reportWrite(value, super.summonerSpellId, () {
+      super.summonerSpellId = value;
+    });
+  }
+
+  late final _$summonerSpellId2Atom = Atom(
+      name: '_SummonerTappedPageStoreBase.summonerSpellId2', context: context);
+
+  @override
+  ObservableList<String?> get summonerSpellId2 {
+    _$summonerSpellId2Atom.reportRead();
+    return super.summonerSpellId2;
+  }
+
+  @override
+  set summonerSpellId2(ObservableList<String?> value) {
+    _$summonerSpellId2Atom.reportWrite(value, super.summonerSpellId2, () {
+      super.summonerSpellId2 = value;
+    });
+  }
+
+  late final _$isSummonerSpellAtom = Atom(
+      name: '_SummonerTappedPageStoreBase.isSummonerSpell', context: context);
+
+  @override
+  bool get isSummonerSpell {
+    _$isSummonerSpellAtom.reportRead();
+    return super.isSummonerSpell;
+  }
+
+  @override
+  set isSummonerSpell(bool value) {
+    _$isSummonerSpellAtom.reportWrite(value, super.isSummonerSpell, () {
+      super.isSummonerSpell = value;
+    });
+  }
+
+  late final _$isSummonerSecondSpellAtom = Atom(
+      name: '_SummonerTappedPageStoreBase.isSummonerSecondSpell',
+      context: context);
+
+  @override
+  bool get isSummonerSecondSpell {
+    _$isSummonerSecondSpellAtom.reportRead();
+    return super.isSummonerSecondSpell;
+  }
+
+  @override
+  set isSummonerSecondSpell(bool value) {
+    _$isSummonerSecondSpellAtom.reportWrite(value, super.isSummonerSecondSpell,
         () {
-      super.summonerTappedSpellId = value;
-    });
-  }
-
-  late final _$summonerTappedSpellId2Atom = Atom(
-      name: '_SummonerTappedPageStoreBase.summonerTappedSpellId2',
-      context: context);
-
-  @override
-  ObservableList<String?> get summonerTappedSpellId2 {
-    _$summonerTappedSpellId2Atom.reportRead();
-    return super.summonerTappedSpellId2;
-  }
-
-  @override
-  set summonerTappedSpellId2(ObservableList<String?> value) {
-    _$summonerTappedSpellId2Atom
-        .reportWrite(value, super.summonerTappedSpellId2, () {
-      super.summonerTappedSpellId2 = value;
-    });
-  }
-
-  late final _$tappedSummonerRankedInfoIconAtom = Atom(
-      name: '_SummonerTappedPageStoreBase.tappedSummonerRankedInfoIcon',
-      context: context);
-
-  @override
-  bool get tappedSummonerRankedInfoIcon {
-    _$tappedSummonerRankedInfoIconAtom.reportRead();
-    return super.tappedSummonerRankedInfoIcon;
-  }
-
-  @override
-  set tappedSummonerRankedInfoIcon(bool value) {
-    _$tappedSummonerRankedInfoIconAtom
-        .reportWrite(value, super.tappedSummonerRankedInfoIcon, () {
-      super.tappedSummonerRankedInfoIcon = value;
-    });
-  }
-
-  late final _$isSummonerTappedSpellAtom = Atom(
-      name: '_SummonerTappedPageStoreBase.isSummonerTappedSpell',
-      context: context);
-
-  @override
-  bool get isSummonerTappedSpell {
-    _$isSummonerTappedSpellAtom.reportRead();
-    return super.isSummonerTappedSpell;
-  }
-
-  @override
-  set isSummonerTappedSpell(bool value) {
-    _$isSummonerTappedSpellAtom.reportWrite(value, super.isSummonerTappedSpell,
-        () {
-      super.isSummonerTappedSpell = value;
-    });
-  }
-
-  late final _$isSummonerTappedSSecondSpellAtom = Atom(
-      name: '_SummonerTappedPageStoreBase.isSummonerTappedSSecondSpell',
-      context: context);
-
-  @override
-  bool get isSummonerTappedSSecondSpell {
-    _$isSummonerTappedSSecondSpellAtom.reportRead();
-    return super.isSummonerTappedSSecondSpell;
-  }
-
-  @override
-  set isSummonerTappedSSecondSpell(bool value) {
-    _$isSummonerTappedSSecondSpellAtom
-        .reportWrite(value, super.isSummonerTappedSSecondSpell, () {
-      super.isSummonerTappedSSecondSpell = value;
+      super.isSummonerSecondSpell = value;
     });
   }
 
@@ -324,17 +297,6 @@ mixin _$SummonerTappedPageStore on _SummonerTappedPageStoreBase, Store {
       ActionController(name: '_SummonerTappedPageStoreBase', context: context);
 
   @override
-  bool toggleArrowButton() {
-    final _$actionInfo = _$_SummonerTappedPageStoreBaseActionController
-        .startAction(name: '_SummonerTappedPageStoreBase.toggleArrowButton');
-    try {
-      return super.toggleArrowButton();
-    } finally {
-      _$_SummonerTappedPageStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   bool setIsLoading(bool value) {
     final _$actionInfo = _$_SummonerTappedPageStoreBaseActionController
         .startAction(name: '_SummonerTappedPageStoreBase.setIsLoading');
@@ -384,15 +346,14 @@ mixin _$SummonerTappedPageStore on _SummonerTappedPageStoreBase, Store {
     return '''
 isLoading: ${isLoading},
 isError: ${isError},
-summonerTappedInfoModel: ${summonerTappedInfoModel},
+summonerInfoModel: ${summonerInfoModel},
 entriesInfo: ${entriesInfo},
 match: ${match},
-summonerTappedList: ${summonerTappedList},
-summonerTappedSpellId: ${summonerTappedSpellId},
-summonerTappedSpellId2: ${summonerTappedSpellId2},
-tappedSummonerRankedInfoIcon: ${tappedSummonerRankedInfoIcon},
-isSummonerTappedSpell: ${isSummonerTappedSpell},
-isSummonerTappedSSecondSpell: ${isSummonerTappedSSecondSpell},
+summonerList: ${summonerList},
+summonerSpellId: ${summonerSpellId},
+summonerSpellId2: ${summonerSpellId2},
+isSummonerSpell: ${isSummonerSpell},
+isSummonerSecondSpell: ${isSummonerSecondSpell},
 matchIds: ${matchIds},
 matchs: ${matchs},
 champions: ${champions},

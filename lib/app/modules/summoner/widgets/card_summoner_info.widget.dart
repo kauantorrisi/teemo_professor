@@ -4,7 +4,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:teemo_professor/app/modules/summoner/ui/summonerPage/summoner_page_store.dart';
-import 'package:teemo_professor/app/modules/summoner/ui/summonerTappedPage/summoner_tapped_page_store.dart';
 import 'package:teemo_professor/app/modules/summoner/widgets/button.widget.dart';
 import 'package:teemo_professor/app/modules/summoner/widgets/card_summoner_ranked_info.widget.dart';
 import 'package:teemo_professor/libraries/common/constants.dart';
@@ -13,7 +12,6 @@ import 'package:teemo_professor/libraries/common/design/texts.dart';
 import 'package:teemo_professor/app/modules/summoner/widgets/card.widget.dart';
 
 final SummonerPageStore store = Modular.get();
-final SummonerTappedPageStore storeSummonerTapped = Modular.get();
 
 class CardSummonerInfoWidget extends StatefulWidget {
   const CardSummonerInfoWidget({super.key});

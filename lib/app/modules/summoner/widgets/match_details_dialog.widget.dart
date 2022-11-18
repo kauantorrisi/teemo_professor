@@ -18,7 +18,7 @@ final SummonerPageStore store = Modular.get();
 
 class MatchDetailsDialogWidget extends StatelessWidget {
   MatchDetailsDialogWidget({super.key, required this.info}) {
-    setTeams();
+    setTeamsObjectives();
     setParticipantsTeams();
   }
 
@@ -32,7 +32,7 @@ class MatchDetailsDialogWidget extends StatelessWidget {
 
   List<ParticipantModel> loseParticipantsTeam = [];
 
-  void setTeams() {
+  void setTeamsObjectives() {
     info.teams!.forEach((team) {
       if (team.win == true)
         winTeam = team;

@@ -7,7 +7,7 @@ import 'package:teemo_professor/libraries/common/models/match.model.dart';
 import 'package:teemo_professor/libraries/common/models/participant.model.dart';
 import 'package:teemo_professor/libraries/common/models/spell.model.dart';
 import 'package:teemo_professor/libraries/common/models/summoner.model.dart';
-part 'summoner_page_store.g.dart';
+part 'summoner_tapped_page_store.g.dart';
 
 class SummonerTappedPageStore = _SummonerTappedPageStoreBase
     with _$SummonerTappedPageStore;
@@ -22,7 +22,7 @@ abstract class _SummonerTappedPageStoreBase with Store {
   bool? isError;
 
   @observable
-  SummonerModel? summonerTappedInfoModel;
+  SummonerModel? summonerInfoModel;
 
   @observable
   ObservableList<EntryModel?> entriesInfo = ObservableList();
@@ -31,23 +31,20 @@ abstract class _SummonerTappedPageStoreBase with Store {
   MatchModel? match;
 
   @observable
-  ObservableList<ParticipantModel> summonerTappedList =
+  ObservableList<ParticipantModel> summonerList =
       ObservableList<ParticipantModel>();
 
   @observable
-  ObservableList<String?> summonerTappedSpellId = ObservableList<String?>();
+  ObservableList<String?> summonerSpellId = ObservableList<String?>();
 
   @observable
-  ObservableList<String?> summonerTappedSpellId2 = ObservableList<String?>();
+  ObservableList<String?> summonerSpellId2 = ObservableList<String?>();
 
   @observable
-  bool tappedSummonerRankedInfoIcon = false;
+  bool isSummonerSpell = false;
 
   @observable
-  bool isSummonerTappedSpell = false;
-
-  @observable
-  bool isSummonerTappedSSecondSpell = false;
+  bool isSummonerSecondSpell = false;
 
   @observable
   ObservableList<dynamic> matchIds = ObservableList();
@@ -62,10 +59,6 @@ abstract class _SummonerTappedPageStoreBase with Store {
   ObservableList<SpellModel?> spells = ObservableList<SpellModel?>();
 
   @action
-  bool toggleArrowButton() =>
-      tappedSummonerRankedInfoIcon = !tappedSummonerRankedInfoIcon;
-
-  @action
   bool setIsLoading(bool value) => isLoading = value;
 
   @action
@@ -77,8 +70,8 @@ abstract class _SummonerTappedPageStoreBase with Store {
       setIsLoading(true);
       setIsError(false);
       await getSummonerTappedInfoByName(summonerName);
-      await getSummonerRankedInfo('${summonerTappedInfoModel?.id}');
-      await getListMatchIdsBySummonerPuuid('${summonerTappedInfoModel?.puuid}');
+      await getSummonerRankedInfo('${summonerInfoModel?.id}');
+      await getListMatchIdsBySummonerPuuid('${summonerInfoModel?.puuid}');
       await getMatchsById();
       await getSpellsList();
       isSummonerTappedInfo();
@@ -95,8 +88,8 @@ abstract class _SummonerTappedPageStoreBase with Store {
     try {
       setIsLoading(true);
       setIsError(false);
-      summonerTappedInfoModel = SummonerModel();
-      summonerTappedInfoModel = await service.getSummonerByName(summonerName);
+      summonerInfoModel = SummonerModel();
+      summonerInfoModel = await service.getSummonerByName(summonerName);
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
@@ -167,8 +160,8 @@ abstract class _SummonerTappedPageStoreBase with Store {
   void isSummonerTappedInfo() {
     for (var match in matchs) {
       for (var participant in match!.info!.participants!) {
-        if (participant!.summonerName == summonerTappedInfoModel!.name) {
-          summonerTappedList.add(participant);
+        if (participant!.summonerName == summonerInfoModel!.name) {
+          summonerList.add(participant);
         }
       }
     }
@@ -176,15 +169,15 @@ abstract class _SummonerTappedPageStoreBase with Store {
 
   @action
   void checkSpellSummonerTapped() {
-    for (var i in summonerTappedList) {
+    for (var i in summonerList) {
       for (var spell in spells) {
         if (i.summoner1Id.toString() == spell!.key) {
-          summonerTappedSpellId.add(spell.id);
-          isSummonerTappedSpell = true;
+          summonerSpellId.add(spell.id);
+          isSummonerSpell = true;
         }
         if (i.summoner2Id.toString() == spell.key) {
-          summonerTappedSpellId2.add(spell.id);
-          isSummonerTappedSSecondSpell = true;
+          summonerSpellId2.add(spell.id);
+          isSummonerSecondSpell = true;
         }
       }
     }
