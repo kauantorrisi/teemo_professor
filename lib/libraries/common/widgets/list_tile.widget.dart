@@ -23,7 +23,7 @@ class ListTileWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.02),
       child: ListTile(
-        selectedTileColor: TPColor.purple,
+        selectedTileColor: TPColor.darkBlue,
         selected: true,
         selectedColor: TPColor.black,
         shape: RoundedRectangleBorder(

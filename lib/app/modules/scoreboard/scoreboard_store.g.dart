@@ -41,33 +41,6 @@ mixin _$ScoreboardStore on _ScoreboardStoreBase, Store {
     });
   }
 
-  late final _$rankedChallengerSoloQInfoAtom = Atom(
-      name: '_ScoreboardStoreBase.rankedChallengerSoloQInfo', context: context);
-
-  @override
-  RankedModel? get rankedChallengerSoloQInfo {
-    _$rankedChallengerSoloQInfoAtom.reportRead();
-    return super.rankedChallengerSoloQInfo;
-  }
-
-  @override
-  set rankedChallengerSoloQInfo(RankedModel? value) {
-    _$rankedChallengerSoloQInfoAtom
-        .reportWrite(value, super.rankedChallengerSoloQInfo, () {
-      super.rankedChallengerSoloQInfo = value;
-    });
-  }
-
-  late final _$getRankedChallengerSoloQInfoAsyncAction = AsyncAction(
-      '_ScoreboardStoreBase.getRankedChallengerSoloQInfo',
-      context: context);
-
-  @override
-  Future<void> getRankedChallengerSoloQInfo() {
-    return _$getRankedChallengerSoloQInfoAsyncAction
-        .run(() => super.getRankedChallengerSoloQInfo());
-  }
-
   late final _$_ScoreboardStoreBaseActionController =
       ActionController(name: '_ScoreboardStoreBase', context: context);
 
@@ -97,8 +70,7 @@ mixin _$ScoreboardStore on _ScoreboardStoreBase, Store {
   String toString() {
     return '''
 isLoading: ${isLoading},
-isError: ${isError},
-rankedChallengerSoloQInfo: ${rankedChallengerSoloQInfo}
+isError: ${isError}
     ''';
   }
 }

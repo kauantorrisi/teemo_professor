@@ -22,21 +22,4 @@ abstract class _ScoreboardStoreBase with Store {
 
   @action
   setIsError(bool value) => isError = value;
-
-  @observable
-  RankedModel? rankedChallengerSoloQInfo;
-
-  @action
-  Future<void> getRankedChallengerSoloQInfo() async {
-    try {
-      setIsLoading(true);
-      setIsError(false);
-      rankedChallengerSoloQInfo = RankedModel();
-      rankedChallengerSoloQInfo = await service.getRankedChallengerSoloQInfo();
-      setIsLoading(false);
-    } catch (e) {
-      setIsLoading(false);
-      setIsError(true);
-    }
-  }
 }

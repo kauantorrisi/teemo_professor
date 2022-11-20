@@ -19,7 +19,6 @@ class ScoreboardPageState extends State<ScoreboardPage> {
 
   @override
   void initState() {
-    store.getRankedChallengerSoloQInfo();
     super.initState();
   }
 
@@ -87,74 +86,13 @@ class ScoreboardPageState extends State<ScoreboardPage> {
           ],
         ),
         drawer: const DrawerWidget(),
-        body: Observer(
-          builder: (context) {
-            return store.isLoading == true ||
-                    store.rankedChallengerSoloQInfo == null
-                ? const LoadingWidget()
-                : rankedChallengerSoloQInfoList;
-          },
-        ),
       ),
     );
   }
 
   Widget get rankedChallengerSoloQInfoList {
     return Column(
-      children: [
-        if (store.rankedChallengerSoloQInfo?.tier == 'CHALLENGER')
-          Text('Desafiante', style: TPTexts.h8()),
-        Text(
-          '${store.rankedChallengerSoloQInfo?.queue}'
-              .replaceAll(RegExp(r'_'), ' '),
-          style: TPTexts.t7(),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: store.rankedChallengerSoloQInfo?.entries?.length,
-            itemBuilder: (context, index) {
-              int wins =
-                  store.rankedChallengerSoloQInfo!.entries![index]!.wins!;
-              int losses =
-                  store.rankedChallengerSoloQInfo!.entries![index]!.losses!;
-              int totalMatchsPlayed = wins + losses;
-
-              return Column(
-                children: [
-                  ListTile(
-                    title: Text(
-                      '${store.rankedChallengerSoloQInfo?.entries?[index]?.summonerName}',
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Pontos: ${store.rankedChallengerSoloQInfo?.entries?[index]?.leaguePoints}',
-                        ),
-                        Text(
-                          'Partidas jogadas: $totalMatchsPlayed',
-                        ),
-                      ],
-                    ),
-                    trailing: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Vitórias: ${store.rankedChallengerSoloQInfo?.entries?[index]?.wins}',
-                        ),
-                        Text(
-                          'Derrotas: ${store.rankedChallengerSoloQInfo?.entries?[index]?.losses}',
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Divider(color: TPColor.purple, thickness: 1.5),
-                ],
-              );
-            },
-          ),
-        ),
-      ],
+      children: [],
     );
   }
 }

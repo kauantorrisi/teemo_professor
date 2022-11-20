@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AppWidget extends StatefulWidget {
@@ -16,7 +17,6 @@ class _AppWidgetState extends State<AppWidget> {
       title: 'Teemo Professor',
       theme: ThemeData(
         brightness: Brightness.light,
-        primarySwatch: Colors.indigo,
         fontFamily: 'TeemoFont1',
       ),
       routeInformationParser: Modular.routeInformationParser,

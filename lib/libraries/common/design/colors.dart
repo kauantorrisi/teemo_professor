@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 
 class TPColor {
-  static const MaterialColor purple =
-      MaterialColor(0xFF6C5DD3, {100: Color(0xFF6C5DD3)});
-
-  static const MaterialColor ligthPurple =
-      MaterialColor(0xFFC7BFFD, {100: Color(0xFFC7BFFD)});
+  static const MaterialColor darkBlue =
+      MaterialColor(0xFF3D5A80, {100: Color(0xFF3D5A80)});
 
   static const MaterialColor blue =
-      MaterialColor(0xFF0049C6, {100: Color(0xFF0049C6)});
+      MaterialColor(0xFF98C1D9, {100: Color(0xFF98C1D9)});
 
-  static Color? lightBlue = Colors.blue[100];
+  static const MaterialColor ligthBlue =
+      MaterialColor(0xFFE0FBFC, {100: Color(0xFFE0FBFC)});
 
-  static Color? blueOpacity40 = Colors.blue.withOpacity(0.4);
+  static const MaterialColor cyan =
+      MaterialColor(0xFF6CE3F0, {100: Color(0xFF6CE3F0)});
 
-  static const MaterialColor red = Colors.red;
+  static const MaterialColor red =
+      MaterialColor(0xFFFF0000, {100: Color(0xFFFF0000)});
 
-  static Color? lightRed = Colors.red[100];
+  static const MaterialColor lightRed =
+      MaterialColor(0xFFFF8A8A, {100: Color(0xFFFF8A8A)});
 
-  static Color? redOpacity40 = Colors.red.withOpacity(0.4);
-
-  static const MaterialColor pink =
-      MaterialColor(0xFFFFA2C0, {100: Color(0xFFFFA2C0)});
-
-  static const MaterialColor yellow =
-      MaterialColor(0xFFFFC373, {100: Color(0xFFFFC373)});
+  static const MaterialColor orange =
+      MaterialColor(0xFFEE6B4D, {100: Color(0xFFEE6B4D)});
 
   static const MaterialColor black =
       MaterialColor(0xFF1B1D21, {100: Color(0xFF1B1D21)});
@@ -36,5 +32,5 @@ class TPColor {
       MaterialColor(0xFF676767, {100: Color(0xFF676767)});
 
   static const MaterialColor ligthGrey =
-      MaterialColor(0xFFA7A7A7, {100: Color(0xFFA7A7A7)});
+      MaterialColor(0xFFD9D9D9, {100: Color(0xFFD9D9D9)});
 }

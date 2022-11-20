@@ -35,11 +35,12 @@ flutter:
 
   uses-material-design: true
   assets:
-    - lib/assets/images/error.image.png
-    - lib/assets/images/teemo_loading.gif
-    - lib/assets/images/baron-icon.png
-    - lib/assets/images/dragon-icon.png
-    - lib/assets/images/rift-herald-icon.png
+    - lib/assets/images/
+    # - lib/assets/images/error.image.png
+    # - lib/assets/images/teemo_loading.gif
+    # - lib/assets/images/baron-icon.png
+    # - lib/assets/images/dragon-icon.png
+    # - lib/assets/images/rift-herald-icon.png
 
   fonts:
     - family: TeemoFont1

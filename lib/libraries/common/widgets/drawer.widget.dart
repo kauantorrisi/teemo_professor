@@ -25,7 +25,7 @@ class DrawerWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('Olá,\nInvocador', style: TPTexts.t1()),
-            const Divider(),
+            const Divider(color: TPColor.darkBlue),
             ListTileWidget(
                 label: 'Pesquisar invocador',
                 icon: Icons.search_rounded,
