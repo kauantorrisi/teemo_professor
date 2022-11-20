@@ -4,6 +4,9 @@ class TPColor {
   static const MaterialColor purple =
       MaterialColor(0xFF6C5DD3, {100: Color(0xFF6C5DD3)});
 
+  static const MaterialColor ligthPurple =
+      MaterialColor(0xFFC7BFFD, {100: Color(0xFFC7BFFD)});
+
   static const MaterialColor blue =
       MaterialColor(0xFF0049C6, {100: Color(0xFF0049C6)});
 
@@ -31,4 +34,7 @@ class TPColor {
 
   static const MaterialColor grey =
       MaterialColor(0xFF676767, {100: Color(0xFF676767)});
+
+  static const MaterialColor ligthGrey =
+      MaterialColor(0xFFA7A7A7, {100: Color(0xFFA7A7A7)});
 }

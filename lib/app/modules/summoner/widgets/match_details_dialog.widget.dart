@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:teemo_professor/app/modules/summoner/ui/summonerPage/summoner_page_store.dart';
 import 'package:teemo_professor/app/modules/summoner/widgets/button.widget.dart';
@@ -24,9 +24,9 @@ class MatchDetailsDialogWidget extends StatelessWidget {
 
   final InfoModel info;
 
-  late TeamModel winTeam;
+  late TeamModel winTeam = TeamModel();
 
-  late TeamModel loseTeam;
+  late TeamModel loseTeam = TeamModel();
 
   List<ParticipantModel> winParticipantsTeam = [];
 
@@ -55,7 +55,20 @@ class MatchDetailsDialogWidget extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Text('Detalhes da partida', style: TPTexts.h3()),
+          Row(
+            children: [
+              const Spacer(flex: 2),
+              Text('Detalhes da partida', style: TPTexts.h3()),
+              const Spacer(),
+              IconButton(
+                onPressed: () => Modular.to.pop(),
+                icon: const Icon(
+                  Icons.close,
+                  color: TPColor.red,
+                ),
+              ),
+            ],
+          ),
           teamObjectivesRow(winTeam),
           summonersTeamList(winParticipantsTeam),
           teamObjectivesRow(loseTeam),
@@ -68,9 +81,8 @@ class MatchDetailsDialogWidget extends StatelessWidget {
 
   Widget summonersTeamList(List<ParticipantModel> participants) {
     return SizedBox(
-      height: 520,
-      child: ListView.separated(
-        separatorBuilder: (context, index) => const SizedBox(height: 10),
+      height: 760.h,
+      child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         itemCount: participants.length,
         itemBuilder: (context, index) {
@@ -83,33 +95,34 @@ class MatchDetailsDialogWidget extends StatelessWidget {
   Widget teamObjectivesRow(TeamModel team) {
     return Container(
       color: team.win == true ? TPColor.blue : TPColor.red,
-      height: 36,
+      height: 36.h,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const Spacer(flex: 6),
           objectiveIcon(
               img: 'lib/assets/images/baron-icon.png', isWin: team.win),
-          const SizedBox(width: 5),
+          const Spacer(),
           Text('${team.objectives?.baron?.kills}'),
-          const SizedBox(width: 5),
+          const Spacer(),
           objectiveIcon(
               img: 'lib/assets/images/dragon-icon.png', isWin: team.win),
-          const SizedBox(width: 5),
+          const Spacer(),
           Text('${team.objectives?.dragon?.kills}'),
-          const SizedBox(width: 5),
+          const Spacer(),
           objectiveIcon(
               img: 'lib/assets/images/rift-herald-icon.png', isWin: team.win),
-          const SizedBox(width: 5),
+          const Spacer(),
           Text('${team.objectives?.riftHerald?.kills}'),
-          const SizedBox(width: 5),
+          const Spacer(),
           objectiveIcon(
             img: 'https://cdn-icons-png.flaticon.com/512/90/90403.png',
             isWin: team.win,
             isNetwork: true,
           ),
-          const SizedBox(width: 5),
+          const Spacer(),
           Text('${team.objectives?.tower?.kills}'),
-          const SizedBox(width: 20),
+          const Spacer(flex: 4),
           Text(
             team.win == true ? 'Vitória' : 'Derrota',
             style: TPTexts.t6(
@@ -117,6 +130,7 @@ class MatchDetailsDialogWidget extends StatelessWidget {
               color: team.win == true ? TPColor.lightBlue : TPColor.lightRed,
             ),
           ),
+          const Spacer(flex: 6),
         ],
       ),
     );
@@ -124,7 +138,7 @@ class MatchDetailsDialogWidget extends StatelessWidget {
 
   Widget objectiveIcon({required String img, bool? isWin, bool? isNetwork}) {
     return SizedBox(
-      height: 24,
+      height: 24.h,
       child: isNetwork == true
           ? Image.network(
               img,
@@ -147,10 +161,10 @@ class MatchDetailsDialogWidget extends StatelessWidget {
       child: ButtonWidget(
         onTap: () => Modular.to.pop(),
         borderRadius: 24,
-        width: 100,
-        heigth: 30,
+        width: 100.w,
+        heigth: 50.h,
         color: TPColor.purple,
-        child: const Text('Voltar'),
+        child: Text('Okay', style: TPTexts.h8()),
       ),
     );
   }

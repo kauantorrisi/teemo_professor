@@ -22,7 +22,7 @@ class SummonerModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute(Modular.initialRoute,
-            child: (context, args) => const SummonerPage()),
+            child: (context, args) => SummonerPage()),
         ChildRoute(
           '/summoner-tapped-info',
           child: (context, args) => const SummonerTappedInfoPage(),

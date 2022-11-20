@@ -18,7 +18,7 @@ class CardSummonerRankedInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Observer(builder: (_) {
       return AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 150),
         width: store.tappedSummonerRankedInfoIcon ? 270 : 0,
         height: store.tappedSummonerRankedInfoIcon ? 200 : 0,
         child: CardWidget(

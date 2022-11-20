@@ -27,23 +27,20 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        InkWell(
-          borderRadius: BorderRadius.circular(20),
-          splashColor: TPColor.purple,
-          hoverColor: TPColor.purple.withOpacity(0.3),
-          onTap: onTap,
-          child: Container(
-            decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.circular(borderRadius)),
-            height: heigth,
-            width: width,
-            child: Center(child: child),
-          ),
+    return InkWell(
+      borderRadius: BorderRadius.circular(20),
+      splashColor: TPColor.purple,
+      hoverColor: TPColor.purple.withOpacity(0.3),
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
-      ],
+        height: heigth,
+        width: width,
+        child: Center(child: child),
+      ),
     );
   }
 }

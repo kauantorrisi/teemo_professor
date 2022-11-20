@@ -53,7 +53,7 @@ class SummonerService {
   Future<dynamic> getListMatchIdsBySummonerPuuid(String puuid) async {
     dynamic lastMatchId;
     Response response = await dio.get(
-        '$LOL_LISTMATCHIDSBYPUUID$puuid/ids?start=0&count=10',
+        '$LOL_LISTMATCHIDSBYPUUID$puuid/ids?start=0&count=20',
         options: Options(headers: {'X-Riot-Token': API_KEY}));
     List<dynamic> results = response.data;
     lastMatchId = results;

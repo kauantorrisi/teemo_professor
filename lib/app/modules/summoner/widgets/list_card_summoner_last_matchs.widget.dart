@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:teemo_professor/app/modules/summoner/ui/summonerPage/summoner_page_store.dart';
 import 'package:teemo_professor/app/modules/summoner/widgets/button.widget.dart';
@@ -11,22 +12,20 @@ import 'package:teemo_professor/libraries/common/constants.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
 
-final SummonerPageStore store = Modular.get();
-
 class ListCardMatchHistoryWidget extends StatelessWidget {
-  const ListCardMatchHistoryWidget({super.key});
+  ListCardMatchHistoryWidget({super.key});
+
+  final SummonerPageStore store = Modular.get();
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
     return SizedBox(
-      height: screenSize.height * 2.2,
-      width: screenSize.width * 1,
+      height: 2950.h,
       child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: store.matchs.length,
         itemBuilder: (context, index) {
-          final num totalCs = store.me[index].totalMinionsKilled! +
+          final int totalCs = store.me[index].totalMinionsKilled! +
               store.me[index].neutralMinionsKilled!;
 
           dynamic kills = store.me[index].kills;

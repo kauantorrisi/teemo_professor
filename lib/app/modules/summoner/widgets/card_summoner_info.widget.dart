@@ -13,14 +13,9 @@ import 'package:teemo_professor/app/modules/summoner/widgets/card.widget.dart';
 
 final SummonerPageStore store = Modular.get();
 
-class CardSummonerInfoWidget extends StatefulWidget {
+class CardSummonerInfoWidget extends StatelessWidget {
   const CardSummonerInfoWidget({super.key});
 
-  @override
-  State<CardSummonerInfoWidget> createState() => _CardSummonerInfoWidgetState();
-}
-
-class _CardSummonerInfoWidgetState extends State<CardSummonerInfoWidget> {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
