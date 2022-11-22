@@ -35,10 +35,10 @@ abstract class _HomePageStoreBase with Store {
   bool isMySecondSpell = false;
 
   @observable
-  bool tappedSummonerRankedInfoIcon = false;
+  bool selectedBestPlayers = true;
 
   @observable
-  bool isFavorite = true;
+  bool isFavorite = false;
 
   @observable
   SummonerModel? summonerByName;
@@ -78,39 +78,11 @@ abstract class _HomePageStoreBase with Store {
   ObservableList<SpellModel?> spells = ObservableList<SpellModel?>();
 
   @observable
-  List<SummonerModel?> favoriteSummoners = [
-    SummonerModel(
-        name: 'Khons',
-        profileIconId: 1455,
-        summonerLevel: 487,
-        accountId: 'jsiajsa978',
-        id: 'uhs8888908',
-        puuid: '8765tghjk',
-        revisionDate: 1)
-  ];
+  List<SummonerModel?> favoriteSummoners = ObservableList<SummonerModel?>();
 
   @observable
-  List<EntryModel> favoriteSummonersEntriesModel = [
-    EntryModel(rank: 'SILVER', tier: '1')
-  ];
-
-  @action
-  Future<void> getRankedChallengerSoloQInfo() async {
-    try {
-      setIsLoading(true);
-      setIsError(false);
-      rankedChallengerSoloQInfo = RankedModel();
-      rankedChallengerSoloQInfo = await service.getRankedChallengerSoloQInfo();
-      setIsLoading(false);
-    } catch (e) {
-      setIsLoading(false);
-      setIsError(true);
-    }
-  }
-
-  @action
-  bool toggleArrowButton() =>
-      tappedSummonerRankedInfoIcon = !tappedSummonerRankedInfoIcon;
+  ObservableList<EntryModel> favoriteSummonersEntriesModel =
+      ObservableList<EntryModel>();
 
   @action
   bool setIsLoading(bool value) => isLoading = value;
@@ -120,6 +92,9 @@ abstract class _HomePageStoreBase with Store {
 
   @action
   bool toggleIsFavorite() => isFavorite = !isFavorite;
+
+  @action
+  bool setSelectedBestPlayers(bool value) => selectedBestPlayers = value;
 
   @action
   Future<void> onSearch() async {
@@ -214,6 +189,19 @@ abstract class _HomePageStoreBase with Store {
   }
 
   @action
+  Future<void> getRankedChallengerSoloQInfo() async {
+    try {
+      setIsLoading(true);
+      setIsError(false);
+      rankedChallengerSoloQInfo = RankedModel();
+      rankedChallengerSoloQInfo = await service.getRankedChallengerSoloQInfo();
+      setIsLoading(false);
+    } catch (e) {
+      setIsLoading(false);
+      setIsError(true);
+    }
+  }
+
   void isMe() {
     for (var match in matchs) {
       for (var participant in match!.info!.participants!) {
@@ -224,7 +212,6 @@ abstract class _HomePageStoreBase with Store {
     }
   }
 
-  @action
   void checkMySpell() {
     for (var i in me) {
       for (var spell in spells) {
@@ -243,5 +230,13 @@ abstract class _HomePageStoreBase with Store {
   double calculateKDA(ParticipantModel summoner) {
     double kda = (summoner.kills! + summoner.assists!) / summoner.deaths!;
     return kda;
+  }
+
+  @action
+  List<SummonerModel?> filterFavoriteSummoners() {
+    if (summonerByName!.isFavorite!) {
+      favoriteSummoners.add(summonerByName);
+    }
+    return favoriteSummoners;
   }
 }

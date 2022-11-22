@@ -73,21 +73,19 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
     });
   }
 
-  late final _$tappedSummonerRankedInfoIconAtom = Atom(
-      name: '_HomePageStoreBase.tappedSummonerRankedInfoIcon',
-      context: context);
+  late final _$selectedBestPlayersAtom =
+      Atom(name: '_HomePageStoreBase.selectedBestPlayers', context: context);
 
   @override
-  bool get tappedSummonerRankedInfoIcon {
-    _$tappedSummonerRankedInfoIconAtom.reportRead();
-    return super.tappedSummonerRankedInfoIcon;
+  bool get selectedBestPlayers {
+    _$selectedBestPlayersAtom.reportRead();
+    return super.selectedBestPlayers;
   }
 
   @override
-  set tappedSummonerRankedInfoIcon(bool value) {
-    _$tappedSummonerRankedInfoIconAtom
-        .reportWrite(value, super.tappedSummonerRankedInfoIcon, () {
-      super.tappedSummonerRankedInfoIcon = value;
+  set selectedBestPlayers(bool value) {
+    _$selectedBestPlayersAtom.reportWrite(value, super.selectedBestPlayers, () {
+      super.selectedBestPlayers = value;
     });
   }
 
@@ -320,27 +318,17 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
       context: context);
 
   @override
-  List<EntryModel> get favoriteSummonersEntriesModel {
+  ObservableList<EntryModel> get favoriteSummonersEntriesModel {
     _$favoriteSummonersEntriesModelAtom.reportRead();
     return super.favoriteSummonersEntriesModel;
   }
 
   @override
-  set favoriteSummonersEntriesModel(List<EntryModel> value) {
+  set favoriteSummonersEntriesModel(ObservableList<EntryModel> value) {
     _$favoriteSummonersEntriesModelAtom
         .reportWrite(value, super.favoriteSummonersEntriesModel, () {
       super.favoriteSummonersEntriesModel = value;
     });
-  }
-
-  late final _$getRankedChallengerSoloQInfoAsyncAction = AsyncAction(
-      '_HomePageStoreBase.getRankedChallengerSoloQInfo',
-      context: context);
-
-  @override
-  Future<void> getRankedChallengerSoloQInfo() {
-    return _$getRankedChallengerSoloQInfoAsyncAction
-        .run(() => super.getRankedChallengerSoloQInfo());
   }
 
   late final _$onSearchAsyncAction =
@@ -394,19 +382,18 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
     return _$getSpellsListAsyncAction.run(() => super.getSpellsList());
   }
 
-  late final _$_HomePageStoreBaseActionController =
-      ActionController(name: '_HomePageStoreBase', context: context);
+  late final _$getRankedChallengerSoloQInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedChallengerSoloQInfo',
+      context: context);
 
   @override
-  bool toggleArrowButton() {
-    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
-        name: '_HomePageStoreBase.toggleArrowButton');
-    try {
-      return super.toggleArrowButton();
-    } finally {
-      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
-    }
+  Future<void> getRankedChallengerSoloQInfo() {
+    return _$getRankedChallengerSoloQInfoAsyncAction
+        .run(() => super.getRankedChallengerSoloQInfo());
   }
+
+  late final _$_HomePageStoreBaseActionController =
+      ActionController(name: '_HomePageStoreBase', context: context);
 
   @override
   bool setIsLoading(bool value) {
@@ -442,22 +429,22 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   }
 
   @override
-  void isMe() {
+  bool setSelectedBestPlayers(bool value) {
     final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
-        name: '_HomePageStoreBase.isMe');
+        name: '_HomePageStoreBase.setSelectedBestPlayers');
     try {
-      return super.isMe();
+      return super.setSelectedBestPlayers(value);
     } finally {
       _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void checkMySpell() {
+  List<SummonerModel?> filterFavoriteSummoners() {
     final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
-        name: '_HomePageStoreBase.checkMySpell');
+        name: '_HomePageStoreBase.filterFavoriteSummoners');
     try {
-      return super.checkMySpell();
+      return super.filterFavoriteSummoners();
     } finally {
       _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -470,7 +457,7 @@ isLoading: ${isLoading},
 isError: ${isError},
 isMySpell: ${isMySpell},
 isMySecondSpell: ${isMySecondSpell},
-tappedSummonerRankedInfoIcon: ${tappedSummonerRankedInfoIcon},
+selectedBestPlayers: ${selectedBestPlayers},
 isFavorite: ${isFavorite},
 summonerByName: ${summonerByName},
 match: ${match},

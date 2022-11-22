@@ -38,176 +38,305 @@ class _HomePageState extends State<HomePage> {
 
     return ScreenUtilInit(
         designSize: Size(screenSize.width, screenSize.height),
-        builder: (BuildContext context, Widget? child) {
+        builder: (context, child) {
           return Observer(builder: (context) {
-            return SafeArea(
-              child: Scaffold(
-                appBar: const AppBarWidget(),
-                drawer: const DrawerWidget(),
-                body: store.isLoading == true
-                    ? const LoadingWidget()
-                    : Column(
-                        children: [
-                          TextFormFieldWidget(
-                            text: 'Pesquise um invocador (BR)',
-                            controller: store.searchController,
-                            onFieldSubmitted: (_) async {
-                              await store.onSearch();
-                            },
-                          ),
-                          const SizedBox(height: 20),
-                          listFavoriteSummoners(),
-                          const SizedBox(height: 20),
-                          listTopRankSummoners(
-                            store.rankedChallengerSoloQInfo?.entries,
-                          ),
-                        ],
-                      ),
-              ),
+            return Scaffold(
+              appBar: const AppBarWidget(),
+              drawer: const DrawerWidget(),
+              body: store.isLoading == true
+                  ? const LoadingWidget()
+                  : Column(
+                      children: [
+                        TextFormFieldWidget(
+                          text: 'Pesquise um invocador (BR)',
+                          controller: store.searchController,
+                          onFieldSubmitted: (_) async {
+                            await store.onSearch();
+                            Modular.to.pushNamed('/summoner-page');
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        listFavoriteSummoners(),
+                        const SizedBox(height: 20),
+                        cardRankScoreInfo(),
+                      ],
+                    ),
             );
           });
         });
   }
 
   Widget listFavoriteSummoners() {
-    return CardWidget(
-      color: TPColor.blue,
-      width: 350.w,
-      height: 200.h,
-      child: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 5),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: TPColor.darkBlue,
-            ),
-            child: Center(
-              child: Text(
-                'Invocadores Favoritos',
-                style: TPTexts.t4(color: TPColor.white),
+    return Observer(builder: (context) {
+      return CardWidget(
+        color: TPColor.blue,
+        width: 350.w,
+        height: 220.h,
+        child: Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(bottom: 5),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: TPColor.darkBlue,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Center(
+                child: Text(
+                  'Invocadores Favoritos',
+                  style: TPTexts.t4(color: TPColor.white),
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: store.favoriteSummoners.length,
-              itemBuilder: (context, index) => Column(
-                children: [
-                  store.isFavorite
-                      ? CardFavoriteSummonerWidget(
-                          favoriteSummoner: store.favoriteSummoners[index],
-                          favoriteSummonerEntries:
-                              store.favoriteSummonersEntriesModel[index],
-                        )
-                      : Container(),
-                ],
+            Expanded(
+              child: ListView.builder(
+                itemCount: store.favoriteSummoners.length,
+                itemBuilder: (context, index) => Column(
+                  children: [
+                    store.isFavorite
+                        ? CardFavoriteSummonerWidget(
+                            favoriteSummoner: store.favoriteSummoners[index],
+                            favoriteSummonerEntries:
+                                store.favoriteSummonersEntriesModel[index],
+                          )
+                        : Container(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
 
-  Widget listTopRankSummoners(List<EntryModel?>? entries) {
+  Widget cardRankScoreInfo() {
     return CardWidget(
       width: 350.w,
       height: 400.h,
       color: TPColor.blue,
       child: Column(
         children: [
-          Text('Ranqueada 2022', style: TPTexts.t1()),
+          cardHeader(),
           const SizedBox(height: 5),
-          selectTopRankInfoRow(),
-          const SizedBox(height: 5),
-          Expanded(
-            child: ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(height: 5),
-              itemCount: entries!.length,
-              itemBuilder: (context, index) {
-                int wins = entries[index]!.wins!;
-                int losses = entries[index]!.losses!;
-                int totalMatchsPlayed = wins + losses;
-
-                return CardWidget(
-                  child: ListTile(
-                    title: Text(
-                      '${entries[index]?.summonerName}',
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Vitórias: ${entries[index]?.wins}',
-                        ),
-                        Text(
-                          'Derrotas: ${entries[index]?.losses}',
-                        ),
-                      ],
-                    ),
-                    trailing: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Pontos: ${entries[index]?.leaguePoints}',
-                        ),
-                        Text(
-                          'Partidas jogadas: $totalMatchsPlayed',
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
+          cardBody(store.rankedChallengerSoloQInfo!.entries),
         ],
       ),
     );
   }
 
-  Widget selectTopRankInfoRow() {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: TPColor.darkBlue,
-      ),
-      child: Row(
-        children: [
-          InkWell(
-            onTap: () {},
-            child: Text(
+  Widget cardHeader() {
+    return Column(
+      children: [
+        Text('Temporada 2022', style: TPTexts.t1()),
+        const SizedBox(height: 5),
+        CardWidget(
+          color: TPColor.darkBlue,
+          child: Row(
+            children: [
+              rankTypeDropDownButton(),
+              const Spacer(),
+              rankModeDropDownButton(),
+              const Spacer(),
+              store.selectedBestPlayers
+                  ? rankEloDropDownButton()
+                  : rankTierDropDownButton(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget rankTypeDropDownButton() {
+    final ValueNotifier<String> rankTypeValue = ValueNotifier('');
+    final List<String> rankTypeOptions = ['Melhores jogadores', 'Minhas ligas'];
+
+    return ValueListenableBuilder(
+      valueListenable: rankTypeValue,
+      builder: (context, value, _) {
+        return DropdownButton(
+            hint: Text(
               'Melhores jogadores',
               style: TPTexts.t6(color: TPColor.white),
-              overflow: TextOverflow.ellipsis,
             ),
+            value: (value.isEmpty) ? null : value,
+            alignment: AlignmentDirectional.center,
+            dropdownColor: TPColor.darkBlue,
+            items: rankTypeOptions
+                .map((option) => DropdownMenuItem(
+                      value: option,
+                      child: Text(
+                        option,
+                        style: TPTexts.t5(color: TPColor.white),
+                      ),
+                    ))
+                .toList(),
+            icon: const Icon(Icons.arrow_drop_down, color: TPColor.orange),
+            onChanged: (choice) {
+              rankTypeValue.value = choice.toString();
+              if (choice.toString() == 'Minhas ligas') {
+                store.setSelectedBestPlayers(false);
+              } else {
+                store.setSelectedBestPlayers(true);
+              }
+            });
+      },
+    );
+  }
+
+  Widget rankModeDropDownButton() {
+    final ValueNotifier<String> rankModeValue = ValueNotifier('');
+    final List<String> rankModeOptions = ['Solo / Duo', 'Flex 5x5'];
+
+    return ValueListenableBuilder(
+      valueListenable: rankModeValue,
+      builder: (context, value, _) {
+        return DropdownButton(
+          hint: Text(
+            'Solo / Duo',
+            style: TPTexts.t6(color: TPColor.white),
           ),
-          IconButton(
-            padding: EdgeInsets.zero,
-            onPressed: () {},
-            icon: const Icon(
-              Icons.arrow_downward,
-              color: TPColor.orange,
-            ),
-          ),
-          Text('Solo / Duo', style: TPTexts.t6(color: TPColor.white)),
-          const SizedBox(width: 15),
-          SizedBox(
-            height: 30,
-            child: Image.asset('lib/assets/images/9.png'),
-          ),
-          IconButton(
-            padding: EdgeInsets.zero,
-            onPressed: () {},
-            icon: const Icon(
-              Icons.arrow_downward,
-              color: TPColor.orange,
-            ),
-          ),
-        ],
-      ),
+          value: (value.isEmpty) ? null : value,
+          alignment: AlignmentDirectional.center,
+          borderRadius: BorderRadius.circular(20),
+          dropdownColor: TPColor.darkBlue,
+          items: rankModeOptions
+              .map((option) => DropdownMenuItem(
+                    value: option,
+                    child: Text(
+                      option,
+                      style: TPTexts.t5(color: TPColor.white),
+                    ),
+                  ))
+              .toList(),
+          icon: const Icon(Icons.arrow_drop_down, color: TPColor.orange),
+          onChanged: (choice) => rankModeValue.value = choice.toString(),
+        );
+      },
+    );
+  }
+
+  Widget rankEloDropDownButton() {
+    final ValueNotifier<String> rankEloValue = ValueNotifier('');
+    final List<String> rankEloOptions = ['Desafiante', 'Grão-Mestre', 'Mestre'];
+
+    return store.selectedBestPlayers
+        ? ValueListenableBuilder(
+            valueListenable: rankEloValue,
+            builder: (context, value, _) {
+              return DropdownButton(
+                hint: SizedBox(
+                  width: 40,
+                  child: Image.asset('lib/assets/images/9.png'),
+                ),
+                value: (value.isEmpty) ? null : value,
+                alignment: AlignmentDirectional.center,
+                dropdownColor: TPColor.darkBlue,
+                items: rankEloOptions
+                    .map(
+                      (option) => DropdownMenuItem(
+                        value: option,
+                        child: option == 'Desafiante'
+                            ? SizedBox(
+                                width: 40,
+                                child: Image.asset('lib/assets/images/9.png'),
+                              )
+                            : option == 'Grão-Mestre'
+                                ? SizedBox(
+                                    width: 40,
+                                    child:
+                                        Image.asset('lib/assets/images/8.png'),
+                                  )
+                                : SizedBox(
+                                    width: 40,
+                                    child:
+                                        Image.asset('lib/assets/images/7.webp'),
+                                  ),
+                      ),
+                    )
+                    .toList(),
+                icon: const Icon(Icons.arrow_drop_down, color: TPColor.orange),
+                onChanged: (choice) => rankEloValue.value = choice.toString(),
+              );
+            },
+          )
+        : rankTierDropDownButton();
+  }
+
+  Widget rankTierDropDownButton() {
+    final ValueNotifier<String> rankEloValue = ValueNotifier('');
+    final List<String> rankEloOptions = ['I', 'II', 'III', 'IV'];
+
+    return ValueListenableBuilder(
+      valueListenable: rankEloValue,
+      builder: (context, value, _) {
+        return DropdownButton(
+          hint: Image.asset('lib/assets/images/5.png', width: 30),
+          value: (value.isEmpty) ? null : value,
+          alignment: AlignmentDirectional.center,
+          dropdownColor: TPColor.darkBlue,
+          items: rankEloOptions
+              .map(
+                (option) => DropdownMenuItem(
+                    value: option,
+                    child: Row(
+                      children: [
+                        Image.asset('lib/assets/images/5.png', width: 30),
+                        Text(
+                          ' $option',
+                          style: TPTexts.t8(color: TPColor.white),
+                        ),
+                      ],
+                    )),
+              )
+              .toList(),
+          icon: const Icon(Icons.arrow_drop_down, color: TPColor.orange),
+          onChanged: (choice) => rankEloValue.value = choice.toString(),
+        );
+      },
+    );
+  }
+
+  Widget cardBody(List<EntryModel?>? entries) {
+    return Expanded(
+      child: ListView.separated(
+          separatorBuilder: (context, index) => const SizedBox(height: 5),
+          itemCount: entries!.length,
+          itemBuilder: (context, index) {
+            int totalMatchsPlayed =
+                entries[index]!.wins! + entries[index]!.losses!;
+
+            return CardWidget(
+              child: ListTile(
+                title: Text(
+                  entries[index]!.summonerName!,
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Vitórias: ${entries[index]!.wins}',
+                    ),
+                    Text(
+                      'Derrotas: ${entries[index]!.losses}',
+                    ),
+                  ],
+                ),
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Pontos: ${entries[index]!.leaguePoints}',
+                    ),
+                    Text(
+                      'Partidas jogadas: $totalMatchsPlayed',
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }),
     );
   }
 

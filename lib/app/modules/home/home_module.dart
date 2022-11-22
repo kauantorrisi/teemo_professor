@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:teemo_professor/app/modules/home/ui/homePage/service/home_service.dart';
 import 'package:teemo_professor/app/modules/home/ui/homePage/home_page.dart';
 import 'package:teemo_professor/app/modules/home/ui/homePage/home_page_store.dart';
+import 'package:teemo_professor/app/modules/home/ui/summoner/summoner_page.dart';
 import 'package:teemo_professor/app/modules/home/ui/summonerTappedPage/summoner_tapped_info_page.dart';
 import 'package:teemo_professor/app/modules/home/ui/summonerTappedPage/summoner_tapped_page_store.dart';
 
@@ -25,8 +26,12 @@ class HomeModule extends Module {
         ChildRoute(Modular.initialRoute,
             child: (context, args) => const HomePage()),
         ChildRoute(
+          '/summoner-page',
+          child: (context, args) => const SummonerPage(),
+        ),
+        ChildRoute(
           '/summoner-tapped-info',
           child: (context, args) => const SummonerTappedInfoPage(),
-        )
+        ),
       ];
 }
