@@ -23,7 +23,22 @@ abstract class _HomePageStoreBase with Store {
   final HomeService service = Modular.get();
 
   @observable
+  ValueNotifier<String> rankTypeValue = ValueNotifier('');
+
+  @observable
+  ValueNotifier<String> rankModeValue = ValueNotifier('');
+
+  @observable
+  ValueNotifier<String> rankEloValue = ValueNotifier('');
+
+  @observable
+  ValueNotifier<String> rankTierValue = ValueNotifier('');
+
+  @observable
   bool? isLoading;
+
+  @observable
+  bool? isLoadingList;
 
   @observable
   bool? isError;
@@ -35,10 +50,37 @@ abstract class _HomePageStoreBase with Store {
   bool isMySecondSpell = false;
 
   @observable
-  bool selectedBestPlayers = true;
+  bool isFavorite = false;
 
   @observable
-  bool isFavorite = false;
+  bool? selectedBestPlayers = true;
+
+  @observable
+  bool? selectedLeagues = false;
+
+  @observable
+  bool? selectedTFT = false;
+
+  @observable
+  bool? selectedSoloQ = true;
+
+  @observable
+  bool? selectedFlex = false;
+
+  @observable
+  bool? selectedChallenger = true;
+
+  @observable
+  bool? selectedGrandMaster = false;
+
+  @observable
+  bool? selectedMaster = false;
+
+  @observable
+  String? selectedElo = 'Diamond';
+
+  @observable
+  String? selectedTier = 'I';
 
   @observable
   SummonerModel? summonerByName;
@@ -47,7 +89,7 @@ abstract class _HomePageStoreBase with Store {
   MatchModel? match;
 
   @observable
-  RankedModel? rankedChallengerSoloQInfo;
+  RankedModel? rankedModel;
 
   @observable
   ObservableList<EntryModel?> entriesInfo = ObservableList();
@@ -88,6 +130,9 @@ abstract class _HomePageStoreBase with Store {
   bool setIsLoading(bool value) => isLoading = value;
 
   @action
+  bool setIsLoadingList(bool value) => isLoadingList = value;
+
+  @action
   bool setIsError(bool value) => isError = value;
 
   @action
@@ -95,6 +140,30 @@ abstract class _HomePageStoreBase with Store {
 
   @action
   bool setSelectedBestPlayers(bool value) => selectedBestPlayers = value;
+
+  @action
+  bool setSelectedLeagues(bool value) => selectedLeagues = value;
+
+  @action
+  bool setSelectedTFT(bool value) => selectedTFT = value;
+
+  @action
+  bool setSelectedSoloQ(bool value) => selectedSoloQ = value;
+
+  @action
+  bool setSelectedFlex(bool value) => selectedFlex = value;
+
+  @action
+  bool setSelectedChallenger(bool value) => selectedChallenger = value;
+
+  @action
+  bool setSelectedGrandMaster(bool value) => selectedGrandMaster = value;
+
+  @action
+  bool setSelectedMaster(bool value) => selectedMaster = value;
+
+  @action
+  String? setSelectedLeague(String? newValue) => selectedElo = newValue;
 
   @action
   Future<void> onSearch() async {
@@ -191,17 +260,180 @@ abstract class _HomePageStoreBase with Store {
   @action
   Future<void> getRankedChallengerSoloQInfo() async {
     try {
-      setIsLoading(true);
+      setIsLoadingList(true);
       setIsError(false);
-      rankedChallengerSoloQInfo = RankedModel();
-      rankedChallengerSoloQInfo = await service.getRankedChallengerSoloQInfo();
-      setIsLoading(false);
+      rankedModel = RankedModel();
+      rankedModel = await service.getRankedChallengerSoloQInfo();
+      setIsLoadingList(false);
     } catch (e) {
-      setIsLoading(false);
+      setIsLoadingList(false);
       setIsError(true);
     }
   }
 
+  @action
+  Future<void> getRankedChallengerFlexInfo() async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      rankedModel = RankedModel();
+      rankedModel = await service.getRankedChallengerFlexInfo();
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedGrandmasterSoloQInfo() async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      rankedModel = RankedModel();
+      rankedModel = await service.getRankedGrandMasterSoloQInfo();
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedGrandmasterFlexInfo() async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      rankedModel = RankedModel();
+      rankedModel = await service.getRankedGrandMasterFlexInfo();
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedMasterSoloQInfo() async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      rankedModel = RankedModel();
+      rankedModel = await service.getRankedMasterSoloQInfo();
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedMasterFlexInfo() async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      rankedModel = RankedModel();
+      rankedModel = await service.getRankedMasterFlexInfo();
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedDiamondSoloQInfo({required String? tier}) async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      rankedModel = RankedModel();
+      rankedModel = await service.getRankedDiamondSoloQInfo(tier: tier);
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedDiamondFlexInfo({required String? tier}) async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      rankedModel = RankedModel();
+      rankedModel = await service.getRankedDiamondFlexInfo(tier: tier);
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  void makeRequestRankedInfoListBasedInUserChoiceInDropDownButton() {
+    rankedModel = RankedModel();
+    if (selectedBestPlayers == true &&
+        selectedLeagues == false &&
+        selectedTFT == false) {
+      if (selectedBestPlayers == true &&
+          selectedSoloQ == true &&
+          selectedChallenger == true) {
+        getRankedChallengerSoloQInfo();
+      }
+
+      if (selectedBestPlayers == true &&
+          selectedFlex == true &&
+          selectedChallenger == true) {
+        getRankedChallengerFlexInfo();
+      }
+
+      if (selectedBestPlayers == true &&
+          selectedSoloQ == true &&
+          selectedGrandMaster == true) {
+        getRankedGrandmasterSoloQInfo();
+      }
+
+      if (selectedBestPlayers == true &&
+          selectedFlex == true &&
+          selectedGrandMaster == true) {
+        getRankedGrandmasterFlexInfo();
+      }
+
+      if (selectedBestPlayers == true &&
+          selectedSoloQ == true &&
+          selectedMaster == true) {
+        getRankedMasterSoloQInfo();
+      }
+
+      if (selectedBestPlayers == true &&
+          selectedFlex == true &&
+          selectedMaster == true) {
+        getRankedMasterFlexInfo();
+      }
+    }
+
+    if (selectedLeagues == true &&
+        selectedBestPlayers == false &&
+        selectedTFT == false) {
+      if (selectedElo == 'Diamond' && selectedSoloQ == true) {
+        getRankedDiamondSoloQInfo(tier: selectedTier);
+      }
+
+      if (selectedElo == 'Diamond' && selectedFlex == true) {
+        getRankedDiamondFlexInfo(tier: selectedTier);
+      }
+    }
+  }
+
+  @action
+  List<SummonerModel?> filterFavoriteSummoners() {
+    if (summonerByName!.isFavorite!) {
+      favoriteSummoners.add(summonerByName);
+    }
+    return favoriteSummoners;
+  }
+
+  @action
   void isMe() {
     for (var match in matchs) {
       for (var participant in match!.info!.participants!) {
@@ -230,13 +462,5 @@ abstract class _HomePageStoreBase with Store {
   double calculateKDA(ParticipantModel summoner) {
     double kda = (summoner.kills! + summoner.assists!) / summoner.deaths!;
     return kda;
-  }
-
-  @action
-  List<SummonerModel?> filterFavoriteSummoners() {
-    if (summonerByName!.isFavorite!) {
-      favoriteSummoners.add(summonerByName);
-    }
-    return favoriteSummoners;
   }
 }

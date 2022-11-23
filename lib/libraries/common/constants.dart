@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-String API_KEY = 'RGAPI-2e44981a-853d-4d74-9b8c-08c50d09effe';
+String API_KEY = 'RGAPI-41013d00-9b7b-48ac-8449-1a47629e208b';
 
 String LOL_URL = 'https://br1.api.riotgames.com/';
 
@@ -23,6 +23,24 @@ String LOL_RANKEDCHALLENGERSOLOQINFO =
 
 String LOL_RANKEDCHALLENGERFLEXINFO =
     '${LOL_URL}lol/league/v4/challengerleagues/by-queue/RANKED_FLEX_SR';
+
+String LOL_RANKEDGRANDMASTERSOLOQINFO =
+    '${LOL_URL}lol/league/v4/grandmasterleagues/by-queue/RANKED_SOLO_5x5';
+
+String LOL_RANKEDGRANDMASTERFLEXINFO =
+    '${LOL_URL}lol/league/v4/grandmasterleagues/by-queue/RANKED_FLEX_5x5';
+
+String LOL_RANKEDMASTERSOLOQINFO =
+    '${LOL_URL}lol/league/v4/masterleagues/by-queue/RANKED_SOLO_5x5';
+
+String LOL_RANKEDMASTERFLEXINFO =
+    '${LOL_URL}lol/league/v4/masterleagues/by-queue/RANKED_FLEX_5x5';
+
+String LOL_RANKEDDIAMONDSOLOQ =
+    '${LOL_URL}lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/';
+
+String LOL_RANKEDDIAMONDFLEX =
+    '${LOL_URL}lol/league/v4/entries/RANKED_FLEX_SR/DIAMOND/';
 
 String LOL_LISTMATCHIDSBYPUUID =
     'https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/';

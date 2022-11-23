@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    store.getRankedChallengerSoloQInfo();
+    store.makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
     super.initState();
   }
 
@@ -113,19 +113,21 @@ class _HomePageState extends State<HomePage> {
   Widget cardRankScoreInfo() {
     return CardWidget(
       width: 350.w,
-      height: 400.h,
+      height: 405.h,
       color: TPColor.blue,
       child: Column(
         children: [
-          cardHeader(),
+          titleAndDropDownButtonsRow(),
           const SizedBox(height: 5),
-          cardBody(store.rankedChallengerSoloQInfo!.entries),
+          store.isLoadingList == true
+              ? loadingList()
+              : listSummonersRankScore(store.rankedModel!.entries),
         ],
       ),
     );
   }
 
-  Widget cardHeader() {
+  Widget titleAndDropDownButtonsRow() {
     return Column(
       children: [
         Text('Temporada 2022', style: TPTexts.t1()),
@@ -138,7 +140,7 @@ class _HomePageState extends State<HomePage> {
               const Spacer(),
               rankModeDropDownButton(),
               const Spacer(),
-              store.selectedBestPlayers
+              store.selectedBestPlayers == true
                   ? rankEloDropDownButton()
                   : rankTierDropDownButton(),
             ],
@@ -149,20 +151,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget rankTypeDropDownButton() {
-    final ValueNotifier<String> rankTypeValue = ValueNotifier('');
-    final List<String> rankTypeOptions = ['Melhores jogadores', 'Minhas ligas'];
+    final List<String> rankTypeOptions = ['Melhores jogadores', 'Ligas', 'TFT'];
 
     return ValueListenableBuilder(
-      valueListenable: rankTypeValue,
+      valueListenable: store.rankTypeValue,
       builder: (context, value, _) {
         return DropdownButton(
             hint: Text(
               'Melhores jogadores',
               style: TPTexts.t6(color: TPColor.white),
             ),
-            value: (value.isEmpty) ? null : value,
+            value: value.isEmpty ? null : value,
             alignment: AlignmentDirectional.center,
             dropdownColor: TPColor.darkBlue,
+            borderRadius: BorderRadius.circular(20),
             items: rankTypeOptions
                 .map((option) => DropdownMenuItem(
                       value: option,
@@ -173,132 +175,175 @@ class _HomePageState extends State<HomePage> {
                     ))
                 .toList(),
             icon: const Icon(Icons.arrow_drop_down, color: TPColor.orange),
-            onChanged: (choice) {
-              rankTypeValue.value = choice.toString();
-              if (choice.toString() == 'Minhas ligas') {
-                store.setSelectedBestPlayers(false);
-              } else {
-                store.setSelectedBestPlayers(true);
-              }
-            });
+            onChanged: store.isLoadingList == true
+                ? null
+                : (choice) {
+                    store.rankTypeValue.value = choice.toString();
+                    switch (choice.toString()) {
+                      case 'Melhores jogadores':
+                        store.setSelectedBestPlayers(true);
+                        store.setSelectedLeagues(false);
+                        store.setSelectedTFT(false);
+                        break;
+                      case 'Ligas':
+                        store.setSelectedLeagues(true);
+                        store.setSelectedBestPlayers(false);
+                        store.setSelectedTFT(false);
+                        break;
+                      case 'TFT':
+                        store.setSelectedTFT(true);
+                        store.setSelectedBestPlayers(false);
+                        store.setSelectedLeagues(false);
+                    }
+                  });
       },
     );
   }
 
   Widget rankModeDropDownButton() {
-    final ValueNotifier<String> rankModeValue = ValueNotifier('');
-    final List<String> rankModeOptions = ['Solo / Duo', 'Flex 5x5'];
+    final List<String> rankModeOptions = [
+      'Solo / Duo',
+      'Flex 5x5',
+    ];
 
     return ValueListenableBuilder(
-      valueListenable: rankModeValue,
+      valueListenable: store.rankModeValue,
       builder: (context, value, _) {
         return DropdownButton(
-          hint: Text(
-            'Solo / Duo',
-            style: TPTexts.t6(color: TPColor.white),
-          ),
-          value: (value.isEmpty) ? null : value,
-          alignment: AlignmentDirectional.center,
-          borderRadius: BorderRadius.circular(20),
-          dropdownColor: TPColor.darkBlue,
-          items: rankModeOptions
-              .map((option) => DropdownMenuItem(
-                    value: option,
-                    child: Text(
-                      option,
-                      style: TPTexts.t5(color: TPColor.white),
-                    ),
-                  ))
-              .toList(),
-          icon: const Icon(Icons.arrow_drop_down, color: TPColor.orange),
-          onChanged: (choice) => rankModeValue.value = choice.toString(),
-        );
+            hint: Text(
+              'Solo / Duo',
+              style: TPTexts.t5(color: TPColor.white),
+            ),
+            value: (store.rankModeValue.value.isEmpty)
+                ? null
+                : store.rankModeValue.value,
+            alignment: AlignmentDirectional.center,
+            borderRadius: BorderRadius.circular(20),
+            dropdownColor: TPColor.darkBlue,
+            items: rankModeOptions
+                .map((option) => DropdownMenuItem(
+                      value: option,
+                      child: Text(
+                        option,
+                        style: TPTexts.t5(color: TPColor.white),
+                      ),
+                    ))
+                .toList(),
+            icon: const Icon(Icons.arrow_drop_down, color: TPColor.orange),
+            onChanged: store.isLoadingList == true
+                ? null
+                : (choice) {
+                    store.rankModeValue.value = choice.toString();
+                    if (choice.toString() == 'Solo / Duo') {
+                      store.setSelectedSoloQ(true);
+                      store.setSelectedFlex(false);
+                      store
+                          .makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+                    } else {
+                      store.setSelectedFlex(true);
+                      store.setSelectedSoloQ(false);
+                      store
+                          .makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+                    }
+                  });
       },
     );
   }
 
   Widget rankEloDropDownButton() {
-    final ValueNotifier<String> rankEloValue = ValueNotifier('');
     final List<String> rankEloOptions = ['Desafiante', 'Grão-Mestre', 'Mestre'];
 
-    return store.selectedBestPlayers
-        ? ValueListenableBuilder(
-            valueListenable: rankEloValue,
-            builder: (context, value, _) {
-              return DropdownButton(
-                hint: SizedBox(
-                  width: 40,
-                  child: Image.asset('lib/assets/images/9.png'),
-                ),
-                value: (value.isEmpty) ? null : value,
-                alignment: AlignmentDirectional.center,
-                dropdownColor: TPColor.darkBlue,
-                items: rankEloOptions
-                    .map(
-                      (option) => DropdownMenuItem(
-                        value: option,
-                        child: option == 'Desafiante'
-                            ? SizedBox(
-                                width: 40,
-                                child: Image.asset('lib/assets/images/9.png'),
-                              )
-                            : option == 'Grão-Mestre'
-                                ? SizedBox(
-                                    width: 40,
-                                    child:
-                                        Image.asset('lib/assets/images/8.png'),
-                                  )
-                                : SizedBox(
-                                    width: 40,
-                                    child:
-                                        Image.asset('lib/assets/images/7.webp'),
-                                  ),
-                      ),
-                    )
-                    .toList(),
-                icon: const Icon(Icons.arrow_drop_down, color: TPColor.orange),
-                onChanged: (choice) => rankEloValue.value = choice.toString(),
-              );
-            },
-          )
-        : rankTierDropDownButton();
-  }
-
-  Widget rankTierDropDownButton() {
-    final ValueNotifier<String> rankEloValue = ValueNotifier('');
-    final List<String> rankEloOptions = ['I', 'II', 'III', 'IV'];
-
     return ValueListenableBuilder(
-      valueListenable: rankEloValue,
+      valueListenable: store.rankEloValue,
       builder: (context, value, _) {
         return DropdownButton(
-          hint: Image.asset('lib/assets/images/5.png', width: 30),
-          value: (value.isEmpty) ? null : value,
-          alignment: AlignmentDirectional.center,
-          dropdownColor: TPColor.darkBlue,
-          items: rankEloOptions
-              .map(
-                (option) => DropdownMenuItem(
-                    value: option,
-                    child: Row(
-                      children: [
-                        Image.asset('lib/assets/images/5.png', width: 30),
-                        Text(
-                          ' $option',
-                          style: TPTexts.t8(color: TPColor.white),
-                        ),
-                      ],
-                    )),
-              )
-              .toList(),
-          icon: const Icon(Icons.arrow_drop_down, color: TPColor.orange),
-          onChanged: (choice) => rankEloValue.value = choice.toString(),
-        );
+            hint: eloImg('lib/assets/images/9.png'),
+            alignment: AlignmentDirectional.center,
+            dropdownColor: TPColor.darkBlue,
+            borderRadius: BorderRadius.circular(20),
+            value: value.isEmpty ? null : value,
+            items: rankEloOptions
+                .map(
+                  (option) => DropdownMenuItem(
+                      value: option,
+                      child: option == 'Desafiante'
+                          ? eloImg('lib/assets/images/9.png')
+                          : option == 'Grão-Mestre'
+                              ? eloImg('lib/assets/images/8.png')
+                              : eloImg('lib/assets/images/7.webp')),
+                )
+                .toList(),
+            icon: const Icon(Icons.arrow_drop_down, color: TPColor.orange),
+            onChanged: store.isLoadingList == true
+                ? null
+                : (choice) async {
+                    store.rankEloValue.value = choice.toString();
+                    if (choice.toString() == 'Desafiante') {
+                      store.setSelectedChallenger(true);
+                      store.setSelectedGrandMaster(false);
+                      store.setSelectedMaster(false);
+                      store
+                          .makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+                    } else if (choice.toString() == 'Grão-Mestre') {
+                      store.setSelectedGrandMaster(true);
+                      store.setSelectedChallenger(false);
+                      store.setSelectedMaster(false);
+                      store
+                          .makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+                    } else {
+                      store.setSelectedMaster(true);
+                      store.setSelectedChallenger(false);
+                      store.setSelectedGrandMaster(false);
+                      store
+                          .makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+                    }
+                  });
       },
     );
   }
 
-  Widget cardBody(List<EntryModel?>? entries) {
+  Widget rankTierDropDownButton() {
+    final List<String> rankTierOptions = ['I', 'II', 'III', 'IV'];
+
+    return ValueListenableBuilder(
+      valueListenable: store.rankTierValue,
+      builder: (context, value, _) {
+        return DropdownButton(
+            hint: Image.asset('lib/assets/images/6.png', width: 30),
+            alignment: AlignmentDirectional.center,
+            dropdownColor: TPColor.darkBlue,
+            borderRadius: BorderRadius.circular(20),
+            value: value.isEmpty ? null : value,
+            items: rankTierOptions
+                .map(
+                  (option) => DropdownMenuItem(
+                      value: option,
+                      child: Row(
+                        children: [
+                          if (store.selectedChallenger == true)
+                            Image.asset('lib/assets/images/6.png', width: 30),
+                          Text(
+                            ' $option',
+                            style: TPTexts.t8(color: TPColor.white),
+                          ),
+                        ],
+                      )),
+                )
+                .toList(),
+            icon: const Icon(Icons.arrow_drop_down, color: TPColor.orange),
+            onChanged: store.isLoadingList == true
+                ? null
+                : (choice) {
+                    store.rankTierValue.value = choice.toString();
+                    store.selectedTier = choice.toString();
+                    store
+                        .makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+                  });
+      },
+    );
+  }
+
+  Widget listSummonersRankScore(List<EntryModel?>? entries) {
     return Expanded(
       child: ListView.separated(
           separatorBuilder: (context, index) => const SizedBox(height: 5),
@@ -337,6 +382,21 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           }),
+    );
+  }
+
+  Widget eloImg(String imgPath, {double? width}) {
+    return Image.asset(imgPath, width: 40);
+  }
+
+  Widget loadingList() {
+    return const Expanded(
+      child: Center(
+        child: CircularProgressIndicator(
+          color: TPColor.orange,
+          backgroundColor: TPColor.darkBlue,
+        ),
+      ),
     );
   }
 

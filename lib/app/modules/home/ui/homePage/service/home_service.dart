@@ -88,4 +88,67 @@ class HomeService {
     rankedChallengerSoloQInfo = RankedModel.fromMap(result);
     return rankedChallengerSoloQInfo;
   }
+
+  Future<RankedModel> getRankedChallengerFlexInfo() async {
+    RankedModel rankedChallengerFlexInfo;
+    Response response = await dio.get(LOL_RANKEDCHALLENGERFLEXINFO,
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    Map<String, dynamic> result = response.data;
+    rankedChallengerFlexInfo = RankedModel.fromMap(result);
+    return rankedChallengerFlexInfo;
+  }
+
+  Future<RankedModel> getRankedGrandMasterSoloQInfo() async {
+    RankedModel rankedGrandmasterSoloQInfo;
+    Response response = await dio.get(LOL_RANKEDGRANDMASTERSOLOQINFO,
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    Map<String, dynamic> result = response.data;
+    rankedGrandmasterSoloQInfo = RankedModel.fromMap(result);
+    return rankedGrandmasterSoloQInfo;
+  }
+
+  Future<RankedModel> getRankedGrandMasterFlexInfo() async {
+    RankedModel rankedGrandmasterFlexInfo;
+    Response response = await dio.get(LOL_RANKEDGRANDMASTERSOLOQINFO,
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    Map<String, dynamic> result = response.data;
+    rankedGrandmasterFlexInfo = RankedModel.fromMap(result);
+    return rankedGrandmasterFlexInfo;
+  }
+
+  Future<RankedModel> getRankedMasterSoloQInfo() async {
+    RankedModel rankedMasterSoloQInfo;
+    Response response = await dio.get(LOL_RANKEDMASTERSOLOQINFO,
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    Map<String, dynamic> result = response.data;
+    rankedMasterSoloQInfo = RankedModel.fromMap(result);
+    return rankedMasterSoloQInfo;
+  }
+
+  Future<RankedModel> getRankedMasterFlexInfo() async {
+    RankedModel rankedMasterFlexInfo;
+    Response response = await dio.get(LOL_RANKEDMASTERSOLOQINFO,
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    Map<String, dynamic> result = response.data;
+    rankedMasterFlexInfo = RankedModel.fromMap(result);
+    return rankedMasterFlexInfo;
+  }
+
+  Future<RankedModel> getRankedDiamondSoloQInfo({required String? tier}) async {
+    RankedModel rankedDiamondSoloQInfo;
+    Response response = await dio.get('$LOL_RANKEDDIAMONDSOLOQ$tier?/page=1',
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    Map<String, dynamic> result = response.data;
+    rankedDiamondSoloQInfo = RankedModel.fromMap(result);
+    return rankedDiamondSoloQInfo;
+  }
+
+  Future<RankedModel> getRankedDiamondFlexInfo({required String? tier}) async {
+    RankedModel rankedDiamondFlexInfo;
+    Response response = await dio.get('$LOL_RANKEDDIAMONDFLEX$tier?/page=1',
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    Map<String, dynamic> result = response.data;
+    rankedDiamondFlexInfo = RankedModel.fromMap(result);
+    return rankedDiamondFlexInfo;
+  }
 }

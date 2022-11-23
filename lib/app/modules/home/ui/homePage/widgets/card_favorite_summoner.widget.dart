@@ -77,29 +77,48 @@ class CardFavoriteSummonerWidget extends StatelessWidget {
   }
 
   Widget summonerRankImage() {
-    return Column(
-      children: [
-        if (favoriteSummonerEntries?.rank == 'IRON')
-          SizedBox(
-            width: 50.w,
-            child: Image.asset('lib/assets/images/1.png'),
-          ),
-        if (favoriteSummonerEntries?.rank == 'BRONZE')
-          SizedBox(
-            width: 50.w,
-            child: Image.asset('lib/assets/images/2.png'),
-          ),
-        if (favoriteSummonerEntries?.rank == 'SILVER')
-          SizedBox(
-            width: 50.w,
-            child: Image.asset('lib/assets/images/3.webp'),
-          ),
-        if (favoriteSummonerEntries?.rank == 'GOLD')
-          SizedBox(
-            width: 60.w,
-            child: Image.asset('lib/assets/images/4.webp'),
-          ),
-      ],
+    String imgPath = '';
+
+    switch (favoriteSummonerEntries?.rank) {
+      case 'IRON':
+        imgPath = 'lib/assets/images/1.png';
+        break;
+      case 'BRONZE':
+        imgPath = 'lib/assets/images/2.png';
+        break;
+      case 'SILVER':
+        imgPath = 'lib/assets/images/3.webp';
+        break;
+      case 'GOLD':
+        imgPath = 'lib/assets/images/4.webp';
+        break;
+      case 'PLATINUM':
+        imgPath = 'lib/assets/images/5.png';
+        break;
+      case 'DIAMOND':
+        imgPath = 'lib/assets/images/6.png';
+        break;
+      case 'MASTER':
+        imgPath = 'lib/assets/images/7.webp';
+        break;
+      case 'GRANDMASTER':
+        imgPath = 'lib/assets/images/8.png';
+        break;
+      case 'CHALLENGER':
+        imgPath = 'lib/assets/images/9.png';
+        break;
+      default:
+        imgPath = 'lib/assets/images/1.png';
+        break;
+    }
+
+    return eloImage(imgPath);
+  }
+
+  Widget eloImage(imgPath) {
+    return SizedBox(
+      width: 50.w,
+      child: Image.asset(imgPath),
     );
   }
 }

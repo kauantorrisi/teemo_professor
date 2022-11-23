@@ -9,6 +9,70 @@ part of 'home_page_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$HomePageStore on _HomePageStoreBase, Store {
+  late final _$rankTypeValueAtom =
+      Atom(name: '_HomePageStoreBase.rankTypeValue', context: context);
+
+  @override
+  ValueNotifier<String> get rankTypeValue {
+    _$rankTypeValueAtom.reportRead();
+    return super.rankTypeValue;
+  }
+
+  @override
+  set rankTypeValue(ValueNotifier<String> value) {
+    _$rankTypeValueAtom.reportWrite(value, super.rankTypeValue, () {
+      super.rankTypeValue = value;
+    });
+  }
+
+  late final _$rankModeValueAtom =
+      Atom(name: '_HomePageStoreBase.rankModeValue', context: context);
+
+  @override
+  ValueNotifier<String> get rankModeValue {
+    _$rankModeValueAtom.reportRead();
+    return super.rankModeValue;
+  }
+
+  @override
+  set rankModeValue(ValueNotifier<String> value) {
+    _$rankModeValueAtom.reportWrite(value, super.rankModeValue, () {
+      super.rankModeValue = value;
+    });
+  }
+
+  late final _$rankEloValueAtom =
+      Atom(name: '_HomePageStoreBase.rankEloValue', context: context);
+
+  @override
+  ValueNotifier<String> get rankEloValue {
+    _$rankEloValueAtom.reportRead();
+    return super.rankEloValue;
+  }
+
+  @override
+  set rankEloValue(ValueNotifier<String> value) {
+    _$rankEloValueAtom.reportWrite(value, super.rankEloValue, () {
+      super.rankEloValue = value;
+    });
+  }
+
+  late final _$rankTierValueAtom =
+      Atom(name: '_HomePageStoreBase.rankTierValue', context: context);
+
+  @override
+  ValueNotifier<String> get rankTierValue {
+    _$rankTierValueAtom.reportRead();
+    return super.rankTierValue;
+  }
+
+  @override
+  set rankTierValue(ValueNotifier<String> value) {
+    _$rankTierValueAtom.reportWrite(value, super.rankTierValue, () {
+      super.rankTierValue = value;
+    });
+  }
+
   late final _$isLoadingAtom =
       Atom(name: '_HomePageStoreBase.isLoading', context: context);
 
@@ -22,6 +86,22 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   set isLoading(bool? value) {
     _$isLoadingAtom.reportWrite(value, super.isLoading, () {
       super.isLoading = value;
+    });
+  }
+
+  late final _$isLoadingListAtom =
+      Atom(name: '_HomePageStoreBase.isLoadingList', context: context);
+
+  @override
+  bool? get isLoadingList {
+    _$isLoadingListAtom.reportRead();
+    return super.isLoadingList;
+  }
+
+  @override
+  set isLoadingList(bool? value) {
+    _$isLoadingListAtom.reportWrite(value, super.isLoadingList, () {
+      super.isLoadingList = value;
     });
   }
 
@@ -73,22 +153,6 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
     });
   }
 
-  late final _$selectedBestPlayersAtom =
-      Atom(name: '_HomePageStoreBase.selectedBestPlayers', context: context);
-
-  @override
-  bool get selectedBestPlayers {
-    _$selectedBestPlayersAtom.reportRead();
-    return super.selectedBestPlayers;
-  }
-
-  @override
-  set selectedBestPlayers(bool value) {
-    _$selectedBestPlayersAtom.reportWrite(value, super.selectedBestPlayers, () {
-      super.selectedBestPlayers = value;
-    });
-  }
-
   late final _$isFavoriteAtom =
       Atom(name: '_HomePageStoreBase.isFavorite', context: context);
 
@@ -102,6 +166,166 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   set isFavorite(bool value) {
     _$isFavoriteAtom.reportWrite(value, super.isFavorite, () {
       super.isFavorite = value;
+    });
+  }
+
+  late final _$selectedBestPlayersAtom =
+      Atom(name: '_HomePageStoreBase.selectedBestPlayers', context: context);
+
+  @override
+  bool? get selectedBestPlayers {
+    _$selectedBestPlayersAtom.reportRead();
+    return super.selectedBestPlayers;
+  }
+
+  @override
+  set selectedBestPlayers(bool? value) {
+    _$selectedBestPlayersAtom.reportWrite(value, super.selectedBestPlayers, () {
+      super.selectedBestPlayers = value;
+    });
+  }
+
+  late final _$selectedLeaguesAtom =
+      Atom(name: '_HomePageStoreBase.selectedLeagues', context: context);
+
+  @override
+  bool? get selectedLeagues {
+    _$selectedLeaguesAtom.reportRead();
+    return super.selectedLeagues;
+  }
+
+  @override
+  set selectedLeagues(bool? value) {
+    _$selectedLeaguesAtom.reportWrite(value, super.selectedLeagues, () {
+      super.selectedLeagues = value;
+    });
+  }
+
+  late final _$selectedTFTAtom =
+      Atom(name: '_HomePageStoreBase.selectedTFT', context: context);
+
+  @override
+  bool? get selectedTFT {
+    _$selectedTFTAtom.reportRead();
+    return super.selectedTFT;
+  }
+
+  @override
+  set selectedTFT(bool? value) {
+    _$selectedTFTAtom.reportWrite(value, super.selectedTFT, () {
+      super.selectedTFT = value;
+    });
+  }
+
+  late final _$selectedSoloQAtom =
+      Atom(name: '_HomePageStoreBase.selectedSoloQ', context: context);
+
+  @override
+  bool? get selectedSoloQ {
+    _$selectedSoloQAtom.reportRead();
+    return super.selectedSoloQ;
+  }
+
+  @override
+  set selectedSoloQ(bool? value) {
+    _$selectedSoloQAtom.reportWrite(value, super.selectedSoloQ, () {
+      super.selectedSoloQ = value;
+    });
+  }
+
+  late final _$selectedFlexAtom =
+      Atom(name: '_HomePageStoreBase.selectedFlex', context: context);
+
+  @override
+  bool? get selectedFlex {
+    _$selectedFlexAtom.reportRead();
+    return super.selectedFlex;
+  }
+
+  @override
+  set selectedFlex(bool? value) {
+    _$selectedFlexAtom.reportWrite(value, super.selectedFlex, () {
+      super.selectedFlex = value;
+    });
+  }
+
+  late final _$selectedChallengerAtom =
+      Atom(name: '_HomePageStoreBase.selectedChallenger', context: context);
+
+  @override
+  bool? get selectedChallenger {
+    _$selectedChallengerAtom.reportRead();
+    return super.selectedChallenger;
+  }
+
+  @override
+  set selectedChallenger(bool? value) {
+    _$selectedChallengerAtom.reportWrite(value, super.selectedChallenger, () {
+      super.selectedChallenger = value;
+    });
+  }
+
+  late final _$selectedGrandMasterAtom =
+      Atom(name: '_HomePageStoreBase.selectedGrandMaster', context: context);
+
+  @override
+  bool? get selectedGrandMaster {
+    _$selectedGrandMasterAtom.reportRead();
+    return super.selectedGrandMaster;
+  }
+
+  @override
+  set selectedGrandMaster(bool? value) {
+    _$selectedGrandMasterAtom.reportWrite(value, super.selectedGrandMaster, () {
+      super.selectedGrandMaster = value;
+    });
+  }
+
+  late final _$selectedMasterAtom =
+      Atom(name: '_HomePageStoreBase.selectedMaster', context: context);
+
+  @override
+  bool? get selectedMaster {
+    _$selectedMasterAtom.reportRead();
+    return super.selectedMaster;
+  }
+
+  @override
+  set selectedMaster(bool? value) {
+    _$selectedMasterAtom.reportWrite(value, super.selectedMaster, () {
+      super.selectedMaster = value;
+    });
+  }
+
+  late final _$selectedEloAtom =
+      Atom(name: '_HomePageStoreBase.selectedElo', context: context);
+
+  @override
+  String? get selectedElo {
+    _$selectedEloAtom.reportRead();
+    return super.selectedElo;
+  }
+
+  @override
+  set selectedElo(String? value) {
+    _$selectedEloAtom.reportWrite(value, super.selectedElo, () {
+      super.selectedElo = value;
+    });
+  }
+
+  late final _$selectedTierAtom =
+      Atom(name: '_HomePageStoreBase.selectedTier', context: context);
+
+  @override
+  String? get selectedTier {
+    _$selectedTierAtom.reportRead();
+    return super.selectedTier;
+  }
+
+  @override
+  set selectedTier(String? value) {
+    _$selectedTierAtom.reportWrite(value, super.selectedTier, () {
+      super.selectedTier = value;
     });
   }
 
@@ -137,20 +361,19 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
     });
   }
 
-  late final _$rankedChallengerSoloQInfoAtom = Atom(
-      name: '_HomePageStoreBase.rankedChallengerSoloQInfo', context: context);
+  late final _$rankedModelAtom =
+      Atom(name: '_HomePageStoreBase.rankedModel', context: context);
 
   @override
-  RankedModel? get rankedChallengerSoloQInfo {
-    _$rankedChallengerSoloQInfoAtom.reportRead();
-    return super.rankedChallengerSoloQInfo;
+  RankedModel? get rankedModel {
+    _$rankedModelAtom.reportRead();
+    return super.rankedModel;
   }
 
   @override
-  set rankedChallengerSoloQInfo(RankedModel? value) {
-    _$rankedChallengerSoloQInfoAtom
-        .reportWrite(value, super.rankedChallengerSoloQInfo, () {
-      super.rankedChallengerSoloQInfo = value;
+  set rankedModel(RankedModel? value) {
+    _$rankedModelAtom.reportWrite(value, super.rankedModel, () {
+      super.rankedModel = value;
     });
   }
 
@@ -392,6 +615,76 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
         .run(() => super.getRankedChallengerSoloQInfo());
   }
 
+  late final _$getRankedChallengerFlexInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedChallengerFlexInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedChallengerFlexInfo() {
+    return _$getRankedChallengerFlexInfoAsyncAction
+        .run(() => super.getRankedChallengerFlexInfo());
+  }
+
+  late final _$getRankedGrandmasterSoloQInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedGrandmasterSoloQInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedGrandmasterSoloQInfo() {
+    return _$getRankedGrandmasterSoloQInfoAsyncAction
+        .run(() => super.getRankedGrandmasterSoloQInfo());
+  }
+
+  late final _$getRankedGrandmasterFlexInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedGrandmasterFlexInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedGrandmasterFlexInfo() {
+    return _$getRankedGrandmasterFlexInfoAsyncAction
+        .run(() => super.getRankedGrandmasterFlexInfo());
+  }
+
+  late final _$getRankedMasterSoloQInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedMasterSoloQInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedMasterSoloQInfo() {
+    return _$getRankedMasterSoloQInfoAsyncAction
+        .run(() => super.getRankedMasterSoloQInfo());
+  }
+
+  late final _$getRankedMasterFlexInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedMasterFlexInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedMasterFlexInfo() {
+    return _$getRankedMasterFlexInfoAsyncAction
+        .run(() => super.getRankedMasterFlexInfo());
+  }
+
+  late final _$getRankedDiamondSoloQInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedDiamondSoloQInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedDiamondSoloQInfo({required String? tier}) {
+    return _$getRankedDiamondSoloQInfoAsyncAction
+        .run(() => super.getRankedDiamondSoloQInfo(tier: tier));
+  }
+
+  late final _$getRankedDiamondFlexInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedDiamondFlexInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedDiamondFlexInfo({required String? tier}) {
+    return _$getRankedDiamondFlexInfoAsyncAction
+        .run(() => super.getRankedDiamondFlexInfo(tier: tier));
+  }
+
   late final _$_HomePageStoreBaseActionController =
       ActionController(name: '_HomePageStoreBase', context: context);
 
@@ -401,6 +694,17 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
         name: '_HomePageStoreBase.setIsLoading');
     try {
       return super.setIsLoading(value);
+    } finally {
+      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool setIsLoadingList(bool value) {
+    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
+        name: '_HomePageStoreBase.setIsLoadingList');
+    try {
+      return super.setIsLoadingList(value);
     } finally {
       _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -440,6 +744,106 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   }
 
   @override
+  bool setSelectedLeagues(bool value) {
+    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
+        name: '_HomePageStoreBase.setSelectedLeagues');
+    try {
+      return super.setSelectedLeagues(value);
+    } finally {
+      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool setSelectedTFT(bool value) {
+    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
+        name: '_HomePageStoreBase.setSelectedTFT');
+    try {
+      return super.setSelectedTFT(value);
+    } finally {
+      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool setSelectedSoloQ(bool value) {
+    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
+        name: '_HomePageStoreBase.setSelectedSoloQ');
+    try {
+      return super.setSelectedSoloQ(value);
+    } finally {
+      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool setSelectedFlex(bool value) {
+    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
+        name: '_HomePageStoreBase.setSelectedFlex');
+    try {
+      return super.setSelectedFlex(value);
+    } finally {
+      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool setSelectedChallenger(bool value) {
+    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
+        name: '_HomePageStoreBase.setSelectedChallenger');
+    try {
+      return super.setSelectedChallenger(value);
+    } finally {
+      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool setSelectedGrandMaster(bool value) {
+    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
+        name: '_HomePageStoreBase.setSelectedGrandMaster');
+    try {
+      return super.setSelectedGrandMaster(value);
+    } finally {
+      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool setSelectedMaster(bool value) {
+    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
+        name: '_HomePageStoreBase.setSelectedMaster');
+    try {
+      return super.setSelectedMaster(value);
+    } finally {
+      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? setSelectedLeague(String? newValue) {
+    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
+        name: '_HomePageStoreBase.setSelectedLeague');
+    try {
+      return super.setSelectedLeague(newValue);
+    } finally {
+      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void makeRequestRankedInfoListBasedInUserChoiceInDropDownButton() {
+    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
+        name:
+            '_HomePageStoreBase.makeRequestRankedInfoListBasedInUserChoiceInDropDownButton');
+    try {
+      return super.makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+    } finally {
+      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   List<SummonerModel?> filterFavoriteSummoners() {
     final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
         name: '_HomePageStoreBase.filterFavoriteSummoners');
@@ -451,17 +855,42 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   }
 
   @override
+  void isMe() {
+    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
+        name: '_HomePageStoreBase.isMe');
+    try {
+      return super.isMe();
+    } finally {
+      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+rankTypeValue: ${rankTypeValue},
+rankModeValue: ${rankModeValue},
+rankEloValue: ${rankEloValue},
+rankTierValue: ${rankTierValue},
 isLoading: ${isLoading},
+isLoadingList: ${isLoadingList},
 isError: ${isError},
 isMySpell: ${isMySpell},
 isMySecondSpell: ${isMySecondSpell},
-selectedBestPlayers: ${selectedBestPlayers},
 isFavorite: ${isFavorite},
+selectedBestPlayers: ${selectedBestPlayers},
+selectedLeagues: ${selectedLeagues},
+selectedTFT: ${selectedTFT},
+selectedSoloQ: ${selectedSoloQ},
+selectedFlex: ${selectedFlex},
+selectedChallenger: ${selectedChallenger},
+selectedGrandMaster: ${selectedGrandMaster},
+selectedMaster: ${selectedMaster},
+selectedElo: ${selectedElo},
+selectedTier: ${selectedTier},
 summonerByName: ${summonerByName},
 match: ${match},
-rankedChallengerSoloQInfo: ${rankedChallengerSoloQInfo},
+rankedModel: ${rankedModel},
 entriesInfo: ${entriesInfo},
 me: ${me},
 summonerSpellId: ${summonerSpellId},
