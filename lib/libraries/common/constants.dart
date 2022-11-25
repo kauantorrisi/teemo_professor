@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-String API_KEY = 'RGAPI-41013d00-9b7b-48ac-8449-1a47629e208b';
+String API_KEY = 'RGAPI-cf75d807-5c5e-4bb9-a5ce-947d175cfe0c';
 
 String LOL_URL = 'https://br1.api.riotgames.com/';
 
@@ -41,6 +41,36 @@ String LOL_RANKEDDIAMONDSOLOQ =
 
 String LOL_RANKEDDIAMONDFLEX =
     '${LOL_URL}lol/league/v4/entries/RANKED_FLEX_SR/DIAMOND/';
+
+String LOL_RANKEDPLATINUMSOLOQ =
+    '${LOL_URL}lol/league/v4/entries/RANKED_SOLO_5x5/PLATINUM/';
+
+String LOL_RANKEDPLATINUMFLEX =
+    '${LOL_URL}lol/league/v4/entries/RANKED_FLEX_SR/PLATINUM/';
+
+String LOL_RANKEDGOLDSOLOQ =
+    '${LOL_URL}lol/league/v4/entries/RANKED_SOLO_5x5/GOLD/';
+
+String LOL_RANKEDGOLDFLEX =
+    '${LOL_URL}lol/league/v4/entries/RANKED_FLEX_SR/GOLD/';
+
+String LOL_RANKEDSILVERSOLOQ =
+    '${LOL_URL}lol/league/v4/entries/RANKED_SOLO_5x5/SILVER/';
+
+String LOL_RANKEDSILVERFLEX =
+    '${LOL_URL}lol/league/v4/entries/RANKED_FLEX_SR/SILVER/';
+
+String LOL_RANKEDBRONZESOLOQ =
+    '${LOL_URL}lol/league/v4/entries/RANKED_SOLO_5x5/BRONZE/';
+
+String LOL_RANKEDBRONZEFLEX =
+    '${LOL_URL}lol/league/v4/entries/RANKED_FLEX_SR/BRONZE/';
+
+String LOL_RANKEDIRONSOLOQ =
+    '${LOL_URL}lol/league/v4/entries/RANKED_SOLO_5x5/IRON/';
+
+String LOL_RANKEDIRONFLEX =
+    '${LOL_URL}lol/league/v4/entries/RANKED_FLEX_SR/IRON/';
 
 String LOL_LISTMATCHIDSBYPUUID =
     'https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/';

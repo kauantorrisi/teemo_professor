@@ -35,8 +35,8 @@ class HomeService {
     Response response = await dio.get(LOL_SUMMONERRANKEDINFO + summonerId,
         options: Options(headers: {'X-Riot-Token': API_KEY}));
     List<dynamic> results = response.data;
-    for (var rankedEntrie in results) {
-      rankedsInfo.add(EntryModel.fromMap(rankedEntrie));
+    for (var rankedEntry in results) {
+      rankedsInfo.add(EntryModel.fromMap(rankedEntry));
     }
     return rankedsInfo;
   }
@@ -134,21 +134,147 @@ class HomeService {
     return rankedMasterFlexInfo;
   }
 
-  Future<RankedModel> getRankedDiamondSoloQInfo({required String? tier}) async {
-    RankedModel rankedDiamondSoloQInfo;
+  Future<List<EntryModel>> getRankedDiamondSoloQInfo(
+      {required String? tier}) async {
+    List<EntryModel> rankedDiamondSoloQInfo = [];
     Response response = await dio.get('$LOL_RANKEDDIAMONDSOLOQ$tier?/page=1',
         options: Options(headers: {'X-Riot-Token': API_KEY}));
-    Map<String, dynamic> result = response.data;
-    rankedDiamondSoloQInfo = RankedModel.fromMap(result);
+    List<dynamic> results = response.data;
+    for (var rankedEntry in results) {
+      rankedDiamondSoloQInfo.add(EntryModel.fromMap(rankedEntry));
+    }
     return rankedDiamondSoloQInfo;
   }
 
-  Future<RankedModel> getRankedDiamondFlexInfo({required String? tier}) async {
-    RankedModel rankedDiamondFlexInfo;
+  Future<List<EntryModel>> getRankedDiamondFlexInfo(
+      {required String? tier}) async {
+    List<EntryModel> rankedDiamondFlexInfo = [];
     Response response = await dio.get('$LOL_RANKEDDIAMONDFLEX$tier?/page=1',
         options: Options(headers: {'X-Riot-Token': API_KEY}));
-    Map<String, dynamic> result = response.data;
-    rankedDiamondFlexInfo = RankedModel.fromMap(result);
+    List<dynamic> results = response.data;
+    for (var rankedEntry in results) {
+      rankedDiamondFlexInfo.add(EntryModel.fromMap(rankedEntry));
+    }
     return rankedDiamondFlexInfo;
+  }
+
+  Future<List<EntryModel>> getRankedPlatinumSoloQInfo(
+      {required String? tier}) async {
+    List<EntryModel> rankedPlatinumSoloQInfo = [];
+    Response response = await dio.get('$LOL_RANKEDPLATINUMSOLOQ$tier?/page=1',
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    List<dynamic> results = response.data;
+    for (var rankedEntry in results) {
+      rankedPlatinumSoloQInfo.add(EntryModel.fromMap(rankedEntry));
+    }
+    return rankedPlatinumSoloQInfo;
+  }
+
+  Future<List<EntryModel>> getRankedPlatinumFlexInfo(
+      {required String? tier}) async {
+    List<EntryModel> rankedPlatinumFlexInfo = [];
+    Response response = await dio.get('$LOL_RANKEDPLATINUMFLEX$tier?/page=1',
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    List<dynamic> results = response.data;
+    for (var rankedEntry in results) {
+      rankedPlatinumFlexInfo.add(EntryModel.fromMap(rankedEntry));
+    }
+    return rankedPlatinumFlexInfo;
+  }
+
+  Future<List<EntryModel>> getRankedGoldSoloQInfo(
+      {required String? tier}) async {
+    List<EntryModel> rankedGoldSoloQInfo = [];
+    Response response = await dio.get('$LOL_RANKEDGOLDSOLOQ$tier?/page=1',
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    List<dynamic> results = response.data;
+    for (var rankedEntry in results) {
+      rankedGoldSoloQInfo.add(EntryModel.fromMap(rankedEntry));
+    }
+    return rankedGoldSoloQInfo;
+  }
+
+  Future<List<EntryModel>> getRankedGoldFlexInfo(
+      {required String? tier}) async {
+    List<EntryModel> rankedGoldFlexInfo = [];
+    Response response = await dio.get('$LOL_RANKEDGOLDFLEX$tier?/page=1',
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    List<dynamic> results = response.data;
+    for (var rankedEntry in results) {
+      rankedGoldFlexInfo.add(EntryModel.fromMap(rankedEntry));
+    }
+    return rankedGoldFlexInfo;
+  }
+
+  Future<List<EntryModel>> getRankedSilverSoloQInfo(
+      {required String? tier}) async {
+    List<EntryModel> rankedSilverSoloQInfo = [];
+    Response response = await dio.get('$LOL_RANKEDSILVERSOLOQ$tier?/page=1',
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    List<dynamic> results = response.data;
+    for (var rankedEntry in results) {
+      rankedSilverSoloQInfo.add(EntryModel.fromMap(rankedEntry));
+    }
+    return rankedSilverSoloQInfo;
+  }
+
+  Future<List<EntryModel>> getRankedSilverFlexInfo(
+      {required String? tier}) async {
+    List<EntryModel> rankedSilverFlexInfo = [];
+    Response response = await dio.get('$LOL_RANKEDSILVERFLEX$tier?/page=1',
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    List<dynamic> results = response.data;
+    for (var rankedEntry in results) {
+      rankedSilverFlexInfo.add(EntryModel.fromMap(rankedEntry));
+    }
+    return rankedSilverFlexInfo;
+  }
+
+  Future<List<EntryModel>> getRankedBronzeSoloQInfo(
+      {required String? tier}) async {
+    List<EntryModel> rankedBronzeSoloQInfo = [];
+    Response response = await dio.get('$LOL_RANKEDBRONZESOLOQ$tier?/page=1',
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    List<dynamic> results = response.data;
+    for (var rankedEntry in results) {
+      rankedBronzeSoloQInfo.add(EntryModel.fromMap(rankedEntry));
+    }
+    return rankedBronzeSoloQInfo;
+  }
+
+  Future<List<EntryModel>> getRankedBronzeFlexInfo(
+      {required String? tier}) async {
+    List<EntryModel> rankedBronzeFlexInfo = [];
+    Response response = await dio.get('$LOL_RANKEDBRONZEFLEX$tier?/page=1',
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    List<dynamic> results = response.data;
+    for (var rankedEntry in results) {
+      rankedBronzeFlexInfo.add(EntryModel.fromMap(rankedEntry));
+    }
+    return rankedBronzeFlexInfo;
+  }
+
+  Future<List<EntryModel>> getRankedIronSoloQInfo(
+      {required String? tier}) async {
+    List<EntryModel> rankedIronSoloQInfo = [];
+    Response response = await dio.get('$LOL_RANKEDIRONSOLOQ$tier?/page=1',
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    List<dynamic> results = response.data;
+    for (var rankedEntry in results) {
+      rankedIronSoloQInfo.add(EntryModel.fromMap(rankedEntry));
+    }
+    return rankedIronSoloQInfo;
+  }
+
+  Future<List<EntryModel>> getRankedIronFlexInfo(
+      {required String? tier}) async {
+    List<EntryModel> rankedIronFlexInfo = [];
+    Response response = await dio.get('$LOL_RANKEDIRONFLEX$tier?/page=1',
+        options: Options(headers: {'X-Riot-Token': API_KEY}));
+    List<dynamic> results = response.data;
+    for (var rankedEntry in results) {
+      rankedIronFlexInfo.add(EntryModel.fromMap(rankedEntry));
+    }
+    return rankedIronFlexInfo;
   }
 }

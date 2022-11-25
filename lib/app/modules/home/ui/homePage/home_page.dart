@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    store.makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+    store.makeRequestRankedInfoListBasedInUserChoice();
     super.initState();
   }
 
@@ -121,7 +121,9 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 5),
           store.isLoadingList == true
               ? loadingList()
-              : listSummonersRankScore(store.rankedModel!.entries),
+              : (store.selectedBestPlayers == true)
+                  ? listSummonersRankScore(store.rankedModel!.entries)
+                  : listSummonersRankScore(store.diamondToIronEntriesInfo)
         ],
       ),
     );
@@ -134,15 +136,20 @@ class _HomePageState extends State<HomePage> {
         const SizedBox(height: 5),
         CardWidget(
           color: TPColor.darkBlue,
-          child: Row(
+          child: Column(
             children: [
-              rankTypeDropDownButton(),
-              const Spacer(),
-              rankModeDropDownButton(),
-              const Spacer(),
-              store.selectedBestPlayers == true
-                  ? rankEloDropDownButton()
-                  : rankTierDropDownButton(),
+              Row(
+                children: [
+                  rankTypeDropDownButton(),
+                  const Spacer(),
+                  rankModeDropDownButton(),
+                  const Spacer(),
+                  store.selectedBestPlayers == true
+                      ? rankEloDropDownButton()
+                      : rankTierDropDownButton(),
+                ],
+              ),
+              if (store.selectedBestPlayers == false) rowSelectEloButtons(),
             ],
           ),
         ),
@@ -151,7 +158,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget rankTypeDropDownButton() {
-    final List<String> rankTypeOptions = ['Melhores jogadores', 'Ligas', 'TFT'];
+    final List<String> rankTypeOptions = ['Melhores jogadores', 'Ligas'];
 
     return ValueListenableBuilder(
       valueListenable: store.rankTypeValue,
@@ -182,18 +189,12 @@ class _HomePageState extends State<HomePage> {
                     switch (choice.toString()) {
                       case 'Melhores jogadores':
                         store.setSelectedBestPlayers(true);
-                        store.setSelectedLeagues(false);
-                        store.setSelectedTFT(false);
+                        store.makeRequestRankedInfoListBasedInUserChoice();
                         break;
                       case 'Ligas':
-                        store.setSelectedLeagues(true);
                         store.setSelectedBestPlayers(false);
-                        store.setSelectedTFT(false);
+                        store.makeRequestRankedInfoListBasedInUserChoice();
                         break;
-                      case 'TFT':
-                        store.setSelectedTFT(true);
-                        store.setSelectedBestPlayers(false);
-                        store.setSelectedLeagues(false);
                     }
                   });
       },
@@ -236,14 +237,10 @@ class _HomePageState extends State<HomePage> {
                     store.rankModeValue.value = choice.toString();
                     if (choice.toString() == 'Solo / Duo') {
                       store.setSelectedSoloQ(true);
-                      store.setSelectedFlex(false);
-                      store
-                          .makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+                      store.makeRequestRankedInfoListBasedInUserChoice();
                     } else {
-                      store.setSelectedFlex(true);
                       store.setSelectedSoloQ(false);
-                      store
-                          .makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+                      store.makeRequestRankedInfoListBasedInUserChoice();
                     }
                   });
       },
@@ -282,20 +279,17 @@ class _HomePageState extends State<HomePage> {
                       store.setSelectedChallenger(true);
                       store.setSelectedGrandMaster(false);
                       store.setSelectedMaster(false);
-                      store
-                          .makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+                      store.makeRequestRankedInfoListBasedInUserChoice();
                     } else if (choice.toString() == 'Grão-Mestre') {
                       store.setSelectedGrandMaster(true);
                       store.setSelectedChallenger(false);
                       store.setSelectedMaster(false);
-                      store
-                          .makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+                      store.makeRequestRankedInfoListBasedInUserChoice();
                     } else {
                       store.setSelectedMaster(true);
                       store.setSelectedChallenger(false);
                       store.setSelectedGrandMaster(false);
-                      store
-                          .makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+                      store.makeRequestRankedInfoListBasedInUserChoice();
                     }
                   });
       },
@@ -309,7 +303,24 @@ class _HomePageState extends State<HomePage> {
       valueListenable: store.rankTierValue,
       builder: (context, value, _) {
         return DropdownButton(
-            hint: Image.asset('lib/assets/images/6.png', width: 30),
+            hint: Row(
+              children: [
+                if (store.selectedElo == 'Iron')
+                  Image.asset('lib/assets/images/1.png', width: 30),
+                if (store.selectedElo == 'Bronze')
+                  Image.asset('lib/assets/images/2.png', width: 30),
+                if (store.selectedElo == 'Silver')
+                  Image.asset('lib/assets/images/3.webp', width: 30),
+                if (store.selectedElo == 'Gold')
+                  Image.asset('lib/assets/images/4.webp', width: 30),
+                if (store.selectedElo == 'Platinum')
+                  Image.asset('lib/assets/images/5.png', width: 30),
+                if (store.selectedElo == 'Diamond')
+                  Image.asset('lib/assets/images/6.png', width: 30),
+                Text(store.selectedTier!,
+                    style: TPTexts.t8(color: TPColor.white)),
+              ],
+            ),
             alignment: AlignmentDirectional.center,
             dropdownColor: TPColor.darkBlue,
             borderRadius: BorderRadius.circular(20),
@@ -317,17 +328,28 @@ class _HomePageState extends State<HomePage> {
             items: rankTierOptions
                 .map(
                   (option) => DropdownMenuItem(
-                      value: option,
-                      child: Row(
-                        children: [
-                          if (store.selectedChallenger == true)
-                            Image.asset('lib/assets/images/6.png', width: 30),
-                          Text(
-                            ' $option',
-                            style: TPTexts.t8(color: TPColor.white),
-                          ),
-                        ],
-                      )),
+                    value: option,
+                    child: Row(
+                      children: [
+                        if (store.selectedElo == 'Iron')
+                          Image.asset('lib/assets/images/1.png', width: 30),
+                        if (store.selectedElo == 'Bronze')
+                          Image.asset('lib/assets/images/2.png', width: 30),
+                        if (store.selectedElo == 'Silver')
+                          Image.asset('lib/assets/images/3.webp', width: 30),
+                        if (store.selectedElo == 'Gold')
+                          Image.asset('lib/assets/images/4.webp', width: 30),
+                        if (store.selectedElo == 'Platinum')
+                          Image.asset('lib/assets/images/5.png', width: 30),
+                        if (store.selectedElo == 'Diamond')
+                          Image.asset('lib/assets/images/6.png', width: 30),
+                        Text(
+                          ' $option',
+                          style: TPTexts.t8(color: TPColor.white),
+                        ),
+                      ],
+                    ),
+                  ),
                 )
                 .toList(),
             icon: const Icon(Icons.arrow_drop_down, color: TPColor.orange),
@@ -336,17 +358,30 @@ class _HomePageState extends State<HomePage> {
                 : (choice) {
                     store.rankTierValue.value = choice.toString();
                     store.selectedTier = choice.toString();
-                    store
-                        .makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
+                    store.makeRequestRankedInfoListBasedInUserChoice();
                   });
       },
+    );
+  }
+
+  Widget rowSelectEloButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        eloButton('Iron', 'lib/assets/images/1.png'),
+        eloButton('Bronze', 'lib/assets/images/2.png'),
+        eloButton('Silver', 'lib/assets/images/3.webp'),
+        eloButton('Gold', 'lib/assets/images/4.webp'),
+        eloButton('Platinum', 'lib/assets/images/5.png'),
+        eloButton('Diamond', 'lib/assets/images/6.png'),
+      ],
     );
   }
 
   Widget listSummonersRankScore(List<EntryModel?>? entries) {
     return Expanded(
       child: ListView.separated(
-          separatorBuilder: (context, index) => const SizedBox(height: 5),
+          separatorBuilder: (context, index) => SizedBox(height: 5.h),
           itemCount: entries!.length,
           itemBuilder: (context, index) {
             int totalMatchsPlayed =
@@ -396,6 +431,27 @@ class _HomePageState extends State<HomePage> {
           color: TPColor.orange,
           backgroundColor: TPColor.darkBlue,
         ),
+      ),
+    );
+  }
+
+  Widget eloButton(String? selectedElo, String imgPath) {
+    return InkWell(
+      onTap: () {
+        store.isLoadingList == true ? null : store.selectedElo = selectedElo;
+        store.makeRequestRankedInfoListBasedInUserChoice();
+      },
+      child: Container(
+        width: 40.w,
+        height: 40.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: TPColor.lightGrey,
+          border: store.selectedElo == selectedElo
+              ? Border.all(color: TPColor.orange, width: 2)
+              : Border.all(color: TPColor.cyan, width: 2),
+        ),
+        child: Image.asset(imgPath, fit: BoxFit.contain),
       ),
     );
   }

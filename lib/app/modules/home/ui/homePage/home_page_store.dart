@@ -56,16 +56,7 @@ abstract class _HomePageStoreBase with Store {
   bool? selectedBestPlayers = true;
 
   @observable
-  bool? selectedLeagues = false;
-
-  @observable
-  bool? selectedTFT = false;
-
-  @observable
   bool? selectedSoloQ = true;
-
-  @observable
-  bool? selectedFlex = false;
 
   @observable
   bool? selectedChallenger = true;
@@ -92,7 +83,12 @@ abstract class _HomePageStoreBase with Store {
   RankedModel? rankedModel;
 
   @observable
-  ObservableList<EntryModel?> entriesInfo = ObservableList();
+  ObservableList<EntryModel?> summonersEntriesInfo =
+      ObservableList<EntryModel>();
+
+  @observable
+  ObservableList<EntryModel?> diamondToIronEntriesInfo =
+      ObservableList<EntryModel>();
 
   @observable
   ObservableList<ParticipantModel> me = ObservableList<ParticipantModel>();
@@ -108,7 +104,7 @@ abstract class _HomePageStoreBase with Store {
       ObservableList<ChampionsMasteryModel>();
 
   @observable
-  ObservableList<dynamic> matchIds = ObservableList();
+  ObservableList matchIds = ObservableList();
 
   @observable
   ObservableList<MatchModel?> matchs = ObservableList<MatchModel?>();
@@ -142,16 +138,7 @@ abstract class _HomePageStoreBase with Store {
   bool setSelectedBestPlayers(bool value) => selectedBestPlayers = value;
 
   @action
-  bool setSelectedLeagues(bool value) => selectedLeagues = value;
-
-  @action
-  bool setSelectedTFT(bool value) => selectedTFT = value;
-
-  @action
   bool setSelectedSoloQ(bool value) => selectedSoloQ = value;
-
-  @action
-  bool setSelectedFlex(bool value) => selectedFlex = value;
 
   @action
   bool setSelectedChallenger(bool value) => selectedChallenger = value;
@@ -203,8 +190,9 @@ abstract class _HomePageStoreBase with Store {
     try {
       setIsLoading(true);
       setIsError(false);
-      entriesInfo = ObservableList<EntryModel?>();
-      entriesInfo.addAll(await service.getSummonerRankedInfo(summonerId));
+      summonersEntriesInfo = ObservableList<EntryModel?>();
+      summonersEntriesInfo
+          .addAll(await service.getSummonerRankedInfo(summonerId));
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
@@ -346,8 +334,9 @@ abstract class _HomePageStoreBase with Store {
     try {
       setIsLoadingList(true);
       setIsError(false);
-      rankedModel = RankedModel();
-      rankedModel = await service.getRankedDiamondSoloQInfo(tier: tier);
+      diamondToIronEntriesInfo = ObservableList<EntryModel>();
+      diamondToIronEntriesInfo
+          .addAll(await service.getRankedDiamondSoloQInfo(tier: tier));
       setIsLoadingList(false);
     } catch (e) {
       setIsLoadingList(false);
@@ -360,8 +349,9 @@ abstract class _HomePageStoreBase with Store {
     try {
       setIsLoadingList(true);
       setIsError(false);
-      rankedModel = RankedModel();
-      rankedModel = await service.getRankedDiamondFlexInfo(tier: tier);
+      diamondToIronEntriesInfo = ObservableList<EntryModel>();
+      diamondToIronEntriesInfo
+          .addAll(await service.getRankedDiamondFlexInfo(tier: tier));
       setIsLoadingList(false);
     } catch (e) {
       setIsLoadingList(false);
@@ -370,57 +360,230 @@ abstract class _HomePageStoreBase with Store {
   }
 
   @action
-  void makeRequestRankedInfoListBasedInUserChoiceInDropDownButton() {
-    rankedModel = RankedModel();
-    if (selectedBestPlayers == true &&
-        selectedLeagues == false &&
-        selectedTFT == false) {
-      if (selectedBestPlayers == true &&
-          selectedSoloQ == true &&
-          selectedChallenger == true) {
+  Future<void> getRankedPlatinumSoloQInfo({required String? tier}) async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      diamondToIronEntriesInfo = ObservableList<EntryModel>();
+      diamondToIronEntriesInfo
+          .addAll(await service.getRankedPlatinumSoloQInfo(tier: tier));
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedPlatinumFlexInfo({required String? tier}) async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      diamondToIronEntriesInfo = ObservableList<EntryModel>();
+      diamondToIronEntriesInfo
+          .addAll(await service.getRankedPlatinumFlexInfo(tier: tier));
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedGoldSoloQInfo({required String? tier}) async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      diamondToIronEntriesInfo = ObservableList<EntryModel>();
+      diamondToIronEntriesInfo
+          .addAll(await service.getRankedGoldSoloQInfo(tier: tier));
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedGoldFlexInfo({required String? tier}) async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      diamondToIronEntriesInfo = ObservableList<EntryModel>();
+      diamondToIronEntriesInfo
+          .addAll(await service.getRankedGoldFlexInfo(tier: tier));
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedSilverSoloQInfo({required String? tier}) async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      diamondToIronEntriesInfo = ObservableList<EntryModel>();
+      diamondToIronEntriesInfo
+          .addAll(await service.getRankedSilverSoloQInfo(tier: tier));
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedSilverFlexInfo({required String? tier}) async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      diamondToIronEntriesInfo = ObservableList<EntryModel>();
+      diamondToIronEntriesInfo
+          .addAll(await service.getRankedSilverFlexInfo(tier: tier));
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedBronzeSoloQInfo({required String? tier}) async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      diamondToIronEntriesInfo = ObservableList<EntryModel>();
+      diamondToIronEntriesInfo
+          .addAll(await service.getRankedBronzeSoloQInfo(tier: tier));
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedBronzeFlexInfo({required String? tier}) async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      diamondToIronEntriesInfo = ObservableList<EntryModel>();
+      diamondToIronEntriesInfo
+          .addAll(await service.getRankedBronzeFlexInfo(tier: tier));
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedIronSoloQInfo({required String? tier}) async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      diamondToIronEntriesInfo = ObservableList<EntryModel>();
+      diamondToIronEntriesInfo
+          .addAll(await service.getRankedIronSoloQInfo(tier: tier));
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getRankedIronFlexInfo({required String? tier}) async {
+    try {
+      setIsLoadingList(true);
+      setIsError(false);
+      diamondToIronEntriesInfo = ObservableList<EntryModel>();
+      diamondToIronEntriesInfo
+          .addAll(await service.getRankedIronFlexInfo(tier: tier));
+      setIsLoadingList(false);
+    } catch (e) {
+      setIsLoadingList(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> makeRequestRankedInfoListBasedInUserChoice() async {
+    if (selectedBestPlayers == true) {
+      if (selectedSoloQ == true && selectedChallenger == true) {
         getRankedChallengerSoloQInfo();
       }
 
-      if (selectedBestPlayers == true &&
-          selectedFlex == true &&
-          selectedChallenger == true) {
+      if (selectedSoloQ == false && selectedChallenger == true) {
         getRankedChallengerFlexInfo();
       }
 
-      if (selectedBestPlayers == true &&
-          selectedSoloQ == true &&
-          selectedGrandMaster == true) {
+      if (selectedSoloQ == true && selectedGrandMaster == true) {
         getRankedGrandmasterSoloQInfo();
       }
 
-      if (selectedBestPlayers == true &&
-          selectedFlex == true &&
-          selectedGrandMaster == true) {
+      if (selectedSoloQ == false && selectedGrandMaster == true) {
         getRankedGrandmasterFlexInfo();
       }
 
-      if (selectedBestPlayers == true &&
-          selectedSoloQ == true &&
-          selectedMaster == true) {
+      if (selectedSoloQ == true && selectedMaster == true) {
         getRankedMasterSoloQInfo();
       }
 
-      if (selectedBestPlayers == true &&
-          selectedFlex == true &&
-          selectedMaster == true) {
+      if (selectedSoloQ == false && selectedMaster == true) {
         getRankedMasterFlexInfo();
       }
     }
 
-    if (selectedLeagues == true &&
-        selectedBestPlayers == false &&
-        selectedTFT == false) {
+    if (selectedBestPlayers == false) {
       if (selectedElo == 'Diamond' && selectedSoloQ == true) {
         getRankedDiamondSoloQInfo(tier: selectedTier);
       }
 
-      if (selectedElo == 'Diamond' && selectedFlex == true) {
+      if (selectedElo == 'Diamond' && selectedSoloQ == false) {
         getRankedDiamondFlexInfo(tier: selectedTier);
+      }
+
+      if (selectedElo == 'Platinum' && selectedSoloQ == true) {
+        getRankedPlatinumSoloQInfo(tier: selectedTier);
+      }
+
+      if (selectedElo == 'Platinum' && selectedSoloQ == false) {
+        getRankedPlatinumFlexInfo(tier: selectedTier);
+      }
+
+      if (selectedElo == 'Gold' && selectedSoloQ == true) {
+        getRankedGoldSoloQInfo(tier: selectedTier);
+      }
+
+      if (selectedElo == 'Gold' && selectedSoloQ == false) {
+        getRankedGoldFlexInfo(tier: selectedTier);
+      }
+
+      if (selectedElo == 'Silver' && selectedSoloQ == true) {
+        getRankedSilverSoloQInfo(tier: selectedTier);
+      }
+
+      if (selectedElo == 'Silver' && selectedSoloQ == false) {
+        getRankedSilverFlexInfo(tier: selectedTier);
+      }
+
+      if (selectedElo == 'Bronze' && selectedSoloQ == true) {
+        getRankedBronzeSoloQInfo(tier: selectedTier);
+      }
+
+      if (selectedElo == 'Bronze' && selectedSoloQ == false) {
+        getRankedBronzeFlexInfo(tier: selectedTier);
+      }
+
+      if (selectedElo == 'Iron' && selectedSoloQ == true) {
+        getRankedIronSoloQInfo(tier: selectedTier);
+      }
+
+      if (selectedElo == 'Iron' && selectedSoloQ == false) {
+        getRankedIronFlexInfo(tier: selectedTier);
       }
     }
   }

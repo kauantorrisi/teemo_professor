@@ -185,38 +185,6 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
     });
   }
 
-  late final _$selectedLeaguesAtom =
-      Atom(name: '_HomePageStoreBase.selectedLeagues', context: context);
-
-  @override
-  bool? get selectedLeagues {
-    _$selectedLeaguesAtom.reportRead();
-    return super.selectedLeagues;
-  }
-
-  @override
-  set selectedLeagues(bool? value) {
-    _$selectedLeaguesAtom.reportWrite(value, super.selectedLeagues, () {
-      super.selectedLeagues = value;
-    });
-  }
-
-  late final _$selectedTFTAtom =
-      Atom(name: '_HomePageStoreBase.selectedTFT', context: context);
-
-  @override
-  bool? get selectedTFT {
-    _$selectedTFTAtom.reportRead();
-    return super.selectedTFT;
-  }
-
-  @override
-  set selectedTFT(bool? value) {
-    _$selectedTFTAtom.reportWrite(value, super.selectedTFT, () {
-      super.selectedTFT = value;
-    });
-  }
-
   late final _$selectedSoloQAtom =
       Atom(name: '_HomePageStoreBase.selectedSoloQ', context: context);
 
@@ -230,22 +198,6 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   set selectedSoloQ(bool? value) {
     _$selectedSoloQAtom.reportWrite(value, super.selectedSoloQ, () {
       super.selectedSoloQ = value;
-    });
-  }
-
-  late final _$selectedFlexAtom =
-      Atom(name: '_HomePageStoreBase.selectedFlex', context: context);
-
-  @override
-  bool? get selectedFlex {
-    _$selectedFlexAtom.reportRead();
-    return super.selectedFlex;
-  }
-
-  @override
-  set selectedFlex(bool? value) {
-    _$selectedFlexAtom.reportWrite(value, super.selectedFlex, () {
-      super.selectedFlex = value;
     });
   }
 
@@ -377,19 +329,37 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
     });
   }
 
-  late final _$entriesInfoAtom =
-      Atom(name: '_HomePageStoreBase.entriesInfo', context: context);
+  late final _$summonersEntriesInfoAtom =
+      Atom(name: '_HomePageStoreBase.summonersEntriesInfo', context: context);
 
   @override
-  ObservableList<EntryModel?> get entriesInfo {
-    _$entriesInfoAtom.reportRead();
-    return super.entriesInfo;
+  ObservableList<EntryModel?> get summonersEntriesInfo {
+    _$summonersEntriesInfoAtom.reportRead();
+    return super.summonersEntriesInfo;
   }
 
   @override
-  set entriesInfo(ObservableList<EntryModel?> value) {
-    _$entriesInfoAtom.reportWrite(value, super.entriesInfo, () {
-      super.entriesInfo = value;
+  set summonersEntriesInfo(ObservableList<EntryModel?> value) {
+    _$summonersEntriesInfoAtom.reportWrite(value, super.summonersEntriesInfo,
+        () {
+      super.summonersEntriesInfo = value;
+    });
+  }
+
+  late final _$diamondToIronEntriesInfoAtom = Atom(
+      name: '_HomePageStoreBase.diamondToIronEntriesInfo', context: context);
+
+  @override
+  ObservableList<EntryModel?> get diamondToIronEntriesInfo {
+    _$diamondToIronEntriesInfoAtom.reportRead();
+    return super.diamondToIronEntriesInfo;
+  }
+
+  @override
+  set diamondToIronEntriesInfo(ObservableList<EntryModel?> value) {
+    _$diamondToIronEntriesInfoAtom
+        .reportWrite(value, super.diamondToIronEntriesInfo, () {
+      super.diamondToIronEntriesInfo = value;
     });
   }
 
@@ -685,6 +655,115 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
         .run(() => super.getRankedDiamondFlexInfo(tier: tier));
   }
 
+  late final _$getRankedPlatinumSoloQInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedPlatinumSoloQInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedPlatinumSoloQInfo({required String? tier}) {
+    return _$getRankedPlatinumSoloQInfoAsyncAction
+        .run(() => super.getRankedPlatinumSoloQInfo(tier: tier));
+  }
+
+  late final _$getRankedPlatinumFlexInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedPlatinumFlexInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedPlatinumFlexInfo({required String? tier}) {
+    return _$getRankedPlatinumFlexInfoAsyncAction
+        .run(() => super.getRankedPlatinumFlexInfo(tier: tier));
+  }
+
+  late final _$getRankedGoldSoloQInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedGoldSoloQInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedGoldSoloQInfo({required String? tier}) {
+    return _$getRankedGoldSoloQInfoAsyncAction
+        .run(() => super.getRankedGoldSoloQInfo(tier: tier));
+  }
+
+  late final _$getRankedGoldFlexInfoAsyncAction =
+      AsyncAction('_HomePageStoreBase.getRankedGoldFlexInfo', context: context);
+
+  @override
+  Future<void> getRankedGoldFlexInfo({required String? tier}) {
+    return _$getRankedGoldFlexInfoAsyncAction
+        .run(() => super.getRankedGoldFlexInfo(tier: tier));
+  }
+
+  late final _$getRankedSilverSoloQInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedSilverSoloQInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedSilverSoloQInfo({required String? tier}) {
+    return _$getRankedSilverSoloQInfoAsyncAction
+        .run(() => super.getRankedSilverSoloQInfo(tier: tier));
+  }
+
+  late final _$getRankedSilverFlexInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedSilverFlexInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedSilverFlexInfo({required String? tier}) {
+    return _$getRankedSilverFlexInfoAsyncAction
+        .run(() => super.getRankedSilverFlexInfo(tier: tier));
+  }
+
+  late final _$getRankedBronzeSoloQInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedBronzeSoloQInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedBronzeSoloQInfo({required String? tier}) {
+    return _$getRankedBronzeSoloQInfoAsyncAction
+        .run(() => super.getRankedBronzeSoloQInfo(tier: tier));
+  }
+
+  late final _$getRankedBronzeFlexInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedBronzeFlexInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedBronzeFlexInfo({required String? tier}) {
+    return _$getRankedBronzeFlexInfoAsyncAction
+        .run(() => super.getRankedBronzeFlexInfo(tier: tier));
+  }
+
+  late final _$getRankedIronSoloQInfoAsyncAction = AsyncAction(
+      '_HomePageStoreBase.getRankedIronSoloQInfo',
+      context: context);
+
+  @override
+  Future<void> getRankedIronSoloQInfo({required String? tier}) {
+    return _$getRankedIronSoloQInfoAsyncAction
+        .run(() => super.getRankedIronSoloQInfo(tier: tier));
+  }
+
+  late final _$getRankedIronFlexInfoAsyncAction =
+      AsyncAction('_HomePageStoreBase.getRankedIronFlexInfo', context: context);
+
+  @override
+  Future<void> getRankedIronFlexInfo({required String? tier}) {
+    return _$getRankedIronFlexInfoAsyncAction
+        .run(() => super.getRankedIronFlexInfo(tier: tier));
+  }
+
+  late final _$makeRequestRankedInfoListBasedInUserChoiceAsyncAction =
+      AsyncAction(
+          '_HomePageStoreBase.makeRequestRankedInfoListBasedInUserChoice',
+          context: context);
+
+  @override
+  Future<void> makeRequestRankedInfoListBasedInUserChoice() {
+    return _$makeRequestRankedInfoListBasedInUserChoiceAsyncAction
+        .run(() => super.makeRequestRankedInfoListBasedInUserChoice());
+  }
+
   late final _$_HomePageStoreBaseActionController =
       ActionController(name: '_HomePageStoreBase', context: context);
 
@@ -744,44 +823,11 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   }
 
   @override
-  bool setSelectedLeagues(bool value) {
-    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
-        name: '_HomePageStoreBase.setSelectedLeagues');
-    try {
-      return super.setSelectedLeagues(value);
-    } finally {
-      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  bool setSelectedTFT(bool value) {
-    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
-        name: '_HomePageStoreBase.setSelectedTFT');
-    try {
-      return super.setSelectedTFT(value);
-    } finally {
-      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   bool setSelectedSoloQ(bool value) {
     final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
         name: '_HomePageStoreBase.setSelectedSoloQ');
     try {
       return super.setSelectedSoloQ(value);
-    } finally {
-      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  bool setSelectedFlex(bool value) {
-    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
-        name: '_HomePageStoreBase.setSelectedFlex');
-    try {
-      return super.setSelectedFlex(value);
     } finally {
       _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -832,18 +878,6 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   }
 
   @override
-  void makeRequestRankedInfoListBasedInUserChoiceInDropDownButton() {
-    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
-        name:
-            '_HomePageStoreBase.makeRequestRankedInfoListBasedInUserChoiceInDropDownButton');
-    try {
-      return super.makeRequestRankedInfoListBasedInUserChoiceInDropDownButton();
-    } finally {
-      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   List<SummonerModel?> filterFavoriteSummoners() {
     final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
         name: '_HomePageStoreBase.filterFavoriteSummoners');
@@ -879,10 +913,7 @@ isMySpell: ${isMySpell},
 isMySecondSpell: ${isMySecondSpell},
 isFavorite: ${isFavorite},
 selectedBestPlayers: ${selectedBestPlayers},
-selectedLeagues: ${selectedLeagues},
-selectedTFT: ${selectedTFT},
 selectedSoloQ: ${selectedSoloQ},
-selectedFlex: ${selectedFlex},
 selectedChallenger: ${selectedChallenger},
 selectedGrandMaster: ${selectedGrandMaster},
 selectedMaster: ${selectedMaster},
@@ -891,7 +922,8 @@ selectedTier: ${selectedTier},
 summonerByName: ${summonerByName},
 match: ${match},
 rankedModel: ${rankedModel},
-entriesInfo: ${entriesInfo},
+summonersEntriesInfo: ${summonersEntriesInfo},
+diamondToIronEntriesInfo: ${diamondToIronEntriesInfo},
 me: ${me},
 summonerSpellId: ${summonerSpellId},
 summonerSpellId2: ${summonerSpellId2},
