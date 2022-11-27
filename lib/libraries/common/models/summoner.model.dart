@@ -9,7 +9,6 @@ class SummonerModel {
     this.profileIconId,
     this.revisionDate,
     this.summonerLevel,
-    this.isFavorite,
   });
 
   final String? id;
@@ -19,7 +18,6 @@ class SummonerModel {
   final int? profileIconId;
   final int? revisionDate;
   final int? summonerLevel;
-  final bool? isFavorite;
 
   factory SummonerModel.fromJson(String str) =>
       SummonerModel.fromMap(json.decode(str));

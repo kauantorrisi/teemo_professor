@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,24 +24,22 @@ class CardFavoriteSummonerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (_) {
-      return CardWidget(
-        child: Row(
-          children: [
-            summonerImageIcon(),
-            const Spacer(),
-            summonerNameAndLevel(),
-            const Spacer(),
-            summonerRankImage(),
-            const Spacer(),
-            IconButton(
-              onPressed: () => store.toggleSummonerIsFavorite(),
-              icon: const Icon(Icons.favorite, color: TPColor.red),
-            ),
-          ],
-        ),
-      );
-    });
+    return CardWidget(
+      child: Row(
+        children: [
+          summonerImageIcon(),
+          const Spacer(),
+          summonerNameAndLevel(),
+          const Spacer(),
+          summonerRankImage(),
+          const Spacer(),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.favorite, color: TPColor.red),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget summonerImageIcon() {

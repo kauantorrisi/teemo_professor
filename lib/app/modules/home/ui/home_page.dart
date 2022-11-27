@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 import 'package:teemo_professor/app/modules/home/home_page_store.dart';
 import 'package:teemo_professor/libraries/common/models/entry.model.dart';
@@ -67,47 +68,45 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget listFavoriteSummoners() {
-    return Observer(builder: (context) {
-      return CardWidget(
-        color: TPColor.blue,
-        width: 350.w,
-        height: 220.h,
-        child: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 5),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: TPColor.darkBlue,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Center(
-                child: Text(
-                  'Invocadores Favoritos',
-                  style: TPTexts.t4(color: TPColor.white),
-                ),
+    return CardWidget(
+      color: TPColor.blue,
+      width: 350.w,
+      height: 220.h,
+      child: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: 5),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: TPColor.darkBlue,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Center(
+              child: Text(
+                'Invocadores Favoritos',
+                style: TPTexts.t4(color: TPColor.white),
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: store.favoriteSummoners.length,
-                itemBuilder: (context, index) => Column(
-                  children: [
-                    store.summonerIsFavorite
-                        ? CardFavoriteSummonerWidget(
-                            favoriteSummoner: store.favoriteSummoners[index],
-                            favoriteSummonerEntries:
-                                store.favoriteSummonersEntriesModel[index],
-                          )
-                        : Container(),
-                  ],
-                ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: store.favoriteSummoners.isEmpty
+                  ? 0
+                  : store.favoriteSummoners.length,
+              itemBuilder: (context, index) => Column(
+                children: [
+                  CardFavoriteSummonerWidget(
+                    favoriteSummoner: store.favoriteSummoners[index],
+                    favoriteSummonerEntries:
+                        store.favoriteSummonersEntriesModelList[index],
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      );
-    });
+          ),
+        ],
+      ),
+    );
   }
 
   Widget cardRankScoreInfo() {
@@ -130,9 +129,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget titleAndDropDownButtonsRow() {
+    final DateTime currentDateTime = DateTime.now();
+    final DateFormat formatter = DateFormat('yyyy');
+    final currentYear = formatter.format(currentDateTime);
+
     return Column(
       children: [
-        Text('Temporada 2022', style: TPTexts.t1()),
+        Text('Temporada $currentYear', style: TPTexts.t1()),
         const SizedBox(height: 5),
         CardWidget(
           color: TPColor.darkBlue,

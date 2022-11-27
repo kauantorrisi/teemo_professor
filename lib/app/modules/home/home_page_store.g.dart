@@ -153,22 +153,6 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
     });
   }
 
-  late final _$summonerIsFavoriteAtom =
-      Atom(name: '_HomePageStoreBase.summonerIsFavorite', context: context);
-
-  @override
-  bool get summonerIsFavorite {
-    _$summonerIsFavoriteAtom.reportRead();
-    return super.summonerIsFavorite;
-  }
-
-  @override
-  set summonerIsFavorite(bool value) {
-    _$summonerIsFavoriteAtom.reportWrite(value, super.summonerIsFavorite, () {
-      super.summonerIsFavorite = value;
-    });
-  }
-
   late final _$selectedBestPlayersAtom =
       Atom(name: '_HomePageStoreBase.selectedBestPlayers', context: context);
 
@@ -347,6 +331,23 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
     });
   }
 
+  late final _$favoriteSummonerEntriesInfoAtom = Atom(
+      name: '_HomePageStoreBase.favoriteSummonerEntriesInfo', context: context);
+
+  @override
+  EntryModel? get favoriteSummonerEntriesInfo {
+    _$favoriteSummonerEntriesInfoAtom.reportRead();
+    return super.favoriteSummonerEntriesInfo;
+  }
+
+  @override
+  set favoriteSummonerEntriesInfo(EntryModel? value) {
+    _$favoriteSummonerEntriesInfoAtom
+        .reportWrite(value, super.favoriteSummonerEntriesInfo, () {
+      super.favoriteSummonerEntriesInfo = value;
+    });
+  }
+
   late final _$summonersEntriesInfoAtom =
       Atom(name: '_HomePageStoreBase.summonersEntriesInfo', context: context);
 
@@ -512,33 +513,33 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
       Atom(name: '_HomePageStoreBase.favoriteSummoners', context: context);
 
   @override
-  List<SummonerModel?> get favoriteSummoners {
+  ObservableList<SummonerModel?> get favoriteSummoners {
     _$favoriteSummonersAtom.reportRead();
     return super.favoriteSummoners;
   }
 
   @override
-  set favoriteSummoners(List<SummonerModel?> value) {
+  set favoriteSummoners(ObservableList<SummonerModel?> value) {
     _$favoriteSummonersAtom.reportWrite(value, super.favoriteSummoners, () {
       super.favoriteSummoners = value;
     });
   }
 
-  late final _$favoriteSummonersEntriesModelAtom = Atom(
-      name: '_HomePageStoreBase.favoriteSummonersEntriesModel',
+  late final _$favoriteSummonersEntriesModelListAtom = Atom(
+      name: '_HomePageStoreBase.favoriteSummonersEntriesModelList',
       context: context);
 
   @override
-  ObservableList<EntryModel> get favoriteSummonersEntriesModel {
-    _$favoriteSummonersEntriesModelAtom.reportRead();
-    return super.favoriteSummonersEntriesModel;
+  ObservableList<EntryModel?> get favoriteSummonersEntriesModelList {
+    _$favoriteSummonersEntriesModelListAtom.reportRead();
+    return super.favoriteSummonersEntriesModelList;
   }
 
   @override
-  set favoriteSummonersEntriesModel(ObservableList<EntryModel> value) {
-    _$favoriteSummonersEntriesModelAtom
-        .reportWrite(value, super.favoriteSummonersEntriesModel, () {
-      super.favoriteSummonersEntriesModel = value;
+  set favoriteSummonersEntriesModelList(ObservableList<EntryModel?> value) {
+    _$favoriteSummonersEntriesModelListAtom
+        .reportWrite(value, super.favoriteSummonersEntriesModelList, () {
+      super.favoriteSummonersEntriesModelList = value;
     });
   }
 
@@ -819,17 +820,6 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   }
 
   @override
-  bool toggleSummonerIsFavorite() {
-    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
-        name: '_HomePageStoreBase.toggleSummonerIsFavorite');
-    try {
-      return super.toggleSummonerIsFavorite();
-    } finally {
-      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   bool setSelectedBestPlayers(bool value) {
     final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
         name: '_HomePageStoreBase.setSelectedBestPlayers');
@@ -907,17 +897,6 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   }
 
   @override
-  List<SummonerModel?> filterFavoriteSummoners() {
-    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
-        name: '_HomePageStoreBase.filterFavoriteSummoners');
-    try {
-      return super.filterFavoriteSummoners();
-    } finally {
-      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void isMe() {
     final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
         name: '_HomePageStoreBase.isMe');
@@ -940,7 +919,6 @@ isLoadingList: ${isLoadingList},
 isError: ${isError},
 isMySpell: ${isMySpell},
 isMySecondSpell: ${isMySecondSpell},
-summonerIsFavorite: ${summonerIsFavorite},
 selectedBestPlayers: ${selectedBestPlayers},
 selectedSoloQ: ${selectedSoloQ},
 selectedChallenger: ${selectedChallenger},
@@ -952,6 +930,7 @@ tappedInSummonerRankedInfoButton: ${tappedInSummonerRankedInfoButton},
 summonerByName: ${summonerByName},
 match: ${match},
 rankedModel: ${rankedModel},
+favoriteSummonerEntriesInfo: ${favoriteSummonerEntriesInfo},
 summonersEntriesInfo: ${summonersEntriesInfo},
 diamondToIronEntriesInfo: ${diamondToIronEntriesInfo},
 me: ${me},
@@ -963,7 +942,7 @@ matchs: ${matchs},
 champions: ${champions},
 spells: ${spells},
 favoriteSummoners: ${favoriteSummoners},
-favoriteSummonersEntriesModel: ${favoriteSummonersEntriesModel}
+favoriteSummonersEntriesModelList: ${favoriteSummonersEntriesModelList}
     ''';
   }
 }

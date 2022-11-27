@@ -50,8 +50,6 @@ abstract class _HomePageStoreBase with Store {
   bool isMySecondSpell = false;
 
   @observable
-  bool summonerIsFavorite = false;
-  @observable
   bool selectedBestPlayers = true;
 
   @observable
@@ -83,6 +81,9 @@ abstract class _HomePageStoreBase with Store {
 
   @observable
   RankedModel? rankedModel;
+
+  @observable
+  EntryModel? favoriteSummonerEntriesInfo;
 
   @observable
   ObservableList<EntryModel?> summonersEntriesInfo =
@@ -118,11 +119,12 @@ abstract class _HomePageStoreBase with Store {
   ObservableList<SpellModel?> spells = ObservableList<SpellModel?>();
 
   @observable
-  List<SummonerModel?> favoriteSummoners = ObservableList<SummonerModel?>();
+  ObservableList<SummonerModel?> favoriteSummoners =
+      ObservableList<SummonerModel?>();
 
   @observable
-  ObservableList<EntryModel> favoriteSummonersEntriesModel =
-      ObservableList<EntryModel>();
+  ObservableList<EntryModel?> favoriteSummonersEntriesModelList =
+      ObservableList<EntryModel?>();
 
   @action
   bool setIsLoading(bool value) => isLoading = value;
@@ -132,9 +134,6 @@ abstract class _HomePageStoreBase with Store {
 
   @action
   bool setIsError(bool value) => isError = value;
-
-  @action
-  bool toggleSummonerIsFavorite() => summonerIsFavorite = !summonerIsFavorite;
 
   @action
   bool setSelectedBestPlayers(bool value) => selectedBestPlayers = value;
@@ -197,7 +196,10 @@ abstract class _HomePageStoreBase with Store {
       setIsLoading(true);
       setIsError(false);
       summonersEntriesInfo = ObservableList<EntryModel?>();
+      favoriteSummonersEntriesModelList = ObservableList<EntryModel?>();
       summonersEntriesInfo
+          .addAll(await service.getSummonerRankedInfo(summonerId));
+      favoriteSummonersEntriesModelList
           .addAll(await service.getSummonerRankedInfo(summonerId));
       setIsLoading(false);
     } catch (e) {
@@ -592,14 +594,6 @@ abstract class _HomePageStoreBase with Store {
         getRankedIronFlexInfo(tier: selectedTier);
       }
     }
-  }
-
-  @action
-  List<SummonerModel?> filterFavoriteSummoners() {
-    if (summonerByName!.isFavorite == true) {
-      favoriteSummoners.add(summonerByName);
-    }
-    return favoriteSummoners;
   }
 
   @action
