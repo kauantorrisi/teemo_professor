@@ -25,7 +25,7 @@ class SummonerPage extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.favorite, color: TPColor.red),
+              icon: const Icon(Icons.favorite, color: TPColor.white),
             ),
           ],
         ),

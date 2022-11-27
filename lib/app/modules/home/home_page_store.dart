@@ -167,6 +167,7 @@ abstract class _HomePageStoreBase with Store {
       await getListMatchIdsBySummonerPuuid('${summonerByName?.puuid}');
       await getMatchsById();
       await getSpellsList();
+      me.clear();
       isMe();
       checkMySpell();
       setIsLoading(false);
@@ -598,6 +599,7 @@ abstract class _HomePageStoreBase with Store {
 
   @action
   void isMe() {
+    me = ObservableList<ParticipantModel>();
     for (var match in matchs) {
       for (var participant in match!.info!.participants!) {
         if (participant!.summonerName == summonerByName!.name) {
