@@ -14,7 +14,7 @@ import 'package:teemo_professor/libraries/common/models/participant.model.dart';
 import 'package:teemo_professor/libraries/common/models/ranked.model.dart';
 import 'package:teemo_professor/libraries/common/models/spell.model.dart';
 import 'package:teemo_professor/libraries/common/models/summoner.model.dart';
-part 'ui/home_page_store.g.dart';
+part 'home_page_store.g.dart';
 
 class HomePageStore = _HomePageStoreBase with _$HomePageStore;
 

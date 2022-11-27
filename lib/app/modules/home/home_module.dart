@@ -27,7 +27,7 @@ class HomeModule extends Module {
             child: (context, args) => const HomePage()),
         ChildRoute(
           '/summoner-page',
-          child: (context, args) => SummonerPage(summonerModel: args.data),
+          child: (context, args) => SummonerPage(),
         ),
         ChildRoute(
           '/summoner-tapped-info',

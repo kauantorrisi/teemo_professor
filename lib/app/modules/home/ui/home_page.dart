@@ -52,8 +52,7 @@ class _HomePageState extends State<HomePage> {
                           controller: store.searchController,
                           onFieldSubmitted: (_) async {
                             await store.onSearch();
-                            Modular.to.pushNamed('/summoner-page',
-                                arguments: store.summonerByName);
+                            Modular.to.pushNamed('/summoner-page');
                           },
                         ),
                         const SizedBox(height: 20),

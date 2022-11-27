@@ -1,26 +1,41 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:teemo_professor/app/modules/home/home_page_store.dart';
 import 'package:teemo_professor/app/modules/home/widgets/card_summoner_info.widget.dart';
 import 'package:teemo_professor/app/modules/home/widgets/card_summoner_last_matches_info.widget.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
-import 'package:teemo_professor/libraries/common/models/summoner.model.dart';
 import 'package:teemo_professor/libraries/common/widgets/card.widget.dart';
 
 class SummonerPage extends StatelessWidget {
-  const SummonerPage({super.key, required this.summonerModel});
+  SummonerPage({super.key});
 
-  final SummonerModel summonerModel;
+  final HomePageStore store = Modular.get();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(summonerModel.name!,
+          title: Text(store.summonerByName!.name!,
               style: TPTexts.h1(color: TPColor.white)),
           backgroundColor: TPColor.darkBlue,
+          actions: [
+            Observer(builder: (_) {
+              return IconButton(
+                onPressed: () => store.toggleSummonerIsFavorite(),
+                icon: Icon(
+                  Icons.favorite,
+                  color: store.summonerIsFavorite == true
+                      ? TPColor.red
+                      : TPColor.white,
+                ),
+              );
+            })
+          ],
         ),
         body: SizedBox(
           width: MediaQuery.of(context).size.width,
