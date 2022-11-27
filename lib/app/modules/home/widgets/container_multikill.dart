@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:teemo_professor/app/modules/home/ui/summoner/service/summoner_page_store.dart';
 
+import 'package:teemo_professor/app/modules/home/home_page_store.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
 
-final SummonerPageStore store = Modular.get();
-
 class ContainerMultikill extends StatelessWidget {
-  const ContainerMultikill({super.key});
+  ContainerMultikill({super.key});
+
+  final HomePageStore store = Modular.get();
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:teemo_professor/app/modules/home/ui/summoner/service/summoner_page_store.dart';
-import 'package:teemo_professor/app/modules/home/ui/summoner/widgets/summoner_item_frame.widget.dart';
+import 'package:teemo_professor/app/modules/home/home_page_store.dart';
+
+import 'package:teemo_professor/app/modules/home/widgets/summoner_item_frame.widget.dart';
 import 'package:teemo_professor/libraries/common/constants.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
@@ -12,7 +14,7 @@ class CardSummonerMatchDetails extends StatelessWidget {
   CardSummonerMatchDetails({super.key, required this.summoner});
 
   final ParticipantModel summoner;
-  final SummonerPageStore store = Modular.get();
+  final HomePageStore store = Modular.get();
 
   @override
   Widget build(BuildContext context) {
@@ -206,31 +208,31 @@ class CardSummonerMatchDetails extends StatelessWidget {
     return Row(
       children: [
         SummonerItemFrameWidget(
-          urlImage: '$URL_ITENSIMAGE${summoner.item0}.png',
+          urlImg: '$URL_ITENSIMAGE${summoner.item0}.png',
           height: 35.h,
         ),
         SummonerItemFrameWidget(
-          urlImage: '$URL_ITENSIMAGE${summoner.item1}.png',
+          urlImg: '$URL_ITENSIMAGE${summoner.item1}.png',
           height: 35.h,
         ),
         SummonerItemFrameWidget(
-          urlImage: '$URL_ITENSIMAGE${summoner.item2}.png',
+          urlImg: '$URL_ITENSIMAGE${summoner.item2}.png',
           height: 35.h,
         ),
         SummonerItemFrameWidget(
-          urlImage: '$URL_ITENSIMAGE${summoner.item3}.png',
+          urlImg: '$URL_ITENSIMAGE${summoner.item3}.png',
           height: 35.h,
         ),
         SummonerItemFrameWidget(
-          urlImage: '$URL_ITENSIMAGE${summoner.item4}.png',
+          urlImg: '$URL_ITENSIMAGE${summoner.item4}.png',
           height: 35.h,
         ),
         SummonerItemFrameWidget(
-          urlImage: '$URL_ITENSIMAGE${summoner.item5}.png',
+          urlImg: '$URL_ITENSIMAGE${summoner.item5}.png',
           height: 35.h,
         ),
         SummonerItemFrameWidget(
-          urlImage: '$URL_ITENSIMAGE${summoner.item6}.png',
+          urlImg: '$URL_ITENSIMAGE${summoner.item6}.png',
           height: 35.h,
         ),
       ],

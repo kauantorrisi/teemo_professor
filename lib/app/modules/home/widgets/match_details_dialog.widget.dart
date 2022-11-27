@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:teemo_professor/app/modules/home/ui/summoner/widgets/card_summoner_match_details.widget.dart';
+import 'package:teemo_professor/app/modules/home/widgets/card_summoner_match_details.widget.dart';
 
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';

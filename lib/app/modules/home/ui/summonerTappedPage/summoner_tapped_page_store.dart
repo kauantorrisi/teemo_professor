@@ -2,7 +2,8 @@
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:teemo_professor/app/modules/home/ui/summoner/service/summoner_service.dart';
+
+import 'package:teemo_professor/app/modules/home/service/home_service.dart';
 import 'package:teemo_professor/libraries/common/models/champion.model.dart';
 import 'package:teemo_professor/libraries/common/models/entry.model.dart';
 import 'package:teemo_professor/libraries/common/models/match.model.dart';
@@ -15,7 +16,7 @@ class SummonerTappedPageStore = _SummonerTappedPageStoreBase
     with _$SummonerTappedPageStore;
 
 abstract class _SummonerTappedPageStoreBase with Store {
-  final SummonerService service = Modular.get();
+  final HomeService service = Modular.get();
 
   @observable
   bool? isLoading;

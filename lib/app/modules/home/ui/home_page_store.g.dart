@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_page_store.dart';
+part of '../home_page_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -153,19 +153,19 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
     });
   }
 
-  late final _$isFavoriteAtom =
-      Atom(name: '_HomePageStoreBase.isFavorite', context: context);
+  late final _$summonerIsFavoriteAtom =
+      Atom(name: '_HomePageStoreBase.summonerIsFavorite', context: context);
 
   @override
-  bool get isFavorite {
-    _$isFavoriteAtom.reportRead();
-    return super.isFavorite;
+  bool get summonerIsFavorite {
+    _$summonerIsFavoriteAtom.reportRead();
+    return super.summonerIsFavorite;
   }
 
   @override
-  set isFavorite(bool value) {
-    _$isFavoriteAtom.reportWrite(value, super.isFavorite, () {
-      super.isFavorite = value;
+  set summonerIsFavorite(bool value) {
+    _$summonerIsFavoriteAtom.reportWrite(value, super.summonerIsFavorite, () {
+      super.summonerIsFavorite = value;
     });
   }
 
@@ -173,13 +173,13 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
       Atom(name: '_HomePageStoreBase.selectedBestPlayers', context: context);
 
   @override
-  bool? get selectedBestPlayers {
+  bool get selectedBestPlayers {
     _$selectedBestPlayersAtom.reportRead();
     return super.selectedBestPlayers;
   }
 
   @override
-  set selectedBestPlayers(bool? value) {
+  set selectedBestPlayers(bool value) {
     _$selectedBestPlayersAtom.reportWrite(value, super.selectedBestPlayers, () {
       super.selectedBestPlayers = value;
     });
@@ -189,13 +189,13 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
       Atom(name: '_HomePageStoreBase.selectedSoloQ', context: context);
 
   @override
-  bool? get selectedSoloQ {
+  bool get selectedSoloQ {
     _$selectedSoloQAtom.reportRead();
     return super.selectedSoloQ;
   }
 
   @override
-  set selectedSoloQ(bool? value) {
+  set selectedSoloQ(bool value) {
     _$selectedSoloQAtom.reportWrite(value, super.selectedSoloQ, () {
       super.selectedSoloQ = value;
     });
@@ -205,13 +205,13 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
       Atom(name: '_HomePageStoreBase.selectedChallenger', context: context);
 
   @override
-  bool? get selectedChallenger {
+  bool get selectedChallenger {
     _$selectedChallengerAtom.reportRead();
     return super.selectedChallenger;
   }
 
   @override
-  set selectedChallenger(bool? value) {
+  set selectedChallenger(bool value) {
     _$selectedChallengerAtom.reportWrite(value, super.selectedChallenger, () {
       super.selectedChallenger = value;
     });
@@ -221,13 +221,13 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
       Atom(name: '_HomePageStoreBase.selectedGrandMaster', context: context);
 
   @override
-  bool? get selectedGrandMaster {
+  bool get selectedGrandMaster {
     _$selectedGrandMasterAtom.reportRead();
     return super.selectedGrandMaster;
   }
 
   @override
-  set selectedGrandMaster(bool? value) {
+  set selectedGrandMaster(bool value) {
     _$selectedGrandMasterAtom.reportWrite(value, super.selectedGrandMaster, () {
       super.selectedGrandMaster = value;
     });
@@ -237,13 +237,13 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
       Atom(name: '_HomePageStoreBase.selectedMaster', context: context);
 
   @override
-  bool? get selectedMaster {
+  bool get selectedMaster {
     _$selectedMasterAtom.reportRead();
     return super.selectedMaster;
   }
 
   @override
-  set selectedMaster(bool? value) {
+  set selectedMaster(bool value) {
     _$selectedMasterAtom.reportWrite(value, super.selectedMaster, () {
       super.selectedMaster = value;
     });
@@ -278,6 +278,24 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   set selectedTier(String? value) {
     _$selectedTierAtom.reportWrite(value, super.selectedTier, () {
       super.selectedTier = value;
+    });
+  }
+
+  late final _$tappedInSummonerRankedInfoButtonAtom = Atom(
+      name: '_HomePageStoreBase.tappedInSummonerRankedInfoButton',
+      context: context);
+
+  @override
+  bool get tappedInSummonerRankedInfoButton {
+    _$tappedInSummonerRankedInfoButtonAtom.reportRead();
+    return super.tappedInSummonerRankedInfoButton;
+  }
+
+  @override
+  set tappedInSummonerRankedInfoButton(bool value) {
+    _$tappedInSummonerRankedInfoButtonAtom
+        .reportWrite(value, super.tappedInSummonerRankedInfoButton, () {
+      super.tappedInSummonerRankedInfoButton = value;
     });
   }
 
@@ -801,11 +819,11 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   }
 
   @override
-  bool toggleIsFavorite() {
+  bool toggleSummonerIsFavorite() {
     final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
-        name: '_HomePageStoreBase.toggleIsFavorite');
+        name: '_HomePageStoreBase.toggleSummonerIsFavorite');
     try {
-      return super.toggleIsFavorite();
+      return super.toggleSummonerIsFavorite();
     } finally {
       _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -867,11 +885,22 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   }
 
   @override
-  String? setSelectedLeague(String? newValue) {
+  String? setSelectedLeague(String? value) {
     final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
         name: '_HomePageStoreBase.setSelectedLeague');
     try {
-      return super.setSelectedLeague(newValue);
+      return super.setSelectedLeague(value);
+    } finally {
+      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool toggleTappedInSummonerRankedInfoButton() {
+    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
+        name: '_HomePageStoreBase.toggleTappedInSummonerRankedInfoButton');
+    try {
+      return super.toggleTappedInSummonerRankedInfoButton();
     } finally {
       _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -911,7 +940,7 @@ isLoadingList: ${isLoadingList},
 isError: ${isError},
 isMySpell: ${isMySpell},
 isMySecondSpell: ${isMySecondSpell},
-isFavorite: ${isFavorite},
+summonerIsFavorite: ${summonerIsFavorite},
 selectedBestPlayers: ${selectedBestPlayers},
 selectedSoloQ: ${selectedSoloQ},
 selectedChallenger: ${selectedChallenger},
@@ -919,6 +948,7 @@ selectedGrandMaster: ${selectedGrandMaster},
 selectedMaster: ${selectedMaster},
 selectedElo: ${selectedElo},
 selectedTier: ${selectedTier},
+tappedInSummonerRankedInfoButton: ${tappedInSummonerRankedInfoButton},
 summonerByName: ${summonerByName},
 match: ${match},
 rankedModel: ${rankedModel},

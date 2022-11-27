@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 
-class CardWidget extends StatelessWidget {
-  const CardWidget({
+class AnimatedCardWidget extends StatelessWidget {
+  const AnimatedCardWidget({
     super.key,
     this.child,
     this.color,
@@ -11,8 +11,7 @@ class CardWidget extends StatelessWidget {
     this.padding,
     this.height,
     this.width,
-    this.borderRadius,
-    this.margin,
+    required this.duration,
   });
 
   final Widget? child;
@@ -20,21 +19,20 @@ class CardWidget extends StatelessWidget {
   final Color? shadowColor;
   final Color? borderColor;
   final EdgeInsetsGeometry? padding;
-  final EdgeInsetsGeometry? margin;
   final double? height;
   final double? width;
-  final BorderRadiusGeometry? borderRadius;
+  final Duration duration;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: duration,
       height: height,
       width: width,
-      margin: margin,
       padding:
           padding ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        borderRadius: borderRadius ?? BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20),
         border: Border.all(color: borderColor ?? TPColor.darkBlue),
         color: color ?? TPColor.white,
         boxShadow: [

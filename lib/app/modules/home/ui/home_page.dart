@@ -4,11 +4,11 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:teemo_professor/app/modules/home/ui/homePage/home_page_store.dart';
+import 'package:teemo_professor/app/modules/home/home_page_store.dart';
 import 'package:teemo_professor/libraries/common/models/entry.model.dart';
 import 'package:teemo_professor/libraries/common/widgets/card.widget.dart';
-import 'package:teemo_professor/app/modules/home/ui/homePage/widgets/card_favorite_summoner.widget.dart';
-import 'package:teemo_professor/app/modules/home/ui/summoner/widgets/card_summoner_last_matches_info.widget.dart';
+import 'package:teemo_professor/app/modules/home/widgets/card_favorite_summoner.widget.dart';
+import 'package:teemo_professor/app/modules/home/widgets/card_summoner_last_matches_info.widget.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
 import 'package:teemo_professor/libraries/common/widgets/app_bar.widget.dart';
@@ -52,7 +52,8 @@ class _HomePageState extends State<HomePage> {
                           controller: store.searchController,
                           onFieldSubmitted: (_) async {
                             await store.onSearch();
-                            Modular.to.pushNamed('/summoner-page');
+                            Modular.to.pushNamed('/summoner-page',
+                                arguments: store.summonerByName);
                           },
                         ),
                         const SizedBox(height: 20),
@@ -93,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: store.favoriteSummoners.length,
                 itemBuilder: (context, index) => Column(
                   children: [
-                    store.isFavorite
+                    store.summonerIsFavorite
                         ? CardFavoriteSummonerWidget(
                             favoriteSummoner: store.favoriteSummoners[index],
                             favoriteSummonerEntries:

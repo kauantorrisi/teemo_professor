@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:teemo_professor/app/modules/home/ui/homePage/service/home_service.dart';
+import 'package:teemo_professor/app/modules/home/service/home_service.dart';
 
 import 'package:teemo_professor/libraries/common/models/champion.model.dart';
 import 'package:teemo_professor/libraries/common/models/champions_mastery.model.dart';
@@ -14,7 +14,7 @@ import 'package:teemo_professor/libraries/common/models/participant.model.dart';
 import 'package:teemo_professor/libraries/common/models/ranked.model.dart';
 import 'package:teemo_professor/libraries/common/models/spell.model.dart';
 import 'package:teemo_professor/libraries/common/models/summoner.model.dart';
-part 'home_page_store.g.dart';
+part 'ui/home_page_store.g.dart';
 
 class HomePageStore = _HomePageStoreBase with _$HomePageStore;
 
@@ -50,28 +50,30 @@ abstract class _HomePageStoreBase with Store {
   bool isMySecondSpell = false;
 
   @observable
-  bool isFavorite = false;
+  bool summonerIsFavorite = false;
+  @observable
+  bool selectedBestPlayers = true;
 
   @observable
-  bool? selectedBestPlayers = true;
+  bool selectedSoloQ = true;
 
   @observable
-  bool? selectedSoloQ = true;
+  bool selectedChallenger = true;
 
   @observable
-  bool? selectedChallenger = true;
+  bool selectedGrandMaster = false;
 
   @observable
-  bool? selectedGrandMaster = false;
-
-  @observable
-  bool? selectedMaster = false;
+  bool selectedMaster = false;
 
   @observable
   String? selectedElo = 'Diamond';
 
   @observable
   String? selectedTier = 'I';
+
+  @observable
+  bool tappedInSummonerRankedInfoButton = false;
 
   @observable
   SummonerModel? summonerByName;
@@ -132,7 +134,7 @@ abstract class _HomePageStoreBase with Store {
   bool setIsError(bool value) => isError = value;
 
   @action
-  bool toggleIsFavorite() => isFavorite = !isFavorite;
+  bool toggleSummonerIsFavorite() => summonerIsFavorite = !summonerIsFavorite;
 
   @action
   bool setSelectedBestPlayers(bool value) => selectedBestPlayers = value;
@@ -150,7 +152,11 @@ abstract class _HomePageStoreBase with Store {
   bool setSelectedMaster(bool value) => selectedMaster = value;
 
   @action
-  String? setSelectedLeague(String? newValue) => selectedElo = newValue;
+  String? setSelectedLeague(String? value) => selectedElo = value;
+
+  @action
+  bool toggleTappedInSummonerRankedInfoButton() =>
+      tappedInSummonerRankedInfoButton = !tappedInSummonerRankedInfoButton;
 
   @action
   Future<void> onSearch() async {
@@ -590,7 +596,7 @@ abstract class _HomePageStoreBase with Store {
 
   @action
   List<SummonerModel?> filterFavoriteSummoners() {
-    if (summonerByName!.isFavorite!) {
+    if (summonerByName!.isFavorite == true) {
       favoriteSummoners.add(summonerByName);
     }
     return favoriteSummoners;

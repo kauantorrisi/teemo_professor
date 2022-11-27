@@ -4,7 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:teemo_professor/app/modules/home/ui/homePage/home_page_store.dart';
+import 'package:teemo_professor/app/modules/home/home_page_store.dart';
 import 'package:teemo_professor/libraries/common/widgets/card.widget.dart';
 import 'package:teemo_professor/libraries/common/constants.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
@@ -36,7 +36,7 @@ class CardFavoriteSummonerWidget extends StatelessWidget {
             summonerRankImage(),
             const Spacer(),
             IconButton(
-              onPressed: () => store.toggleIsFavorite(),
+              onPressed: () => store.toggleSummonerIsFavorite(),
               icon: const Icon(Icons.favorite, color: TPColor.red),
             ),
           ],
