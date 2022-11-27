@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,17 +32,86 @@ class CardSummonerLastMatchesInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int totalCs = me.totalMinionsKilled! + me.neutralMinionsKilled!;
+    return InkWell(
+      onTap: () => showDialog(
+        context: context,
+        builder: (context) => Dialog(
+          insetPadding: EdgeInsets.symmetric(
+            vertical: 10.h,
+            horizontal: 10.w,
+          ),
+          backgroundColor: TPColor.white,
+          child: MatchDetailsDialogWidget(info: info),
+        ),
+      ),
+      child: CardWidget(
+        height: 120.h,
+        borderColor: me.win == true ? TPColor.darkBlue : Colors.red,
+        shadowColor: TPColor.darkBlue,
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        color: TPColor.white,
+        child: Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Spacer(),
+                summonerWinOrLoseMatchCard(),
+                const Spacer(),
+                summonerLargestKillContainer(),
+                const Spacer(),
+              ],
+            ),
+            SizedBox(width: 10.w),
+            Expanded(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      summonerChampionImgAndChampionLevel(),
+                      const Spacer(flex: 1),
+                      summonerSpellsColumn(),
+                      const Spacer(flex: 3),
+                      summonerKdaColumn(),
+                      const Spacer(flex: 4),
+                      wardsAndCsColumn(),
+                      const Spacer(flex: 4),
+                    ],
+                  ),
+                  const Spacer(),
+                  summonerItensRow(),
+                  const Spacer(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-    final int? kills = me.kills;
-    final int? deaths = me.deaths;
-    final int? assists = me.assists;
-    final double kda = (kills! + assists!) / deaths!;
+  Widget summonerWinOrLoseMatchCard() {
+    return CardWidget(
+      borderColor: me.win == true ? TPColor.darkBlue : TPColor.red,
+      color: me.win == true ? TPColor.blue : TPColor.lightRed,
+      child: Column(
+        children: [
+          me.win == true
+              ? Text('Vitória', style: TPTexts.t6(color: TPColor.black))
+              : Text('Derrota', style: TPTexts.t6(color: TPColor.black)),
+          if (info.gameDuration!.toString().length >= 4)
+            Text(info.gameDuration.toString().replaceRange(2, 2, ':')),
+          if (info.gameDuration!.toString().length == 3)
+            Text(info.gameDuration.toString().replaceRange(1, 1, ':')),
+        ],
+      ),
+    );
+  }
 
-    final int? largestMultiKill = me.largestMultiKill;
+  Widget summonerLargestKillContainer() {
     String text = '';
 
-    switch (largestMultiKill) {
+    switch (me.largestMultiKill) {
       case 2:
         text = 'DOUBLE KILL';
         break;
@@ -59,168 +129,132 @@ class CardSummonerLastMatchesInfo extends StatelessWidget {
         break;
     }
 
-    return InkWell(
-      onTap: () => showDialog(
-        context: context,
-        builder: (context) => Dialog(
-          insetPadding: EdgeInsets.symmetric(
-            vertical: 10.h,
-            horizontal: 10.w,
+    return me.largestMultiKill != 0 && me.largestMultiKill! != 1
+        ? Container(
+            padding: EdgeInsets.all(5.r),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.r),
+              border: me.win == true
+                  ? Border.all(color: TPColor.darkBlue)
+                  : Border.all(color: TPColor.red),
+              color: me.win! ? TPColor.blue : TPColor.lightRed,
+            ),
+            child: Text(text, style: TPTexts.t7(isBold: true)),
+          )
+        : SizedBox(child: Text(text));
+  }
+
+  Widget summonerChampionImgAndChampionLevel() {
+    return Stack(
+      alignment: Alignment.bottomRight,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(30.r),
+          child: CachedNetworkImage(
+            imageUrl: '$URL_IMGSQUARE${me.championName}.png',
+            height: 60.h,
+            errorWidget: (context, url, error) =>
+                Image.asset('lib/assets/images/error.image.png'),
           ),
-          backgroundColor: TPColor.white,
-          child: MatchDetailsDialogWidget(info: info),
         ),
-      ),
-      child: CardWidget(
-        height: 135.h,
-        borderColor: me.win == true ? TPColor.darkBlue : Colors.red,
-        shadowColor: TPColor.darkBlue,
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        color: TPColor.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+        Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.r), color: TPColor.black),
+          child:
+              Text('${me.champLevel}', style: TPTexts.t5(color: TPColor.white)),
+        )
+      ],
+    );
+  }
+
+  Widget summonerSpellsColumn() {
+    return Column(
+      children: [
+        if (isMySpell)
+          CachedNetworkImage(
+            imageUrl: '$URL_IMGSPELLSSUMMONER$summonerSpellId.png',
+            height: 30.h,
+          ),
+        SizedBox(height: 2.h),
+        if (isMySecondSpell)
+          CachedNetworkImage(
+            imageUrl: '$URL_IMGSPELLSSUMMONER$summonerSpellId2.png',
+            height: 30.h,
+          )
+      ],
+    );
+  }
+
+  Widget summonerKdaColumn() {
+    final double kda = (me.kills! + me.assists!) / me.deaths!;
+
+    return Column(
+      children: [
+        Row(
           children: [
-            Column(
-              children: [
-                CardWidget(
-                  borderColor: me.win == true ? TPColor.darkBlue : TPColor.red,
-                  color: me.win == true ? TPColor.blue : TPColor.lightRed,
-                  child: Column(
-                    children: [
-                      me.win == true
-                          ? Text('Vitória!',
-                              style: TPTexts.t6(color: TPColor.black))
-                          : Text('Derrota',
-                              style: TPTexts.t6(color: TPColor.black)),
-                      if (info.gameDuration!.toString().length >= 4)
-                        Text(info.gameDuration
-                            .toString()
-                            .replaceRange(2, 2, ':')),
-                      if (info.gameDuration!.toString().length == 3)
-                        Text(info.gameDuration
-                            .toString()
-                            .replaceRange(1, 1, ':')),
-                    ],
-                  ),
-                ),
-                const Spacer(flex: 2),
-                if (me.largestMultiKill != 0 && me.largestMultiKill! != 1)
-                  Container(
-                    padding: EdgeInsets.all(5.r),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.r),
-                      color: me.win! ? TPColor.blue : TPColor.lightRed,
-                    ),
-                    child: Text(text, style: TPTexts.t7(isBold: true)),
-                  ),
-                const Spacer(),
-              ],
-            ),
-            SizedBox(width: 5.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Stack(
-                      alignment: Alignment.bottomRight,
-                      children: [
-                        SizedBox(
-                          height: 50.h,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(26),
-                            child: Image.network(
-                              '$URL_IMGSQUARE${me.championName}.png',
-                              errorBuilder: (context, error, stackTrace) {
-                                return Image.asset(
-                                    'lib/assets/images/error.image.png');
-                              },
-                            ),
-                          ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: TPColor.black),
-                          child: Text('${me.champLevel}',
-                              style: TPTexts.t7(color: TPColor.white)),
-                        )
-                      ],
-                    ),
-                    SizedBox(width: 10.w),
-                    Column(
-                      children: [
-                        if (isMySpell)
-                          SizedBox(
-                            height: 24,
-                            child: Image.network(
-                                '$URL_IMGSPELLSSUMMONER$summonerSpellId.png'),
-                          ),
-                        if (isMySecondSpell)
-                          SizedBox(
-                            height: 24,
-                            child: Image.network(
-                                '$URL_IMGSPELLSSUMMONER$summonerSpellId2.png'),
-                          ),
-                      ],
-                    ),
-                    SizedBox(width: 10.w),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text('${me.kills}/', style: TPTexts.t7()),
-                            Text('${me.deaths}/', style: TPTexts.t7()),
-                            Text('${me.assists}', style: TPTexts.t7()),
-                          ],
-                        ),
-                        if (kda.toString() != 'NaN')
-                          Text('${kda.toStringAsFixed(1)} KDA',
-                              style: TPTexts.t8(color: TPColor.grey)),
-                      ],
-                    ),
-                    SizedBox(width: 10.w),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Pinks: ${me.detectorWardsPlaced}',
-                          style: TPTexts.t8(),
-                        ),
-                        Text(
-                          'Wards: ${me.wardsPlaced}',
-                          style: TPTexts.t8(),
-                        ),
-                        Text('$totalCs CS', style: TPTexts.t8()),
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10.h),
-                Row(
-                  children: [
-                    SummonerItemFrameWidget(
-                        urlImg: '$URL_ITENSIMAGE${me.item0}.png'),
-                    SummonerItemFrameWidget(
-                        urlImg: '$URL_ITENSIMAGE${me.item1}.png'),
-                    SummonerItemFrameWidget(
-                        urlImg: '$URL_ITENSIMAGE${me.item2}.png'),
-                    SummonerItemFrameWidget(
-                        urlImg: '$URL_ITENSIMAGE${me.item3}.png'),
-                    SummonerItemFrameWidget(
-                        urlImg: '$URL_ITENSIMAGE${me.item4}.png'),
-                    SummonerItemFrameWidget(
-                        urlImg: '$URL_ITENSIMAGE${me.item5}.png'),
-                    SummonerItemFrameWidget(
-                        urlImg: '$URL_ITENSIMAGE${me.item6}.png'),
-                  ],
-                ),
-              ],
-            ),
+            Text('${me.kills}/', style: TPTexts.t5()),
+            Text('${me.deaths}/', style: TPTexts.t5()),
+            Text('${me.assists}', style: TPTexts.t5()),
           ],
         ),
-      ),
+        if (kda.toString() != 'NaN')
+          Text('${kda.toStringAsFixed(1)} KDA',
+              style: TPTexts.t7(color: TPColor.grey)),
+      ],
+    );
+  }
+
+  Widget wardsAndCsColumn() {
+    final int totalCs = me.totalMinionsKilled! + me.neutralMinionsKilled!;
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'Pinks: ${me.detectorWardsPlaced}',
+          style: TPTexts.t6(),
+        ),
+        Text(
+          'Wards: ${me.wardsPlaced}',
+          style: TPTexts.t6(),
+        ),
+        Text('$totalCs CS', style: TPTexts.t6()),
+      ],
+    );
+  }
+
+  Widget summonerItensRow() {
+    return Row(
+      children: [
+        SummonerItemFrameWidget(
+          urlImg: '$URL_ITENSIMAGE${me.item0}.png',
+          win: me.win,
+        ),
+        SummonerItemFrameWidget(
+          urlImg: '$URL_ITENSIMAGE${me.item1}.png',
+          win: me.win,
+        ),
+        SummonerItemFrameWidget(
+          urlImg: '$URL_ITENSIMAGE${me.item2}.png',
+          win: me.win,
+        ),
+        SummonerItemFrameWidget(
+          urlImg: '$URL_ITENSIMAGE${me.item3}.png',
+          win: me.win,
+        ),
+        SummonerItemFrameWidget(
+          urlImg: '$URL_ITENSIMAGE${me.item4}.png',
+          win: me.win,
+        ),
+        SummonerItemFrameWidget(
+          urlImg: '$URL_ITENSIMAGE${me.item5}.png',
+          win: me.win,
+        ),
+        SummonerItemFrameWidget(
+          urlImg: '$URL_ITENSIMAGE${me.item6}.png',
+          win: me.win,
+        ),
+      ],
     );
   }
 }
