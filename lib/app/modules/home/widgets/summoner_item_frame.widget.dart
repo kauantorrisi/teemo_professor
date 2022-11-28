@@ -22,7 +22,7 @@ class SummonerItemFrameWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 1.w),
+      padding: EdgeInsets.only(right: 1.5.w),
       child: CachedNetworkImage(
         width: width ?? 35.w,
         height: height ?? 35.w,
@@ -52,7 +52,7 @@ class SummonerItemFrameWidget extends StatelessWidget {
                     : Border.all(color: TPColor.red),
           ),
           width: width ?? 35.w,
-          height: height ?? 35.h,
+          height: height ?? 35.w,
         ),
       ),
     );

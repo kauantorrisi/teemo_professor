@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -48,21 +49,20 @@ class CardSummonerInfoWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Spacer(),
-        Container(
-          height: 90.h,
-          width: 90.w,
-          decoration: BoxDecoration(
-            border: Border.all(color: TPColor.darkBlue, width: 1.5),
-            borderRadius: BorderRadius.circular(90.r),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(90.r),
-            child: Image.network(
+        CachedNetworkImage(
+          imageUrl:
               '$LOL_SUMMONERICONS${store.summonerByName?.profileIconId}.png',
-              errorBuilder: (context, error, stackTrace) =>
-                  Image.asset('lib/assets/images/error.image.png'),
+          imageBuilder: (context, imageProvider) => Container(
+            height: 90.h,
+            width: 90.w,
+            decoration: BoxDecoration(
+              border: Border.all(color: TPColor.darkBlue, width: 1.5),
+              borderRadius: BorderRadius.circular(90.r),
+              image: DecorationImage(image: imageProvider),
             ),
           ),
+          placeholder: (context, url) => const CircularProgressIndicator(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
         const Spacer(),
         Column(
