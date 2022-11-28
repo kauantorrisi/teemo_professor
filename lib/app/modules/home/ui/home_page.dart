@@ -152,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                       : rankTierDropDownButton(),
                 ],
               ),
-              if (store.selectedBestPlayers == false) rowSelectEloButtons(),
+              rowSelectEloButtons(),
             ],
           ),
         ),
@@ -368,58 +368,71 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget rowSelectEloButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        eloButton('Iron', 'lib/assets/images/1.png'),
-        eloButton('Bronze', 'lib/assets/images/2.png'),
-        eloButton('Silver', 'lib/assets/images/3.webp'),
-        eloButton('Gold', 'lib/assets/images/4.webp'),
-        eloButton('Platinum', 'lib/assets/images/5.png'),
-        eloButton('Diamond', 'lib/assets/images/6.png'),
-      ],
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      width: store.selectedBestPlayers == false ? 300.w : 0,
+      height: store.selectedBestPlayers == false ? 40.h : 0,
+      child: store.selectedBestPlayers == false
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                eloButton('Iron', 'lib/assets/images/1.png'),
+                eloButton('Bronze', 'lib/assets/images/2.png'),
+                eloButton('Silver', 'lib/assets/images/3.webp'),
+                eloButton('Gold', 'lib/assets/images/4.webp'),
+                eloButton('Platinum', 'lib/assets/images/5.png'),
+                eloButton('Diamond', 'lib/assets/images/6.png'),
+              ],
+            )
+          : Container(),
     );
   }
 
   Widget listSummonersRankScore(List<EntryModel?>? entries) {
     return Expanded(
-      child: ListView.separated(
-          separatorBuilder: (context, index) => SizedBox(height: 5.h),
-          itemCount: entries!.length,
-          itemBuilder: (context, index) {
-            int totalMatchsPlayed =
-                entries[index]!.wins! + entries[index]!.losses!;
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ListView.separated(
+            separatorBuilder: (context, index) => SizedBox(height: 5.h),
+            itemCount: entries!.length,
+            itemBuilder: (context, index) {
+              int totalMatchsPlayed =
+                  entries[index]!.wins! + entries[index]!.losses!;
 
-            return CardWidget(
-              child: ListTile(
-                title: Text(
-                  entries[index]!.summonerName!,
+              return CardWidget(
+                borderRadius: BorderRadius.circular(40),
+                child: ListTile(
+                  title: Text(
+                    entries[index]!.summonerName!,
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Vitórias: ${entries[index]!.wins}',
+                      ),
+                      Text(
+                        'Derrotas: ${entries[index]!.losses}',
+                      ),
+                    ],
+                  ),
+                  trailing: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Pontos: ${entries[index]!.leaguePoints}',
+                      ),
+                      Text(
+                        'Partidas jogadas: $totalMatchsPlayed',
+                      ),
+                    ],
+                  ),
                 ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Vitórias: ${entries[index]!.wins}',
-                    ),
-                    Text(
-                      'Derrotas: ${entries[index]!.losses}',
-                    ),
-                  ],
-                ),
-                trailing: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Pontos: ${entries[index]!.leaguePoints}',
-                    ),
-                    Text(
-                      'Partidas jogadas: $totalMatchsPlayed',
-                    ),
-                  ],
-                ),
-              ),
-            );
-          }),
+              );
+            }),
+      ),
     );
   }
 
