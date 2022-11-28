@@ -55,8 +55,7 @@ class SummonerPage extends StatelessWidget {
   }
 
   Widget listLastMatchsPlayed() {
-    return CardWidget(
-      color: TPColor.blue,
+    return Expanded(
       child: ListView.builder(
         itemCount: store.me.length,
         itemBuilder: (context, index) => CardSummonerLastMatchesInfo(

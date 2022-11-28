@@ -97,8 +97,14 @@ class CardSummonerLastMatchesInfo extends StatelessWidget {
       child: Column(
         children: [
           me.win == true
-              ? Text('Vitória', style: TPTexts.t6(color: TPColor.black))
-              : Text('Derrota', style: TPTexts.t6(color: TPColor.black)),
+              ? Text(
+                  'Vitória',
+                  style: TPTexts.t6(color: TPColor.black, isBold: true),
+                )
+              : Text(
+                  'Derrota',
+                  style: TPTexts.t6(color: TPColor.black, isBold: true),
+                ),
           if (info.gameDuration!.toString().length >= 4)
             Text(info.gameDuration.toString().replaceRange(2, 2, ':')),
           if (info.gameDuration!.toString().length == 3)

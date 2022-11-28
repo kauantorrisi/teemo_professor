@@ -57,32 +57,6 @@ class CardSummonerMatchDetails extends StatelessWidget {
     );
   }
 
-  Widget cardHeader() {
-    return Container(
-      margin: const EdgeInsets.only(left: 5),
-      child: Column(
-        children: [
-          nameAndKDA(),
-          itensRow(),
-        ],
-      ),
-    );
-  }
-
-  Widget cardBody() {
-    return SizedBox(
-      height: 80.h,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          damageAndCsColumn(),
-          wardsColumn(),
-        ],
-      ),
-    );
-  }
-
   Widget championImageAndLevel() {
     return Stack(
       alignment: Alignment.bottomRight,
@@ -106,6 +80,32 @@ class CardSummonerMatchDetails extends StatelessWidget {
               style: TPTexts.t3(color: TPColor.white)),
         )
       ],
+    );
+  }
+
+  Widget cardHeader() {
+    return Container(
+      margin: const EdgeInsets.only(left: 5),
+      child: Column(
+        children: [
+          nameAndKDA(),
+          itensRow(),
+        ],
+      ),
+    );
+  }
+
+  Widget cardBody() {
+    return SizedBox(
+      height: 80.h,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          damageAndCsColumn(),
+          wardsColumn(),
+        ],
+      ),
     );
   }
 
