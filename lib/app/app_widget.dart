@@ -1,6 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
+
+import '../firebase_options.dart';
 
 class AppWidget extends StatefulWidget {
   const AppWidget({super.key});
@@ -10,6 +13,18 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends State<AppWidget> {
+  @override
+  void initState() {
+    initFirebase();
+    super.initState();
+  }
+
+  initFirebase() async {
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+    WidgetsFlutterBinding.ensureInitialized();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
