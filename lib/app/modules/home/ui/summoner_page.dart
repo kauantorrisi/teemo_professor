@@ -38,7 +38,7 @@ class SummonerPage extends StatelessWidget {
               SizedBox(height: 14.h),
               textLastMatchsPlayed(),
               SizedBox(height: 14.h),
-              Expanded(child: listLastMatchsPlayed())
+              listLastMatchsPlayed()
             ],
           ),
         ));

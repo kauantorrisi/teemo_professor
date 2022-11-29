@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
@@ -61,16 +62,19 @@ class CardSummonerMatchDetails extends StatelessWidget {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20),
-              bottomLeft: Radius.circular(20),
+        CachedNetworkImage(
+          imageUrl: '$URL_IMGSQUARE${summoner.championName}.png',
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20),
+                bottomLeft: Radius.circular(20),
+              ),
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                      '$URL_IMGSQUARE${summoner.championName}.png')),
             ),
-            image: DecorationImage(
-                fit: BoxFit.cover,
-                image:
-                    NetworkImage('$URL_IMGSQUARE${summoner.championName}.png')),
           ),
         ),
         Container(
