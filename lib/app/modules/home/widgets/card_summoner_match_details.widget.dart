@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:teemo_professor/app/modules/home/home_page_store.dart';
 
+import 'package:teemo_professor/app/modules/home/home_page_store.dart';
 import 'package:teemo_professor/app/modules/home/widgets/summoner_item_frame.widget.dart';
 import 'package:teemo_professor/libraries/common/constants.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';

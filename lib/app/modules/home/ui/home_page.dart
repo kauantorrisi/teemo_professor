@@ -471,22 +471,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  Widget listSummonerLastMatches() {
-    return SizedBox(
-      height: 2950.h,
-      child: ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: store.matchs.length,
-        itemBuilder: (context, index) => CardSummonerLastMatchesInfo(
-          info: store.matchs[index]!.info!,
-          isMySpell: store.isMySpell,
-          isMySecondSpell: store.isMySecondSpell,
-          me: store.me[index],
-          summonerSpellId: store.summonerSpellId[index],
-          summonerSpellId2: store.summonerSpellId2[index],
-        ),
-      ),
-    );
-  }
 }

@@ -91,7 +91,7 @@ class MatchDetailsDialogWidget extends StatelessWidget {
 
   Widget teamObjectivesRow(TeamModel team) {
     return Container(
-      color: team.win == true ? TPColor.blue : TPColor.red,
+      color: team.win == true ? TPColor.lightBlue : TPColor.lightRed,
       height: 36.h,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -124,7 +124,7 @@ class MatchDetailsDialogWidget extends StatelessWidget {
             team.win == true ? 'Vitória' : 'Derrota',
             style: TPTexts.t6(
               isBold: true,
-              color: team.win == true ? TPColor.blue : TPColor.lightRed,
+              color: team.win == true ? TPColor.darkBlue : TPColor.red,
             ),
           ),
           const Spacer(flex: 6),
@@ -139,13 +139,13 @@ class MatchDetailsDialogWidget extends StatelessWidget {
       child: isNetwork == true
           ? Image.network(
               img,
-              color: isWin == true ? TPColor.blue : TPColor.red,
+              color: isWin == true ? TPColor.lightBlue : TPColor.lightRed,
               colorBlendMode: BlendMode.color,
               fit: BoxFit.contain,
             )
           : Image.asset(
               img,
-              color: isWin == true ? TPColor.blue : TPColor.red,
+              color: isWin == true ? TPColor.lightBlue : TPColor.lightRed,
               colorBlendMode: BlendMode.color,
               fit: BoxFit.contain,
             ),
