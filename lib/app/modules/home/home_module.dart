@@ -4,8 +4,6 @@ import 'package:teemo_professor/app/modules/home/service/home_service.dart';
 import 'package:teemo_professor/app/modules/home/ui/home_page.dart';
 import 'package:teemo_professor/app/modules/home/home_page_store.dart';
 import 'package:teemo_professor/app/modules/home/ui/summoner_page.dart';
-import 'package:teemo_professor/app/modules/home/ui/summonerTappedPage/summoner_tapped_info_page.dart';
-import 'package:teemo_professor/app/modules/home/ui/summonerTappedPage/summoner_tapped_page_store.dart';
 
 class HomeModule extends Module {
   static List<Bind> services = [
@@ -13,8 +11,6 @@ class HomeModule extends Module {
   ];
 
   static List<Bind> stores = [
-    Bind.lazySingleton<SummonerTappedPageStore>(
-        (i) => SummonerTappedPageStore()),
     Bind.lazySingleton<HomePageStore>((i) => HomePageStore()),
   ];
 
@@ -28,10 +24,6 @@ class HomeModule extends Module {
         ChildRoute(
           '/summoner-page',
           child: (context, args) => SummonerPage(),
-        ),
-        ChildRoute(
-          '/summoner-tapped-info',
-          child: (context, args) => const SummonerTappedInfoPage(),
         ),
       ];
 }

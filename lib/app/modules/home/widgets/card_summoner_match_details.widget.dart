@@ -19,41 +19,36 @@ class CardSummonerMatchDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Modular.to.pushNamed('/summoner-tapped-info');
-      },
-      child: Container(
-        height: 140.h,
-        padding: const EdgeInsets.only(right: 5),
-        margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 5.0,
-              offset: const Offset(1, 2),
-              color: TPColor.black.withOpacity(0.2),
+    return Container(
+      height: 140.h,
+      padding: const EdgeInsets.only(right: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 5.0,
+            offset: const Offset(1, 2),
+            color: TPColor.black.withOpacity(0.2),
+          ),
+        ],
+        border: Border.all(color: TPColor.black),
+        color: TPColor.white,
+      ),
+      child: Row(
+        children: [
+          Expanded(flex: 3, child: championImageAndLevel()),
+          Expanded(
+            flex: 9,
+            child: Column(
+              children: [
+                cardHeader(),
+                const Spacer(),
+                cardBody(),
+              ],
             ),
-          ],
-          border: Border.all(color: TPColor.black),
-          color: TPColor.white,
-        ),
-        child: Row(
-          children: [
-            Expanded(flex: 3, child: championImageAndLevel()),
-            Expanded(
-              flex: 9,
-              child: Column(
-                children: [
-                  cardHeader(),
-                  const Spacer(),
-                  cardBody(),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
