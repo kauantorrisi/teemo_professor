@@ -201,7 +201,13 @@ abstract class _HomePageStoreBase with Store {
       setIsError(false);
       summonerByName = SummonerModel();
       summonerByName = await service.getSummonerByName(summonerName!);
-      recentSummoners.add(summonerByName);
+      for (var recentSummoner in recentSummoners) {
+        if (recentSummoner?.name == summonerName) {
+          return;
+        } else {
+          recentSummoners.add(summonerByName);
+        }
+      }
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
@@ -218,12 +224,17 @@ abstract class _HomePageStoreBase with Store {
       summonersEntriesInfo = ObservableList<EntryModel?>();
       summonersEntriesInfo
           .addAll(await service.getSummonerRankedInfo(summonerId));
-
-      recentSummonersEntriesList.add(
-        summonersEntriesInfo.first?.queueType != 'RANKED_TFT_DOUBLE_UP'
-            ? summonersEntriesInfo.first
-            : summonersEntriesInfo[1],
-      );
+      for (var recentSummoner in recentSummoners) {
+        if (recentSummoner?.id == summonerId) {
+          return;
+        } else {
+          recentSummonersEntriesList.add(
+            summonersEntriesInfo.first?.queueType != 'RANKED_TFT_DOUBLE_UP'
+                ? summonersEntriesInfo.first
+                : summonersEntriesInfo[1],
+          );
+        }
+      }
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
