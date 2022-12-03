@@ -159,7 +159,8 @@ class CardSummonerLastMatchesInfo extends StatelessWidget {
           child: CachedNetworkImage(
             imageUrl: '$URL_IMGSQUARE${me.championName}.png',
             height: 60.h,
-            errorWidget: (context, url, error) => const Icon(Icons.error),
+            errorWidget: (context, url, error) =>
+                const Center(child: Icon(Icons.error)),
           ),
         ),
         Container(
@@ -179,14 +180,16 @@ class CardSummonerLastMatchesInfo extends StatelessWidget {
           CachedNetworkImage(
             imageUrl: '$URL_IMGSPELLSSUMMONER$summonerSpellId.png',
             height: 30.h,
-            errorWidget: (context, url, error) => const Icon(Icons.error),
+            errorWidget: (context, url, error) =>
+                const Center(child: Icon(Icons.error)),
           ),
         SizedBox(height: 2.h),
         if (isMySecondSpell)
           CachedNetworkImage(
             imageUrl: '$URL_IMGSPELLSSUMMONER$summonerSpellId2.png',
             height: 30.h,
-            errorWidget: (context, url, error) => const Icon(Icons.error),
+            errorWidget: (context, url, error) =>
+                const Center(child: Icon(Icons.error)),
           )
       ],
     );

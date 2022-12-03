@@ -62,7 +62,8 @@ class CardSummonerInfoWidget extends StatelessWidget {
             ),
           ),
           placeholder: (context, url) => const CircularProgressIndicator(),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+          errorWidget: (context, url, error) =>
+              const Center(child: Icon(Icons.error)),
         ),
         const Spacer(),
         Column(

@@ -8,8 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:teemo_professor/app/modules/home/home_page_store.dart';
 import 'package:teemo_professor/libraries/common/models/entry.model.dart';
 import 'package:teemo_professor/libraries/common/widgets/card.widget.dart';
-import 'package:teemo_professor/app/modules/home/widgets/card_favorite_summoner.widget.dart';
-import 'package:teemo_professor/app/modules/home/widgets/card_summoner_last_matches_info.widget.dart';
+import 'package:teemo_professor/app/modules/home/widgets/card_recent_summoner.widget.dart';
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
 import 'package:teemo_professor/libraries/common/widgets/app_bar.widget.dart';
@@ -83,22 +82,22 @@ class _HomePageState extends State<HomePage> {
             ),
             child: Center(
               child: Text(
-                'Invocadores Favoritos',
+                'Invocadores Recentes',
                 style: TPTexts.t4(color: TPColor.white),
               ),
             ),
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: store.favoriteSummoners.isEmpty
+              itemCount: store.recentSummoners.isEmpty
                   ? 0
-                  : store.favoriteSummoners.length,
+                  : store.recentSummoners.length,
               itemBuilder: (context, index) => Column(
                 children: [
-                  CardFavoriteSummonerWidget(
-                    favoriteSummoner: store.favoriteSummoners[index],
-                    favoriteSummonerEntries:
-                        store.favoriteSummonersEntriesModelList[index],
+                  CardRecentSummonerWidget(
+                    recentSummoner: store.recentSummoners[index],
+                    recentSummonerEntries:
+                        store.recentSummonersEntriesList[index],
                   ),
                 ],
               ),

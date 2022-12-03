@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,12 +23,6 @@ class SummonerPage extends StatelessWidget {
           title: Text(store.summonerByName!.name!,
               style: TPTexts.h1(color: TPColor.white)),
           backgroundColor: TPColor.darkBlue,
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.favorite, color: TPColor.white),
-            ),
-          ],
         ),
         body: SizedBox(
           width: MediaQuery.of(context).size.width,

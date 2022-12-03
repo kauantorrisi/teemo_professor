@@ -71,17 +71,22 @@ class CardSummonerMatchDetails extends StatelessWidget {
                 bottomLeft: Radius.circular(20),
               ),
               image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                      '$URL_IMGSQUARE${summoner.championName}.png')),
+                fit: BoxFit.cover,
+                image:
+                    NetworkImage('$URL_IMGSQUARE${summoner.championName}.png'),
+              ),
             ),
           ),
+          errorWidget: (context, url, error) =>
+              const Center(child: Icon(Icons.error)),
         ),
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10), color: TPColor.black),
-          child: Text('${summoner.champLevel}',
-              style: TPTexts.t3(color: TPColor.white)),
+          child: Text(
+            '${summoner.champLevel}',
+            style: TPTexts.t3(color: TPColor.white),
+          ),
         )
       ],
     );

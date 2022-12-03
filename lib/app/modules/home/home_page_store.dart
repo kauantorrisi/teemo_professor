@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:teemo_professor/app/modules/home/service/home_service.dart';
 
+import 'package:teemo_professor/app/modules/home/service/home_service.dart';
 import 'package:teemo_professor/libraries/common/models/champion.model.dart';
 import 'package:teemo_professor/libraries/common/models/champions_mastery.model.dart';
 import 'package:teemo_professor/libraries/common/models/entry.model.dart';
@@ -83,9 +83,6 @@ abstract class _HomePageStoreBase with Store {
   RankedModel? rankedModel;
 
   @observable
-  EntryModel? favoriteSummonerEntriesInfo;
-
-  @observable
   ObservableList<EntryModel?> summonersEntriesInfo =
       ObservableList<EntryModel>();
 
@@ -119,11 +116,11 @@ abstract class _HomePageStoreBase with Store {
   ObservableList<SpellModel?> spells = ObservableList<SpellModel?>();
 
   @observable
-  ObservableList<SummonerModel?> favoriteSummoners =
+  ObservableList<SummonerModel?> recentSummoners =
       ObservableList<SummonerModel?>();
 
   @observable
-  ObservableList<EntryModel?> favoriteSummonersEntriesModelList =
+  ObservableList<EntryModel?> recentSummonersEntriesList =
       ObservableList<EntryModel?>();
 
   @action
@@ -170,6 +167,7 @@ abstract class _HomePageStoreBase with Store {
       me.clear();
       isMe();
       checkMySpell();
+
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
@@ -184,6 +182,7 @@ abstract class _HomePageStoreBase with Store {
       setIsError(false);
       summonerByName = SummonerModel();
       summonerByName = await service.getSummonerByName(searchController.text);
+      recentSummoners.add(summonerByName);
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
@@ -196,12 +195,16 @@ abstract class _HomePageStoreBase with Store {
     try {
       setIsLoading(true);
       setIsError(false);
+
       summonersEntriesInfo = ObservableList<EntryModel?>();
-      favoriteSummonersEntriesModelList = ObservableList<EntryModel?>();
       summonersEntriesInfo
           .addAll(await service.getSummonerRankedInfo(summonerId));
-      favoriteSummonersEntriesModelList
-          .addAll(await service.getSummonerRankedInfo(summonerId));
+
+      recentSummonersEntriesList.add(
+        summonersEntriesInfo.first?.queueType != 'RANKED_TFT_DOUBLE_UP'
+            ? summonersEntriesInfo.first
+            : summonersEntriesInfo[1],
+      );
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
@@ -607,6 +610,13 @@ abstract class _HomePageStoreBase with Store {
         }
       }
     }
+  }
+
+  @action
+  void removeRecentSummoner(
+      SummonerModel? summoner, EntryModel? summonerEntries) {
+    recentSummoners.remove(summoner);
+    recentSummonersEntriesList.remove(summonerEntries);
   }
 
   void checkMySpell() {

@@ -331,23 +331,6 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
     });
   }
 
-  late final _$favoriteSummonerEntriesInfoAtom = Atom(
-      name: '_HomePageStoreBase.favoriteSummonerEntriesInfo', context: context);
-
-  @override
-  EntryModel? get favoriteSummonerEntriesInfo {
-    _$favoriteSummonerEntriesInfoAtom.reportRead();
-    return super.favoriteSummonerEntriesInfo;
-  }
-
-  @override
-  set favoriteSummonerEntriesInfo(EntryModel? value) {
-    _$favoriteSummonerEntriesInfoAtom
-        .reportWrite(value, super.favoriteSummonerEntriesInfo, () {
-      super.favoriteSummonerEntriesInfo = value;
-    });
-  }
-
   late final _$summonersEntriesInfoAtom =
       Atom(name: '_HomePageStoreBase.summonersEntriesInfo', context: context);
 
@@ -509,37 +492,36 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
     });
   }
 
-  late final _$favoriteSummonersAtom =
-      Atom(name: '_HomePageStoreBase.favoriteSummoners', context: context);
+  late final _$recentSummonersAtom =
+      Atom(name: '_HomePageStoreBase.recentSummoners', context: context);
 
   @override
-  ObservableList<SummonerModel?> get favoriteSummoners {
-    _$favoriteSummonersAtom.reportRead();
-    return super.favoriteSummoners;
+  ObservableList<SummonerModel?> get recentSummoners {
+    _$recentSummonersAtom.reportRead();
+    return super.recentSummoners;
   }
 
   @override
-  set favoriteSummoners(ObservableList<SummonerModel?> value) {
-    _$favoriteSummonersAtom.reportWrite(value, super.favoriteSummoners, () {
-      super.favoriteSummoners = value;
+  set recentSummoners(ObservableList<SummonerModel?> value) {
+    _$recentSummonersAtom.reportWrite(value, super.recentSummoners, () {
+      super.recentSummoners = value;
     });
   }
 
-  late final _$favoriteSummonersEntriesModelListAtom = Atom(
-      name: '_HomePageStoreBase.favoriteSummonersEntriesModelList',
-      context: context);
+  late final _$recentSummonersEntriesListAtom = Atom(
+      name: '_HomePageStoreBase.recentSummonersEntriesList', context: context);
 
   @override
-  ObservableList<EntryModel?> get favoriteSummonersEntriesModelList {
-    _$favoriteSummonersEntriesModelListAtom.reportRead();
-    return super.favoriteSummonersEntriesModelList;
+  ObservableList<EntryModel?> get recentSummonersEntriesList {
+    _$recentSummonersEntriesListAtom.reportRead();
+    return super.recentSummonersEntriesList;
   }
 
   @override
-  set favoriteSummonersEntriesModelList(ObservableList<EntryModel?> value) {
-    _$favoriteSummonersEntriesModelListAtom
-        .reportWrite(value, super.favoriteSummonersEntriesModelList, () {
-      super.favoriteSummonersEntriesModelList = value;
+  set recentSummonersEntriesList(ObservableList<EntryModel?> value) {
+    _$recentSummonersEntriesListAtom
+        .reportWrite(value, super.recentSummonersEntriesList, () {
+      super.recentSummonersEntriesList = value;
     });
   }
 
@@ -908,6 +890,18 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
   }
 
   @override
+  void removeRecentSummoner(
+      SummonerModel? summoner, EntryModel? summonerEntries) {
+    final _$actionInfo = _$_HomePageStoreBaseActionController.startAction(
+        name: '_HomePageStoreBase.removeRecentSummoner');
+    try {
+      return super.removeRecentSummoner(summoner, summonerEntries);
+    } finally {
+      _$_HomePageStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 rankTypeValue: ${rankTypeValue},
@@ -930,7 +924,6 @@ tappedInSummonerRankedInfoButton: ${tappedInSummonerRankedInfoButton},
 summonerByName: ${summonerByName},
 match: ${match},
 rankedModel: ${rankedModel},
-favoriteSummonerEntriesInfo: ${favoriteSummonerEntriesInfo},
 summonersEntriesInfo: ${summonersEntriesInfo},
 diamondToIronEntriesInfo: ${diamondToIronEntriesInfo},
 me: ${me},
@@ -941,8 +934,8 @@ matchIds: ${matchIds},
 matchs: ${matchs},
 champions: ${champions},
 spells: ${spells},
-favoriteSummoners: ${favoriteSummoners},
-favoriteSummonersEntriesModelList: ${favoriteSummonersEntriesModelList}
+recentSummoners: ${recentSummoners},
+recentSummonersEntriesList: ${recentSummonersEntriesList}
     ''';
   }
 }
