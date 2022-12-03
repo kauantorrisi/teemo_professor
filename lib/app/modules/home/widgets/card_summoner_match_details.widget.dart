@@ -156,13 +156,29 @@ class CardSummonerMatchDetails extends StatelessWidget {
     return Column(
       children: [
         Text('Dano', style: TPTexts.t6(isBold: true)),
-        Text(
-          'Causado: ${summoner.totalDamageDealtToChampions}',
-          style: TPTexts.t6(color: TPColor.blue),
+        RichText(
+          text: TextSpan(
+            text: 'Causado: ',
+            style: TPTexts.t7(isBold: true, color: TPColor.darkBlue),
+            children: [
+              TextSpan(
+                text: '${summoner.totalDamageDealtToChampions}',
+                style: TPTexts.t7(color: TPColor.darkBlue),
+              ),
+            ],
+          ),
         ),
-        Text(
-          'Sofrido: ${summoner.totalDamageTaken}',
-          style: TPTexts.t6(color: TPColor.red),
+        RichText(
+          text: TextSpan(
+            text: 'Sofrido: ',
+            style: TPTexts.t7(isBold: true, color: TPColor.red),
+            children: [
+              TextSpan(
+                text: '${summoner.totalDamageTaken}',
+                style: TPTexts.t7(color: TPColor.red),
+              ),
+            ],
+          ),
         ),
         const Spacer(),
         RichText(
@@ -187,13 +203,29 @@ class CardSummonerMatchDetails extends StatelessWidget {
     return Column(
       children: [
         Text('Wards', style: TPTexts.t6(isBold: true)),
-        Text(
-          'Colocadas: ${summoner.wardsPlaced}',
-          style: TPTexts.t6(color: TPColor.blue),
+        RichText(
+          text: TextSpan(
+            text: 'Colocadas: ',
+            style: TPTexts.t7(isBold: true, color: TPColor.darkBlue),
+            children: [
+              TextSpan(
+                text: '${summoner.wardsPlaced}',
+                style: TPTexts.t7(color: TPColor.darkBlue),
+              ),
+            ],
+          ),
         ),
-        Text(
-          'Destruidas: ${summoner.wardsKilled}',
-          style: TPTexts.t6(color: TPColor.red),
+        RichText(
+          text: TextSpan(
+            text: 'Destruidas: ',
+            style: TPTexts.t7(isBold: true, color: TPColor.red),
+            children: [
+              TextSpan(
+                text: '${summoner.wardsKilled}',
+                style: TPTexts.t7(color: TPColor.red),
+              ),
+            ],
+          ),
         ),
         const Spacer(),
         RichText(
