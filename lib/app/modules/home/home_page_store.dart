@@ -159,7 +159,7 @@ abstract class _HomePageStoreBase with Store {
     try {
       setIsLoading(true);
       setIsError(false);
-      await getSummonerByName();
+      await getSummonerByName(searchController.text);
       await getSummonerRankedInfo('${summonerByName?.id}');
       await getListMatchIdsBySummonerPuuid('${summonerByName?.puuid}');
       await getMatchsById();
@@ -167,7 +167,6 @@ abstract class _HomePageStoreBase with Store {
       me.clear();
       isMe();
       checkMySpell();
-
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
@@ -176,12 +175,32 @@ abstract class _HomePageStoreBase with Store {
   }
 
   @action
-  Future<void> getSummonerByName() async {
+  Future<void> onTapInRecentSummoner(int index) async {
+    try {
+      setIsLoading(true);
+      setIsError(false);
+      await getSummonerByName(recentSummoners[index]?.name);
+      await getSummonerRankedInfo('${summonerByName?.id}');
+      await getListMatchIdsBySummonerPuuid('${summonerByName?.puuid}');
+      await getMatchsById();
+      await getSpellsList();
+      me.clear();
+      isMe();
+      checkMySpell();
+      setIsLoading(false);
+    } catch (e) {
+      setIsLoading(false);
+      setIsError(true);
+    }
+  }
+
+  @action
+  Future<void> getSummonerByName(String? summonerName) async {
     try {
       setIsLoading(true);
       setIsError(false);
       summonerByName = SummonerModel();
-      summonerByName = await service.getSummonerByName(searchController.text);
+      summonerByName = await service.getSummonerByName(summonerName!);
       recentSummoners.add(summonerByName);
       setIsLoading(false);
     } catch (e) {

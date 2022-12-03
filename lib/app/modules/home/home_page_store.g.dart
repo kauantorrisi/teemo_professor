@@ -533,12 +533,22 @@ mixin _$HomePageStore on _HomePageStoreBase, Store {
     return _$onSearchAsyncAction.run(() => super.onSearch());
   }
 
+  late final _$onTapInRecentSummonerAsyncAction =
+      AsyncAction('_HomePageStoreBase.onTapInRecentSummoner', context: context);
+
+  @override
+  Future<void> onTapInRecentSummoner(int index) {
+    return _$onTapInRecentSummonerAsyncAction
+        .run(() => super.onTapInRecentSummoner(index));
+  }
+
   late final _$getSummonerByNameAsyncAction =
       AsyncAction('_HomePageStoreBase.getSummonerByName', context: context);
 
   @override
-  Future<void> getSummonerByName() {
-    return _$getSummonerByNameAsyncAction.run(() => super.getSummonerByName());
+  Future<void> getSummonerByName(String? summonerName) {
+    return _$getSummonerByNameAsyncAction
+        .run(() => super.getSummonerByName(summonerName));
   }
 
   late final _$getSummonerRankedInfoAsyncAction =

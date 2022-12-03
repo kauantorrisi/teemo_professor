@@ -94,10 +94,16 @@ class _HomePageState extends State<HomePage> {
                   : store.recentSummoners.length,
               itemBuilder: (context, index) => Column(
                 children: [
-                  CardRecentSummonerWidget(
-                    recentSummoner: store.recentSummoners[index],
-                    recentSummonerEntries:
-                        store.recentSummonersEntriesList[index],
+                  InkWell(
+                    onTap: () async {
+                      await store.onTapInRecentSummoner(index);
+                      Modular.to.pushNamed('/summoner-page');
+                    },
+                    child: CardRecentSummonerWidget(
+                      recentSummoner: store.recentSummoners[index],
+                      recentSummonerEntries:
+                          store.recentSummonersEntriesList[index],
+                    ),
                   ),
                 ],
               ),
