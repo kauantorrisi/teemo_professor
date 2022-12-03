@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:teemo_professor/libraries/common/design/colors.dart';
 import 'package:teemo_professor/libraries/common/design/texts.dart';
@@ -25,8 +26,8 @@ class DrawerWidget extends StatelessWidget {
               Text('Olá,\nInvocador', style: TPTexts.t1()),
               const Divider(color: TPColor.darkBlue),
               ListTileWidget(
-                  label: 'Pesquisar invocador',
-                  icon: Icons.search_rounded,
+                  label: 'Inicio',
+                  icon: FontAwesomeIcons.house,
                   onTap: () {
                     Modular.to.navigate(Modular.initialRoute);
                     Modular.to.pop();
@@ -34,7 +35,7 @@ class DrawerWidget extends StatelessWidget {
               SizedBox(height: 5.h),
               ListTileWidget(
                   label: 'Campeões',
-                  icon: Icons.theater_comedy,
+                  icon: FontAwesomeIcons.users,
                   onTap: () {
                     Modular.to.navigate('/champions-module/');
                     Modular.to.pop();
@@ -42,7 +43,7 @@ class DrawerWidget extends StatelessWidget {
               SizedBox(height: 5.h),
               ListTileWidget(
                   label: 'Itens',
-                  icon: Icons.settings,
+                  icon: FontAwesomeIcons.gear,
                   onTap: () {
                     Modular.to.navigate('/itens-module/');
                   }),

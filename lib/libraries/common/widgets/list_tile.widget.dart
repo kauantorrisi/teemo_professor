@@ -32,7 +32,7 @@ class ListTileWidget extends StatelessWidget {
         ),
         title: Text(label,
             style: TPTexts.t4(fontFamily: 'TeemoFont1', color: TPColor.white)),
-        leading: Icon(icon, color: TPColor.white),
+        leading: Icon(icon, color: TPColor.white, size: 20),
         onTap: onTap,
       ),
     );

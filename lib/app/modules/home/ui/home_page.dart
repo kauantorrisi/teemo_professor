@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                           },
                         ),
                         const SizedBox(height: 20),
-                        listFavoriteSummoners(),
+                        listRecentSummoners(),
                         const SizedBox(height: 20),
                         cardRankScoreInfo(),
                       ],
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
         });
   }
 
-  Widget listFavoriteSummoners() {
+  Widget listRecentSummoners() {
     return CardWidget(
       color: TPColor.blue,
       width: 350.w,
