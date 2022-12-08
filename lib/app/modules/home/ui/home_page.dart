@@ -40,28 +40,35 @@ class _HomePageState extends State<HomePage> {
         designSize: Size(screenSize.width, screenSize.height),
         builder: (context, child) {
           return Observer(builder: (context) {
-            return Scaffold(
-              appBar: const AppBarWidget(),
-              drawer: const DrawerWidget(),
-              body: store.isLoading == true
-                  ? const LoadingWidget()
-                  : Column(
-                      children: [
-                        TextFormFieldWidget(
-                          text: 'Pesquise um invocador (BR)',
-                          controller: store.searchController,
-                          onFieldSubmitted: (_) async {
-                            await store.onSearch();
-                            Modular.to.pushNamed('/summoner-page');
-                          },
+            return LayoutBuilder(builder: (ctx, constraints) {
+              return Scaffold(
+                appBar: const AppBarWidget(),
+                drawer: const DrawerWidget(),
+                body: store.isLoading == true
+                    ? const LoadingWidget()
+                    : SizedBox(
+                        height: constraints.maxHeight,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              TextFormFieldWidget(
+                                text: 'Pesquise um invocador (BR)',
+                                controller: store.searchController,
+                                onFieldSubmitted: (_) async {
+                                  await store.onSearch();
+                                  Modular.to.pushNamed('/summoner-page');
+                                },
+                              ),
+                              const SizedBox(height: 20),
+                              listRecentSummoners(),
+                              const SizedBox(height: 20),
+                              cardRankScoreInfo(),
+                            ],
+                          ),
                         ),
-                        const SizedBox(height: 20),
-                        listRecentSummoners(),
-                        const SizedBox(height: 20),
-                        cardRankScoreInfo(),
-                      ],
-                    ),
-            );
+                      ),
+              );
+            });
           });
         });
   }
