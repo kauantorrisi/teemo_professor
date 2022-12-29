@@ -23,7 +23,7 @@ class ListTileWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.02),
       child: ListTile(
-        selectedTileColor: TPColor.darkBlue,
+        selectedTileColor: TPColor.purple,
         selected: true,
         selectedColor: TPColor.black,
         shape: RoundedRectangleBorder(
@@ -32,7 +32,7 @@ class ListTileWidget extends StatelessWidget {
         ),
         title: Text(label,
             style: TPTexts.t4(fontFamily: 'TeemoFont1', color: TPColor.white)),
-        leading: Icon(icon, color: TPColor.white, size: 20),
+        leading: Icon(icon, color: TPColor.white),
         onTap: onTap,
       ),
     );

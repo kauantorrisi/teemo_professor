@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_modular/flutter_modular.dart';
-
 import 'package:teemo_professor/app/app_module.dart';
 import 'package:teemo_professor/app/app_widget.dart';
 
@@ -19,7 +17,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    WidgetsFlutterBinding.ensureInitialized();
     return const AppWidget();
   }
 }

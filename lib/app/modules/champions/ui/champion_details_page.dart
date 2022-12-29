@@ -57,7 +57,7 @@ class ChampionDetailsPage extends StatelessWidget {
                 padding: EdgeInsets.all(screenSize.height * 0.02),
                 margin: EdgeInsets.all(screenSize.height * 0.01),
                 decoration: BoxDecoration(
-                  border: Border.all(color: TPColor.darkBlue, width: 2),
+                  border: Border.all(color: TPColor.purple, width: 2),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -106,7 +106,7 @@ class ChampionDetailsPage extends StatelessWidget {
                   height: 275,
                   width: 323,
                   decoration: BoxDecoration(
-                    border: Border.all(color: TPColor.darkBlue, width: 2),
+                    border: Border.all(color: TPColor.purple, width: 2),
                   ),
                   child: Column(
                     children: [
@@ -141,7 +141,7 @@ class ChampionDetailsPage extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              border: Border.all(color: TPColor.darkBlue, width: 2),
+              border: Border.all(color: TPColor.purple, width: 2),
             ),
             child: Column(
               children: [

@@ -8,7 +8,7 @@ import 'package:teemo_professor/libraries/common/widgets/loading_widget.dart';
 import 'package:teemo_professor/libraries/common/widgets/app_bar.widget.dart';
 import 'package:teemo_professor/libraries/common/widgets/drawer.widget.dart';
 import 'package:teemo_professor/app/modules/champions/widgets/floating_action_button.dart';
-import 'package:teemo_professor/libraries/common/widgets/text_formField.widget.dart';
+import 'package:teemo_professor/libraries/common/widgets/textform_fields.widget.dart';
 
 class ChampionsListPage extends StatefulWidget {
   const ChampionsListPage({super.key});
