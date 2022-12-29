@@ -16,7 +16,7 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       title: Text('Professor Teemo', style: TPTexts.t1(color: TPColor.white)),
       centerTitle: true,
-      backgroundColor: TPColor.purple,
+      backgroundColor: TPColor.darkBlue,
       actions: actions,
     );
   }

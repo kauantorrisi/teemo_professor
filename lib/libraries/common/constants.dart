@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-String API_KEY = 'RGAPI-6fb40ce8-5690-401a-9db6-05c94a7139cd';
+String API_KEY = 'RGAPI-2de4bb92-6f52-4002-a171-59d8e616f66b';
 
 String LOL_URL = 'https://br1.api.riotgames.com/';
 
@@ -23,6 +23,54 @@ String LOL_RANKEDCHALLENGERSOLOQINFO =
 
 String LOL_RANKEDCHALLENGERFLEXINFO =
     '${LOL_URL}lol/league/v4/challengerleagues/by-queue/RANKED_FLEX_SR';
+
+String LOL_RANKEDGRANDMASTERSOLOQINFO =
+    '${LOL_URL}lol/league/v4/grandmasterleagues/by-queue/RANKED_SOLO_5x5';
+
+String LOL_RANKEDGRANDMASTERFLEXINFO =
+    '${LOL_URL}lol/league/v4/grandmasterleagues/by-queue/RANKED_FLEX_5x5';
+
+String LOL_RANKEDMASTERSOLOQINFO =
+    '${LOL_URL}lol/league/v4/masterleagues/by-queue/RANKED_SOLO_5x5';
+
+String LOL_RANKEDMASTERFLEXINFO =
+    '${LOL_URL}lol/league/v4/masterleagues/by-queue/RANKED_FLEX_5x5';
+
+String LOL_RANKEDDIAMONDSOLOQ =
+    '${LOL_URL}lol/league/v4/entries/RANKED_SOLO_5x5/DIAMOND/';
+
+String LOL_RANKEDDIAMONDFLEX =
+    '${LOL_URL}lol/league/v4/entries/RANKED_FLEX_SR/DIAMOND/';
+
+String LOL_RANKEDPLATINUMSOLOQ =
+    '${LOL_URL}lol/league/v4/entries/RANKED_SOLO_5x5/PLATINUM/';
+
+String LOL_RANKEDPLATINUMFLEX =
+    '${LOL_URL}lol/league/v4/entries/RANKED_FLEX_SR/PLATINUM/';
+
+String LOL_RANKEDGOLDSOLOQ =
+    '${LOL_URL}lol/league/v4/entries/RANKED_SOLO_5x5/GOLD/';
+
+String LOL_RANKEDGOLDFLEX =
+    '${LOL_URL}lol/league/v4/entries/RANKED_FLEX_SR/GOLD/';
+
+String LOL_RANKEDSILVERSOLOQ =
+    '${LOL_URL}lol/league/v4/entries/RANKED_SOLO_5x5/SILVER/';
+
+String LOL_RANKEDSILVERFLEX =
+    '${LOL_URL}lol/league/v4/entries/RANKED_FLEX_SR/SILVER/';
+
+String LOL_RANKEDBRONZESOLOQ =
+    '${LOL_URL}lol/league/v4/entries/RANKED_SOLO_5x5/BRONZE/';
+
+String LOL_RANKEDBRONZEFLEX =
+    '${LOL_URL}lol/league/v4/entries/RANKED_FLEX_SR/BRONZE/';
+
+String LOL_RANKEDIRONSOLOQ =
+    '${LOL_URL}lol/league/v4/entries/RANKED_SOLO_5x5/IRON/';
+
+String LOL_RANKEDIRONFLEX =
+    '${LOL_URL}lol/league/v4/entries/RANKED_FLEX_SR/IRON/';
 
 String LOL_LISTMATCHIDSBYPUUID =
     'https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/';

@@ -12,12 +12,17 @@ environment:
 
 
 dependencies:
+  cached_network_image: ^3.2.3
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
+  firebase_core: ^2.3.0
   flutter:
     sdk: flutter
   flutter_mobx: ^2.0.6+4
   flutter_modular: ^5.0.3
+  flutter_screenutil: ^5.6.0
+  font_awesome_flutter: ^10.2.1
+  intl: ^0.17.0
   mobx: ^2.1.1
 
 dev_dependencies:
@@ -34,11 +39,12 @@ flutter:
 
   uses-material-design: true
   assets:
-    - lib/assets/images/error.image.png
-    - lib/assets/images/teemo_loading.gif
-    - lib/assets/images/baron-icon.png
-    - lib/assets/images/dragon-icon.png
-    - lib/assets/images/rift-herald-icon.png
+    - lib/assets/images/
+    # - lib/assets/images/error.image.png
+    # - lib/assets/images/teemo_loading.gif
+    # - lib/assets/images/baron-icon.png
+    # - lib/assets/images/dragon-icon.png
+    # - lib/assets/images/rift-herald-icon.png
 
   fonts:
     - family: TeemoFont1

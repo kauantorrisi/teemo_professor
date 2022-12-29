@@ -18,7 +18,7 @@ class FloatingActionButtonWidget extends StatelessWidget {
           horizontal: screenSize.width * 0.03,
         ),
         child: FloatingActionButton(
-          backgroundColor: TPColor.purple,
+          backgroundColor: TPColor.darkBlue,
           onPressed: onPressed,
           child: Icon(icon),
         ),
